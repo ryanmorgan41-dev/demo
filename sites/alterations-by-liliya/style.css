@@ -1,0 +1,83 @@
+/* ============================================================
+   Alterations by Liliya — bespoke BOUTIQUE / EDITORIAL layout
+   (shared boutique archetype, re-skinned: deep-teal-on-ivory palette,
+   Cormorant Garamond + Jost). Layered over shared/styles.css. Airy
+   editorial hero + refined service list + lookbook gallery + minimal
+   "how it works" = an atelier, not the universal template. ch-* classes.
+   ============================================================ */
+
+/* ---------- Editorial hero (text + tall portrait image) ---------- */
+.ch-hero { padding-block: clamp(2.5rem, 6vw, 5rem); }
+.ch-hero__grid { display: grid; grid-template-columns: 1fr 0.82fr; gap: clamp(1.5rem, 5vw, 4.5rem);
+  align-items: center; }
+.ch-hero__rule { width: 56px; height: 2px; background: var(--accent); margin-bottom: 1.4rem; }
+.ch-hero h1 { margin: 0 0 0.8rem; }
+.ch-hero h1 em { font-style: italic; color: var(--accent-deep); }
+.ch-hero__lead { color: var(--muted); font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem); max-width: 42ch; }
+.ch-hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.7rem; align-items: center; }
+.ch-hero__note { color: var(--muted); font-size: 0.9rem; font-style: italic; }
+.ch-hero__img { border-radius: 200px 200px var(--radius) var(--radius); overflow: hidden; box-shadow: var(--shadow);
+  aspect-ratio: 3 / 4; }
+.ch-hero__img img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- Refined service list (no images — editorial) ---------- */
+.ch-serv { padding-block: clamp(3.5rem, 7vw, 6rem); background: var(--surface); }
+.ch-serv__head { max-width: 50ch; margin-bottom: clamp(1.6rem, 3vw, 2.4rem); text-align: center; margin-inline: auto; }
+.ch-list { max-width: 760px; margin-inline: auto; }
+.ch-row { display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 1.6rem; align-items: baseline;
+  padding: 1.5rem 0; border-top: 1px solid var(--line); }
+.ch-row:last-child { border-bottom: 1px solid var(--line); }
+.ch-row__n { font-family: var(--font-display); font-style: italic; color: var(--accent); font-size: 1.4rem; }
+.ch-row h3 { margin: 0 0 0.2rem; }
+.ch-row p { color: var(--muted); margin: 0; max-width: 60ch; }
+
+/* ---------- Lookbook gallery (asymmetric editorial grid) ---------- */
+.ch-look { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.ch-look__head { margin-bottom: clamp(1.8rem, 3.5vw, 2.6rem); text-align: center; }
+.ch-look__grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: clamp(0.8rem, 2vw, 1.2rem); }
+.ch-look figure { margin: 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+.ch-look figure img { width: 100%; height: 100%; object-fit: cover; }
+.ch-look .tall { grid-row: span 2; }
+.ch-look .wide { grid-column: span 2; }
+
+/* ---------- How it works (minimal numbered) ---------- */
+.ch-how { padding-block: clamp(3.5rem, 7vw, 6rem); background: var(--surface); }
+.ch-how__head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.ch-how__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 4vw, 3rem);
+  counter-reset: s; max-width: 920px; margin-inline: auto; }
+.ch-how__step { text-align: center; }
+.ch-how__step::before { counter-increment: s; content: counter(s, decimal-leading-zero);
+  font-family: var(--font-display); font-style: italic; font-size: 2.4rem; color: var(--accent);
+  display: block; margin-bottom: 0.6rem; }
+.ch-how__step h3 { margin: 0 0 0.3rem; }
+.ch-how__step p { color: var(--muted); margin: 0; font-size: 0.95rem; }
+
+/* ---------- Appointment band (elegant, not loud) ---------- */
+.ch-appt { padding-block: clamp(3rem, 6vw, 4.5rem); }
+.ch-appt__inner { max-width: 760px; margin-inline: auto; text-align: center; border: 1px solid var(--line);
+  border-radius: var(--radius); padding: clamp(2rem, 5vw, 3rem); background: var(--bg); box-shadow: var(--shadow-sm); }
+.ch-appt h2 { margin: 0 0 0.5rem; }
+.ch-appt p { color: var(--muted); max-width: 52ch; margin: 0 auto 1.4rem; }
+.ch-appt__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+
+/* ---------- Visit ---------- */
+.ch-visit { padding-block: clamp(3rem, 6vw, 5rem); background: var(--surface); }
+.ch-visit__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
+.ch-visit__col h3 { font-family: var(--font-body); font-weight: 600; font-size: 0.82rem; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--accent-deep); margin-bottom: 0.6rem; }
+.ch-visit__col p { color: var(--muted); margin: 0 0 0.3rem; }
+.ch-visit__col a { color: var(--ink); font-weight: 600; border-bottom: 1.5px solid var(--accent); text-decoration: none; }
+.ch-visit .tag { display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--accent-deep);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 0.15rem 0.6rem; margin-left: 0.3rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 820px) {
+  .ch-hero__grid { grid-template-columns: 1fr; }
+  .ch-hero__img { max-width: 420px; }
+  .ch-how__grid { grid-template-columns: 1fr; gap: 2rem; }
+  .ch-visit__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .ch-look__grid { grid-template-columns: 1fr 1fr; }
+  .ch-look .wide { grid-column: span 2; }
+}

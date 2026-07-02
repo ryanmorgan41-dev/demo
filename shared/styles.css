@@ -1,0 +1,216 @@
+/* ============================================================
+   Davis County spec sites — ONE shared stylesheet.
+   Every business themes it by overriding the :root tokens in
+   its own index.html <head> (palette + the two fonts). Nothing
+   below is business-specific. Impeccable conventions: OKLCH
+   tokens, two fonts on a contrast axis, body contrast >= 4.5:1,
+   no gradient text, no eyebrow-on-every-section, no cream-default.
+   ============================================================ */
+
+:root {
+  /* ---- Theme tokens (overridden per-site) ---- */
+  --bg:          oklch(0.99 0.005 95);     /* page background           */
+  --surface:     oklch(0.97 0.008 95);     /* cards / raised areas      */
+  --ink:         oklch(0.22 0.02 260);     /* primary text              */
+  --muted:       oklch(0.48 0.02 260);     /* secondary text            */
+  --line:        oklch(0.90 0.01 260);     /* hairlines / borders       */
+  --accent:      oklch(0.62 0.17 25);      /* brand accent              */
+  --accent-deep: oklch(0.50 0.16 25);      /* accent hover / dark band  */
+  --on-accent:   oklch(0.99 0 0);          /* text on accent            */
+  --hero-tint:   oklch(0.20 0.03 260 / 0.55); /* hero image overlay     */
+
+  --font-display: "Georgia", serif;        /* headings (override)       */
+  --font-body:    system-ui, sans-serif;   /* body (override)           */
+
+  --maxw: 1140px;
+  --radius: 16px;
+  --shadow: 0 1px 2px oklch(0.2 0.02 260 / 0.06), 0 14px 34px oklch(0.2 0.02 260 / 0.10);
+  --shadow-sm: 0 1px 2px oklch(0.2 0.02 260 / 0.08), 0 4px 12px oklch(0.2 0.02 260 / 0.07);
+}
+
+/* ---- Reset / base ---------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.075rem);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.08;
+  margin: 0 0 0.4em;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+h1 { font-size: clamp(2.3rem, 1.5rem + 3.6vw, 4rem); }
+h2 { font-size: clamp(1.7rem, 1.2rem + 2vw, 2.6rem); }
+h3 { font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem); }
+p  { margin: 0 0 1rem; }
+a  { color: inherit; }
+img { max-width: 100%; display: block; }
+
+.container { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: clamp(1.1rem, 4vw, 2rem); }
+.section { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.section--tint { background: var(--surface); }
+.eyebrow { font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.14em; font-size: 0.78rem; color: var(--accent-deep); margin: 0 0 0.8rem; }
+.lead { font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem); color: var(--muted); max-width: 56ch; }
+
+.skip-link { position: absolute; left: -9999px; top: 0; background: var(--ink); color: var(--bg);
+  padding: 0.6rem 1rem; z-index: 100; }
+.skip-link:focus { left: 0; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+/* ---- Buttons --------------------------------------------- */
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-body);
+  font-weight: 650; font-size: 1rem; line-height: 1; text-decoration: none; cursor: pointer;
+  padding: 0.95rem 1.5rem; border-radius: 999px; border: 1.5px solid transparent;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow-sm); }
+.btn-primary:hover { background: var(--accent-deep); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent-deep); }
+.btn-lg { padding: 1.1rem 1.9rem; font-size: 1.06rem; }
+
+/* CTA whose live URL isn't wired yet (main.js adds .is-pending) */
+.is-pending { opacity: 0.6; cursor: not-allowed; }
+.is-pending:hover { transform: none; }
+.is-pending::after { content: " · coming soon"; font-weight: 500; opacity: 0.85; white-space: nowrap; }
+
+/* ---- Header / nav ---------------------------------------- */
+.header { position: sticky; top: 0; z-index: 50; background: oklch(0.99 0.005 95 / 0.82);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px); backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid transparent; transition: border-color 0.25s ease, box-shadow 0.25s ease; }
+.header.is-scrolled { border-bottom-color: var(--line); box-shadow: 0 6px 20px oklch(0.2 0.02 260 / 0.06); }
+.header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 68px; }
+.brand { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.01em;
+  text-decoration: none; color: var(--ink); }
+.brand span { color: var(--accent); }
+.nav { display: flex; align-items: center; gap: 1.6rem; }
+.nav a { text-decoration: none; color: var(--muted); font-weight: 550; font-size: 0.97rem;
+  transition: color 0.15s ease; }
+.nav a:hover { color: var(--ink); }
+.nav .btn { padding: 0.6rem 1.1rem; }
+.nav .btn-primary { background: var(--ink); color: var(--bg); }  /* dark pill always passes contrast at nav size */
+.nav .btn-primary:hover { background: var(--accent-deep); color: var(--on-accent); }
+.nav-toggle { display: none; }
+
+/* ---- Hero ------------------------------------------------ */
+.hero { position: relative; color: var(--on-accent); isolation: isolate; }
+.hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, var(--hero-tint), var(--hero-tint)); }
+.hero__inner { padding-block: clamp(5rem, 13vw, 9.5rem); max-width: 40rem; }
+.hero h1 { color: var(--on-accent); text-shadow: 0 2px 24px oklch(0.15 0.02 260 / 0.45); }
+.hero p { color: oklch(0.98 0 0 / 0.92); font-size: clamp(1.1rem, 1rem + 0.6vw, 1.35rem); max-width: 34ch; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.8rem; }
+/* ghost CTA sits on the dark hero image — needs light text, not --ink */
+.hero .btn-ghost { color: var(--on-accent); border-color: oklch(1 0 0 / 0.55);
+  background: oklch(1 0 0 / 0.06); }
+.hero .btn-ghost:hover { border-color: var(--on-accent); color: var(--on-accent);
+  background: oklch(1 0 0 / 0.14); }
+.hero__meta { margin-top: 1.6rem; font-size: 0.95rem; color: oklch(0.98 0 0 / 0.85);
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.3rem; }
+.hero__meta b { color: var(--on-accent); font-weight: 650; }
+
+/* ---- Section heading block ------------------------------- */
+.section__head { max-width: 46ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.section__head.center { margin-inline: auto; text-align: center; }
+
+/* ---- "What we sell" cards -------------------------------- */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.5vw, 1.6rem); }
+.card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.card__img { aspect-ratio: 4 / 3; width: 100%; object-fit: cover; background: var(--surface); }
+.card__body { padding: 1.3rem 1.4rem 1.5rem; }
+.card h3 { margin-bottom: 0.35rem; }
+.card p { color: var(--muted); margin: 0; font-size: 0.97rem; }
+
+/* placeholder when an image failed to generate — never blank */
+.imgslot { aspect-ratio: 4 / 3; display: grid; place-items: center; text-align: center;
+  background: var(--surface); color: var(--muted); font-size: 0.8rem; padding: 1rem;
+  border-bottom: 1px solid var(--line); }
+.hero__img.imgslot { aspect-ratio: auto; }
+
+/* ---- About ----------------------------------------------- */
+.about { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center; }
+.about__img { border-radius: var(--radius); box-shadow: var(--shadow); aspect-ratio: 3 / 4;
+  object-fit: cover; width: 100%; }
+.stats { display: flex; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.stat b { display: block; font-family: var(--font-display); font-size: 1.9rem; color: var(--accent-deep);
+  line-height: 1; }
+.stat span { font-size: 0.85rem; color: var(--muted); }
+
+/* ---- Visit / contact ------------------------------------- */
+.visit { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
+.visit__col h3 { font-family: var(--font-body); font-weight: 700; font-size: 0.82rem;
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-deep); margin-bottom: 0.6rem; }
+.visit__col p { color: var(--muted); margin: 0 0 0.3rem; }
+.visit__col a { color: var(--ink); font-weight: 600; text-decoration: none; border-bottom: 1.5px solid var(--accent); }
+.tag { display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--accent-deep);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+  padding: 0.15rem 0.6rem; margin-left: 0.3rem; vertical-align: middle; }
+
+/* ---- Footer + demo notice -------------------------------- */
+.footer { background: var(--ink); color: oklch(0.97 0 0 / 0.8); padding-block: 2.6rem; }
+.footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem;
+  align-items: center; }
+.footer .brand { color: oklch(0.99 0 0); }
+.footer a { color: oklch(0.97 0 0 / 0.9); }
+.demo-notice { background: oklch(0.97 0.05 95); color: oklch(0.32 0.06 70);
+  border-top: 1px solid oklch(0.85 0.06 80); font-size: 0.85rem; text-align: center;
+  padding: 0.7rem 1rem; }
+.demo-notice b { color: oklch(0.28 0.08 60); }
+
+/* ---- Reveal (paired with main.js) ------------------------
+   main.js adds .reveal-init to [data-reveal] and .is-revealed when it
+   scrolls into view. We DON'T gate visibility on that JS/scroll/load
+   chain — a headless or slow render would ship blank. Instead a CSS
+   animation fades each element up on its own and ENDS visible, so the
+   IntersectionObserver is pure polish and content can never get stuck
+   hidden. Still gated on .js, so no-JS renders show content too. */
+.js .reveal-init { opacity: 0; transform: translateY(18px); animation: reveal-in 0.6s ease 0.05s forwards; }
+.is-revealed { opacity: 1; transform: none; }
+@keyframes reveal-in { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-init { opacity: 1; transform: none; animation: none; }
+}
+
+/* ---- Responsive ------------------------------------------ */
+@media (max-width: 860px) {
+  .cards { grid-template-columns: 1fr 1fr; }
+  .about { grid-template-columns: 1fr; }
+  .about__img { aspect-ratio: 16 / 10; max-height: 380px; }
+  .visit { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .cards { grid-template-columns: 1fr; }
+  .nav { position: fixed; inset: 68px 0 auto 0; flex-direction: column; align-items: stretch;
+    gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 0.5rem 1.2rem 1.2rem;
+    box-shadow: var(--shadow); transform: translateY(-130%); transition: transform 0.28s ease;
+    max-height: calc(100vh - 68px); overflow-y: auto; }
+  .nav.is-open { transform: translateY(0); }
+  .nav a { padding: 0.85rem 0; border-bottom: 1px solid var(--line); }
+  .nav .btn { margin-top: 0.8rem; justify-content: center; }
+  .nav-toggle { display: inline-flex; flex-direction: column; gap: 4px; background: none;
+    border: 0; cursor: pointer; padding: 0.5rem; }
+  .nav-toggle span { width: 24px; height: 2px; background: var(--ink); border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+}

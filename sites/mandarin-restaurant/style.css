@@ -1,0 +1,96 @@
+/* ============================================================
+   Bandidos Taco Truck — bespoke STREET-FOOD layout.
+   Layered over shared/styles.css (foundation: tokens, buttons,
+   header/nav, footer, demo-notice, reveal, a11y). New class names
+   (bd-*) so nothing collides with the generic components. The point:
+   this should read as a taco truck, not the universal template.
+   ============================================================ */
+
+/* awning marquee — a moving taco-stand stripe under the header */
+.bd-marquee { background: var(--accent); color: var(--on-accent); overflow: hidden; white-space: nowrap; }
+.bd-marquee__track { display: inline-block; padding-block: 0.5rem; animation: bd-scroll 26s linear infinite;
+  font-family: var(--font-display); font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;
+  font-size: 0.92rem; }
+.bd-marquee__track span { padding: 0 1.1rem; }
+@keyframes bd-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .bd-marquee__track { animation: none; } }
+
+/* ---------- Hero: bottom-anchored poster over a full-bleed taco shot ---------- */
+.bd-hero { position: relative; color: var(--on-accent); isolation: isolate; overflow: hidden;
+  min-height: min(86vh, 780px); display: flex; align-items: flex-end; }
+.bd-hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.bd-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(
+  180deg, oklch(0.18 0.04 45 / 0.20) 0%, oklch(0.17 0.05 40 / 0.52) 52%, oklch(0.13 0.05 35 / 0.9) 100%); }
+.bd-hero__inner { padding-block: clamp(2.5rem, 6vw, 5rem); width: 100%; }
+.bd-pill { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent);
+  color: var(--on-accent); font-weight: 700; font-size: 0.85rem; padding: 0.45rem 0.95rem;
+  border-radius: 999px; margin-bottom: 1.1rem; box-shadow: var(--shadow-sm); }
+.bd-hero h1 { color: var(--on-accent); font-size: clamp(2.9rem, 1.8rem + 6.4vw, 6rem); line-height: 0.94;
+  text-transform: uppercase; letter-spacing: -0.02em; margin: 0 0 0.5rem; max-width: 15ch;
+  text-shadow: 0 4px 32px oklch(0.1 0.03 40 / 0.5); }
+.bd-hero p { color: oklch(0.99 0 0 / 0.95); font-size: clamp(1.1rem, 1rem + 0.6vw, 1.4rem); max-width: 40ch; }
+.bd-hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.6rem; }
+.bd-hero__meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem; margin-top: 1.5rem; font-weight: 600;
+  color: oklch(0.99 0 0 / 0.9); }
+/* ghost CTA sits on the dark photo — needs light text (foundation only styles .hero, not .bd-hero) */
+.bd-hero .btn-ghost { color: var(--on-accent); border-color: oklch(1 0 0 / 0.55); background: oklch(1 0 0 / 0.06); }
+.bd-hero .btn-ghost:hover { border-color: var(--on-accent); background: oklch(1 0 0 / 0.14); }
+
+/* ---------- The MENU (signature module — replaces the generic 3 cards) ---------- */
+.bd-menu { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.bd-menu__intro { max-width: 56ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.bd-menu__note { font-size: 0.82rem; color: var(--muted); font-style: italic; margin-top: 0.6rem; }
+.bd-menu__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); }
+.bd-cat__h { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.3rem;
+  letter-spacing: 0.01em; color: var(--ink); display: flex; align-items: center; gap: 0.55rem;
+  padding-bottom: 0.55rem; margin: 0 0 1rem; border-bottom: 3px solid var(--accent); }
+.bd-item { display: grid; grid-template-columns: 1fr auto; gap: 0.15rem 0.8rem; align-items: baseline;
+  padding: 0.7rem 0; border-bottom: 1px dashed var(--line); }
+.bd-item:last-child { border-bottom: 0; }
+.bd-item__name { font-weight: 700; color: var(--ink); }
+.bd-item__name .hot { font-size: 0.66rem; background: var(--accent); color: var(--on-accent);
+  padding: 0.12rem 0.45rem; border-radius: 999px; vertical-align: middle; margin-left: 0.45rem;
+  text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700; }
+.bd-item__price { font-family: var(--font-display); font-weight: 700; color: var(--accent-deep); white-space: nowrap; }
+.bd-item__desc { grid-column: 1 / -1; color: var(--muted); font-size: 0.9rem; margin: 0; }
+
+/* ---------- Gallery filmstrip (horizontal, snapping) ---------- */
+.bd-gallery { padding-block: clamp(3rem, 6vw, 5rem); background: var(--surface); }
+.bd-gallery__head { margin-bottom: 1.4rem; }
+.bd-scroll { display: grid; grid-auto-flow: column; grid-auto-columns: min(78vw, 360px); gap: 1rem;
+  overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; scrollbar-width: thin; }
+.bd-shot { scroll-snap-align: start; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+.bd-shot img { aspect-ratio: 4 / 3; width: 100%; object-fit: cover; }
+
+/* ---------- Catering band (the money CTA — full-width, loud) ---------- */
+.bd-catering { background: var(--accent); color: var(--on-accent); padding-block: clamp(3rem, 6vw, 4.5rem); }
+.bd-catering__inner { display: grid; grid-template-columns: 1.5fr auto; gap: 2rem; align-items: center; }
+.bd-catering h2 { color: var(--on-accent); text-transform: uppercase; font-size: clamp(1.8rem, 1.3rem + 2vw, 2.8rem);
+  margin: 0 0 0.5rem; }
+.bd-catering p { color: oklch(1 0 0 / 0.92); max-width: 46ch; margin: 0; }
+.bd-catering__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.bd-catering .btn-primary { background: var(--ink); color: oklch(0.99 0 0); }
+.bd-catering .btn-primary:hover { background: oklch(0.16 0.03 40); }
+.bd-catering .btn-ghost { color: var(--on-accent); border-color: oklch(1 0 0 / 0.6); background: oklch(1 0 0 / 0.05); }
+.bd-catering .btn-ghost:hover { border-color: var(--on-accent); background: oklch(1 0 0 / 0.14); }
+
+/* ---------- Find-the-truck strip ---------- */
+.bd-find { padding-block: clamp(2.6rem, 5vw, 4rem); }
+.bd-find__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.4rem, 3vw, 2.4rem); }
+.bd-find__card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.6rem 1.7rem; }
+.bd-find__card h3 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.15rem;
+  margin: 0 0 0.5rem; }
+.bd-find__card p { color: var(--muted); margin: 0 0 0.4rem; }
+.bd-find__card a { color: var(--ink); font-weight: 600; border-bottom: 1.5px solid var(--accent);
+  text-decoration: none; }
+.bd-find .tag { display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--accent-deep);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 0.15rem 0.6rem;
+  margin-left: 0.3rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 820px) {
+  .bd-menu__grid { grid-template-columns: 1fr; gap: 2.4rem; }
+  .bd-catering__inner { grid-template-columns: 1fr; }
+  .bd-find__grid { grid-template-columns: 1fr; }
+}

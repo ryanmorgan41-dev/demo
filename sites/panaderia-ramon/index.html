@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Panadería Ramón — Mexican Bakery in Clearfield, UT</title>
+<meta name="description" content="Fresh-baked Mexican pan dulce, conchas, tres leches, empanadas and custom cakes in Clearfield, UT — baked daily.">
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Panadería Ramón — Mexican Bakery in Clearfield, UT">
+<meta property="og:description" content="Fresh pan dulce, conchas, tres leches and custom cakes, baked every morning in Clearfield, UT.">
+<meta property="og:image" content="images/og.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../shared/styles.css">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --font-display: "DM Serif Display", Georgia, serif;
+    --font-body: "Nunito Sans", system-ui, sans-serif;
+    --bg:          oklch(0.985 0.013 60);
+    --surface:     oklch(0.96 0.022 50);
+    --ink:         oklch(0.29 0.04 38);
+    --muted:       oklch(0.47 0.035 42);
+    --line:        oklch(0.89 0.025 55);
+    --accent:      oklch(0.62 0.15 18);
+    --accent-deep: oklch(0.50 0.14 16);
+    --on-accent:   oklch(0.99 0 0);
+    --hero-tint:   oklch(0.25 0.05 30 / 0.4);
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Panadería Ramón",
+  "telephone": "+1-385-439-4633",
+  "areaServed": "Clearfield, UT",
+  "servesCuisine": "Mexican",
+  "address": { "@type": "PostalAddress", "streetAddress": "245 N Main St", "addressLocality": "Clearfield", "addressRegion": "UT", "postalCode": "84015" }
+}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header" data-header>
+  <div class="container header__inner">
+    <a class="brand" href="#top">Panadería <span>Ramón</span></a>
+    <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="nav" data-nav aria-label="Primary">
+      <a href="#case">The case</a>
+      <a href="#cakes">Custom cakes</a>
+      <a href="#visit">Visit</a>
+      <a class="btn btn-primary" href="tel:+13854394633">Call (385) 439-4633</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO: banner + floating card -->
+  <section class="pr-hero" id="top">
+    <img class="pr-hero__img" src="images/hero.webp" alt="Fresh Mexican pan dulce and conchas on a bakery tray" fetchpriority="high">
+    <div class="container">
+      <div class="pr-hero__card" data-reveal>
+        <span class="pr-pill">🥐 Horneado fresco diario · fresh-baked daily</span>
+        <h1>Pan dulce, fresh from the oven</h1>
+        <p>Conchas, tres leches, empanadas and custom cakes — baked every morning at the counter inside the market.</p>
+        <div class="pr-hero__cta">
+          <a class="btn btn-primary btn-lg" href="tel:+13854394633">Call (385) 439-4633</a>
+          <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Order a cake</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FROM THE CASE -->
+  <section class="pr-case" id="case">
+    <div class="container">
+      <div class="pr-case__head" data-reveal>
+        <p class="eyebrow">From the case</p>
+        <h2>Baked fresh, every morning</h2>
+        <p class="lead" style="margin-inline:auto">Walk in to a case full of pan dulce — and order a cake for whatever you're celebrating.</p>
+      </div>
+      <div class="pr-case__grid">
+        <article class="pr-tile" data-reveal>
+          <img src="images/sell-1.webp" alt="Conchas and assorted pan dulce" loading="lazy">
+          <div class="pr-tile__b"><h3>Conchas &amp; pan dulce</h3><p>The classics, fresh daily.</p></div>
+        </article>
+        <article class="pr-tile" data-reveal>
+          <img src="images/sell-2.webp" alt="Tres leches cake" loading="lazy">
+          <div class="pr-tile__b"><h3>Tres leches &amp; cakes</h3><p>Soft, sweet, made to share.</p></div>
+        </article>
+        <article class="pr-tile" data-reveal>
+          <img src="images/sell-3.webp" alt="Empanadas and bolillos" loading="lazy">
+          <div class="pr-tile__b"><h3>Empanadas &amp; bolillos</h3><p>Sweet and savory, every day.</p></div>
+        </article>
+        <article class="pr-tile" data-reveal>
+          <img src="images/about.webp" alt="A decorated custom cake" loading="lazy">
+          <div class="pr-tile__b"><h3>Custom cakes</h3><p>For birthdays &amp; quinceañeras.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRESH DAILY STRIP -->
+  <section class="pr-daily">
+    <div class="container pr-daily__inner">
+      <div><b>Baked daily</b><span>Fresh every morning</span></div>
+      <div><b>Custom cakes</b><span>Order ahead for events</span></div>
+      <div><b>Inside the market</b><span>245 N Main St, Clearfield</span></div>
+    </div>
+  </section>
+
+  <!-- CUSTOM CAKE BAND -->
+  <section class="pr-cake" id="cakes">
+    <div class="container">
+      <div class="pr-cake__inner" data-reveal>
+        <div class="pr-cake__img"><img src="images/about.webp" alt="A decorated custom cake"></div>
+        <div class="pr-cake__body">
+          <p class="eyebrow" style="color:oklch(1 0 0 / .85)">Made to order</p>
+          <h2>Custom cakes for every celebration</h2>
+          <p>Birthdays, quinceañeras, baptisms — tell us the date and the design and we'll have it ready.</p>
+          <div class="pr-cake__cta">
+            <a class="btn btn-primary btn-lg" href="tel:+13854394633">Call to order</a>
+            <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Request a quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="pr-visit" id="visit">
+    <div class="container">
+      <div class="pr-visit__head" data-reveal>
+        <p class="eyebrow">Find us</p>
+        <h2>Come by the counter</h2>
+      </div>
+      <div class="pr-visit__grid" data-reveal>
+        <div class="pr-visit__col">
+          <h3>Hours</h3>
+          <p>Mon–Sat · 8am–8pm <span class="tag">confirm</span></p>
+          <p>Sunday · 8am–6pm <span class="tag">confirm</span></p>
+        </div>
+        <div class="pr-visit__col">
+          <h3>Find us</h3>
+          <p>245 N Main St</p>
+          <p>Clearfield, UT 84015</p>
+          <p><a href="https://www.google.com/maps/search/?api=1&query=Panaderia+Ramon+245+N+Main+St+Clearfield+UT" rel="noopener">Open in Maps →</a></p>
+        </div>
+        <div class="pr-visit__col">
+          <h3>Get in touch</h3>
+          <p><a href="tel:+13854394633">(385) 439-4633</a></p>
+          <p>Call ahead for custom cake orders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <a class="brand" href="#top">Panadería <span>Ramón</span></a>
+    <p style="margin:0">Clearfield, Utah · <a href="tel:+13854394633">(385) 439-4633</a></p>
+    <p style="margin:0">© <span data-year>2026</span> Panadería Ramón</p>
+  </div>
+</footer>
+
+<p class="demo-notice">
+  <b>Concept demo</b> prepared for Panadería Ramón — not affiliated, pending owner approval. Photos are AI illustrations.
+</p>
+
+<script src="js/config.js"></script>
+<script src="../../shared/main.js"></script>
+</body>
+</html>

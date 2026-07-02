@@ -1,0 +1,88 @@
+/* ============================================================
+   Auto Crafters Auto Body — bespoke BOLD SERVICE / ESTIMATE layout.
+   Layered over shared/styles.css. Dark hero + trust stat bar +
+   numbered process steps + dark services strip + estimate band =
+   a collision shop, not the universal template. ac-* classes.
+   ============================================================ */
+
+/* ---------- Hero: dark, estimate-focused ---------- */
+.ac-hero { position: relative; color: var(--on-accent); isolation: isolate; overflow: hidden; }
+.ac-hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.ac-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(
+  110deg, oklch(0.16 0.02 260 / 0.93) 0%, oklch(0.18 0.03 260 / 0.72) 55%, oklch(0.18 0.03 260 / 0.35) 100%); }
+.ac-hero__inner { padding-block: clamp(4rem, 10vw, 7rem); max-width: 41rem; }
+.ac-kicker { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; margin-bottom: 1rem; }
+.ac-hero h1 { color: var(--on-accent); text-transform: uppercase; font-size: clamp(2.4rem, 1.6rem + 4vw, 4.4rem);
+  letter-spacing: -0.01em; text-shadow: 0 3px 26px oklch(0.1 0.02 260 / 0.5); }
+.ac-hero p { color: oklch(0.98 0 0 / 0.9); font-size: clamp(1.05rem, 1rem + 0.5vw, 1.3rem); max-width: 38ch; }
+.ac-hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.6rem; }
+.ac-hero .btn-ghost { color: var(--on-accent); border-color: oklch(1 0 0 / 0.55); background: oklch(1 0 0 / 0.06); }
+.ac-hero .btn-ghost:hover { border-color: var(--on-accent); background: oklch(1 0 0 / 0.14); }
+
+/* ---------- Trust stat bar ---------- */
+.ac-stats { background: var(--accent); color: var(--on-accent); }
+.ac-stats__inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; padding-block: 1.3rem;
+  text-align: center; }
+.ac-stats b { display: block; font-family: var(--font-display); font-size: 1.3rem; }
+.ac-stats span { font-size: 0.82rem; color: oklch(1 0 0 / 0.85); }
+
+/* ---------- Process steps (signature) ---------- */
+.ac-process { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.ac-process__head { max-width: 52ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.ac-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 2.5vw, 1.6rem);
+  counter-reset: step; }
+.ac-step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.6rem 1.5rem; }
+.ac-step::before { counter-increment: step; content: counter(step); display: grid; place-items: center;
+  width: 2.4rem; height: 2.4rem; border-radius: 999px; background: var(--accent); color: var(--on-accent);
+  font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; margin-bottom: 0.9rem; }
+.ac-step h3 { margin: 0 0 0.3rem; }
+.ac-step p { color: var(--muted); margin: 0; font-size: 0.93rem; }
+
+/* ---------- Services (dark strip) ---------- */
+.ac-serv { background: var(--ink); color: oklch(0.97 0 0 / 0.9); padding-block: clamp(3.5rem, 7vw, 6rem); }
+.ac-serv__head { max-width: 52ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.ac-serv__head h2 { color: oklch(0.99 0 0); }
+.ac-serv__head .eyebrow { color: var(--accent); }
+.ac-serv__head .lead { color: oklch(0.95 0 0 / 0.72); }
+.ac-serv__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.5vw, 1.6rem); }
+.ac-card { background: oklch(0.245 0.015 260); border: 1px solid oklch(0.33 0.02 260); border-radius: var(--radius);
+  overflow: hidden; }
+.ac-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.ac-card__b { padding: 1.2rem 1.3rem 1.4rem; }
+.ac-card__b h3 { color: oklch(0.99 0 0); margin: 0 0 0.3rem; }
+.ac-card__b p { color: oklch(0.95 0 0 / 0.72); margin: 0; font-size: 0.93rem; }
+
+/* ---------- Estimate band ---------- */
+.ac-cta { background: var(--accent); color: var(--on-accent); padding-block: clamp(3rem, 6vw, 4.5rem); }
+.ac-cta__inner { display: grid; grid-template-columns: 1.4fr auto; gap: 2rem; align-items: center; }
+.ac-cta h2 { color: var(--on-accent); text-transform: uppercase; margin: 0 0 0.5rem; }
+.ac-cta p { color: oklch(1 0 0 / 0.92); max-width: 46ch; margin: 0; }
+.ac-cta__btns { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.ac-cta .btn-primary { background: var(--ink); color: oklch(0.99 0 0); }
+.ac-cta .btn-primary:hover { background: oklch(0.16 0.02 260); }
+.ac-cta .btn-ghost { color: var(--on-accent); border-color: oklch(1 0 0 / 0.6); background: oklch(1 0 0 / 0.05); }
+.ac-cta .btn-ghost:hover { border-color: var(--on-accent); background: oklch(1 0 0 / 0.14); }
+
+/* ---------- Visit ---------- */
+.ac-visit { padding-block: clamp(3rem, 6vw, 5rem); }
+.ac-visit__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
+.ac-visit__col h3 { font-family: var(--font-body); font-weight: 700; font-size: 0.82rem; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--accent-deep); margin-bottom: 0.6rem; }
+.ac-visit__col p { color: var(--muted); margin: 0 0 0.3rem; }
+.ac-visit__col a { color: var(--ink); font-weight: 600; border-bottom: 1.5px solid var(--accent); text-decoration: none; }
+.ac-visit .tag { display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--accent-deep);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0.15rem 0.6rem; margin-left: 0.3rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .ac-steps { grid-template-columns: 1fr 1fr; }
+  .ac-stats__inner { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+}
+@media (max-width: 820px) {
+  .ac-serv__grid { grid-template-columns: 1fr; }
+  .ac-cta__inner { grid-template-columns: 1fr; }
+  .ac-visit__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) { .ac-steps { grid-template-columns: 1fr; } }
