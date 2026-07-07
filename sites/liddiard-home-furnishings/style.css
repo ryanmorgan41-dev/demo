@@ -1,0 +1,454 @@
+/* ============================================================
+   Liddiard Home Furnishings — BESPOKE stylesheet (one-of-a-kind).
+   Loads AFTER shared/foundation.css. Every visible element — chrome,
+   hero, sections, buttons, footer — is designed from scratch here.
+
+   Direction: "Heritage retailer — a monument to 71 years." A warm,
+   established, editorial furniture-store front. Aged-ivory catalog
+   paper, deep walnut ink, a heritage oxblood action color and an
+   antique-brass highlight. A high-optical serif (Newsreader) over a
+   classic American grotesque (Libre Franklin).
+   Signature motifs: an engraved storefront masthead rule, a stamped
+   brass "Est. 1955" seal, and a monument band that renders the store's
+   extraordinary numbers as the page's centerpiece. Browse pattern is
+   an asymmetric department mosaic — no scroll-snap row, no reel.
+   ============================================================ */
+
+:root {
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-body:    "Libre Franklin", system-ui, -apple-system, sans-serif;
+
+  /* ---- palette (OKLCH — no raw hex/hsl anywhere below) ---- */
+  --paper:    oklch(0.968 0.011 83);   /* aged ivory — page base */
+  --paper-2:  oklch(0.940 0.016 80);   /* secondary warm surface */
+  --paper-3:  oklch(0.910 0.022 77);   /* deeper warm surface / frame mats */
+  --ink:      oklch(0.255 0.021 52);   /* walnut near-black — primary text */
+  --walnut:   oklch(0.232 0.026 48);   /* dark panels: monument + footer */
+  --walnut-2: oklch(0.300 0.030 46);   /* raised dark surface */
+  --muted:    oklch(0.468 0.026 52);   /* muted text on light */
+  --muted-d:  oklch(0.788 0.017 78);   /* muted text on dark */
+  --line:     oklch(0.858 0.020 78);   /* hairline on light */
+  --oxblood:  oklch(0.455 0.115 32);   /* heritage oxblood — primary action */
+  --oxblood-2:oklch(0.392 0.104 31);   /* oxblood hover */
+  --brass:    oklch(0.720 0.098 79);   /* antique brass — accent on dark */
+  --brass-d:  oklch(0.560 0.092 72);   /* deeper brass — accent on light */
+  --on-ox:    oklch(0.975 0.012 85);   /* near-white on oxblood */
+  --on-dark:  oklch(0.945 0.013 83);   /* near-white on walnut */
+
+  /* the script's fingerprint token — keep in sync with --oxblood */
+  --accent:   oklch(0.455 0.115 32);
+
+  --bg: var(--paper);
+  --maxw: 1180px;
+  --radius: 5px;
+  --sp: clamp(3.75rem, 8vw, 7rem);          /* section rhythm */
+  --edge: color-mix(in oklch, var(--on-dark) 16%, transparent); /* hairline on dark */
+  --rule: color-mix(in oklch, var(--ink) 24%, transparent);     /* engraved rule */
+}
+
+/* ---- base type ------------------------------------------- */
+body { background: var(--paper); color: var(--ink); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600;
+  letter-spacing: -0.01em; line-height: 1.06; }
+p { margin: 0 0 1rem; }
+a { text-decoration: none; }
+::selection { background: color-mix(in oklch, var(--oxblood) 26%, var(--paper)); }
+
+.container { max-width: var(--maxw); }
+
+.lhf-lead { font-size: clamp(1.06rem, 1rem + 0.55vw, 1.28rem); line-height: 1.6;
+  color: var(--muted); max-width: 54ch; }
+
+/* ---- reveal: scroll-triggered fade-up (overrides foundation) --- */
+.js .reveal-init { opacity: 0; transform: translateY(20px);
+  animation: none; transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+.js .is-revealed { opacity: 1; transform: none; }
+.js [data-reveal].d1 { transition-delay: 0.09s; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-init { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- eyebrow: tracked caps with a short engraved rule ---- */
+.lhf-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.19em; font-size: 0.74rem;
+  color: var(--oxblood); margin: 0 0 1.05rem; }
+.lhf-eyebrow::before { content: ""; width: 26px; height: 2px; background: currentColor; }
+.lhf-eyebrow--brass { color: var(--brass-d); }
+
+/* ---- buttons — squared heritage plates, tracked caps ----- */
+.lhf-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.55ch;
+  font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.82rem;
+  line-height: 1; padding: 0.9rem 1.4rem; border-radius: var(--radius);
+  border: 1.5px solid transparent; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease, box-shadow 0.2s ease; }
+.lhf-btn--sm { padding: 0.62rem 1rem; font-size: 0.76rem; }
+.lhf-btn--lg { padding: 1.02rem 1.7rem; font-size: 0.86rem; }
+
+.lhf-btn--primary { background: var(--oxblood); color: var(--on-ox);
+  box-shadow: 0 10px 24px -14px color-mix(in oklch, var(--oxblood) 80%, transparent); }
+.lhf-btn--primary:hover { background: var(--oxblood-2); transform: translateY(-2px);
+  box-shadow: 0 16px 30px -16px color-mix(in oklch, var(--oxblood) 85%, transparent); }
+
+.lhf-btn--ghost { background: transparent; color: var(--ink);
+  border-color: color-mix(in oklch, var(--ink) 34%, transparent); }
+.lhf-btn--ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* pending "coming soon" gap (foundation appends the label) */
+.lhf-btn.is-pending { opacity: 0.6; }
+.lhf-btn.is-pending::after { letter-spacing: 0.05em; font-size: 0.74rem; text-transform: none; }
+
+/* ---- text-link CTA — growing underline ------------------- */
+.lhf-textcta {
+  display: inline-flex; align-items: center; gap: 0.5ch;
+  font-family: var(--font-body); font-weight: 700; font-size: 0.82rem;
+  text-transform: uppercase; letter-spacing: 0.07em; color: var(--brass);
+  padding-bottom: 3px; border-bottom: 2px solid color-mix(in oklch, var(--brass) 45%, transparent);
+  transition: border-color 0.2s ease, gap 0.2s ease; }
+.lhf-textcta span { transition: transform 0.25s ease; }
+.lhf-textcta:hover { border-color: var(--brass); }
+.lhf-textcta:hover span { transform: translateX(4px); }
+
+/* ---- inline link ----------------------------------------- */
+.lhf-link { color: var(--oxblood); font-weight: 600;
+  border-bottom: 1px solid color-mix(in oklch, var(--oxblood) 40%, transparent);
+  padding-bottom: 1px; transition: border-color 0.2s ease, color 0.2s ease; }
+.lhf-link:hover { color: var(--oxblood-2); border-color: var(--oxblood); }
+
+/* ---- "confirm" tag --------------------------------------- */
+.lhf-tag {
+  display: inline-block; vertical-align: middle; margin-left: 0.35rem;
+  font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; font-size: 0.62rem; color: var(--muted);
+  padding: 0.18rem 0.5rem; border-radius: 3px;
+  background: color-mix(in oklch, var(--ink) 8%, var(--paper-2)); }
+
+/* ============================================================
+   HEADER — solid ivory storefront bar, brass baseline on scroll
+   ============================================================ */
+.lhf-head {
+  position: sticky; top: 0; z-index: 60;
+  background: color-mix(in oklch, var(--paper) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+.lhf-head.is-scrolled {
+  background: color-mix(in oklch, var(--paper) 96%, transparent);
+  border-bottom-color: color-mix(in oklch, var(--brass) 60%, var(--line));
+  box-shadow: 0 10px 30px -22px color-mix(in oklch, var(--ink) 85%, transparent); }
+.lhf-head__in { display: flex; align-items: center; justify-content: space-between;
+  gap: 1.25rem; padding-block: clamp(0.7rem, 1.4vw, 1rem); position: relative; }
+
+.lhf-brand { display: grid; line-height: 1; }
+.lhf-brand__name { font-family: var(--font-display); font-weight: 600;
+  font-size: 1.5rem; letter-spacing: 0.005em; color: var(--ink); }
+.lhf-brand__sub { font-family: var(--font-body); font-weight: 600;
+  font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--brass-d); margin-top: 0.28rem; }
+
+.lhf-nav { display: flex; align-items: center; gap: clamp(1.1rem, 2.1vw, 1.9rem); }
+.lhf-nav a:not(.lhf-btn) { font-family: var(--font-body); font-weight: 600;
+  font-size: 0.82rem; letter-spacing: 0.04em; color: var(--ink);
+  position: relative; padding: 0.35rem 0; }
+.lhf-nav a:not(.lhf-btn)::after { content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 2px; background: var(--brass); transform: scaleX(0);
+  transform-origin: left; transition: transform 0.25s ease; }
+.lhf-nav a:not(.lhf-btn):hover::after,
+.lhf-nav a:not(.lhf-btn):focus-visible::after { transform: scaleX(1); }
+.lhf-navtoggle { display: none; }
+
+/* ============================================================
+   HERO — engraved masthead, asymmetric headline, wide banner
+   ============================================================ */
+.lhf-hero { padding-block: clamp(1.75rem, 4vw, 3rem) var(--sp); }
+.lhf-hero__in { display: block; }
+
+.lhf-masthead { display: flex; align-items: center; gap: clamp(0.9rem, 3vw, 2rem);
+  padding-bottom: clamp(1.6rem, 3.5vw, 2.6rem); overflow: hidden; }
+.lhf-masthead__side { font-family: var(--font-body); font-weight: 600;
+  font-size: clamp(0.66rem, 0.6rem + 0.3vw, 0.76rem); letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--muted); white-space: nowrap;
+  position: relative; flex: 1; }
+.lhf-masthead__side::after { content: ""; position: absolute; top: 50%; height: 1px;
+  background: var(--rule); left: calc(100% + 0.9rem); right: -100vw; }
+.lhf-masthead__side--r { text-align: right; }
+.lhf-masthead__side--r::after { left: -100vw; right: calc(100% + 0.9rem); }
+.lhf-masthead__mark { width: 10px; height: 10px; flex: none; transform: rotate(45deg);
+  background: var(--brass); box-shadow: 0 0 0 4px color-mix(in oklch, var(--brass) 22%, transparent); }
+
+.lhf-hero__head { display: grid; grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(1.4rem, 4vw, 3.2rem); align-items: end;
+  padding-bottom: clamp(1.9rem, 4vw, 3rem); }
+.lhf-hero__title { font-size: clamp(2.6rem, 1.6rem + 4.6vw, 5.3rem); line-height: 0.98;
+  margin: 0; max-width: 15ch; color: var(--ink); font-weight: 600; }
+.lhf-hero__title em { font-style: italic; font-weight: 500; color: var(--oxblood); }
+.lhf-hero__lead { color: var(--muted); font-size: clamp(1.04rem, 0.98rem + 0.5vw, 1.2rem);
+  line-height: 1.62; max-width: 42ch; margin: 0 0 1.6rem; }
+.lhf-hero__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+.lhf-hero__figure { position: relative; margin: 0; }
+.lhf-hero__frame { position: relative; border-radius: var(--radius); overflow: hidden;
+  padding: clamp(8px, 1vw, 12px); background: var(--paper-2);
+  box-shadow: 0 1px 0 color-mix(in oklch, var(--on-dark) 60%, transparent) inset,
+    0 34px 60px -40px color-mix(in oklch, var(--ink) 70%, transparent);
+  outline: 1px solid var(--line); outline-offset: -1px; }
+.lhf-hero__frame img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover;
+  object-position: 50% 58%; border-radius: 2px; }
+.lhf-hero__plate { font-family: var(--font-body); font-weight: 600; font-size: 0.74rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  margin-top: 0.9rem; text-align: center; }
+
+/* stamped brass seal, overlapping the frame corner */
+.lhf-seal { position: absolute; z-index: 3; top: -22px; left: clamp(-6px, 1vw, 14px);
+  width: clamp(78px, 9vw, 104px); aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-content: center; text-align: center; gap: 0.05rem;
+  color: var(--brass); background: var(--walnut);
+  border: 2px solid color-mix(in oklch, var(--brass) 70%, transparent);
+  box-shadow: 0 12px 26px -16px color-mix(in oklch, var(--ink) 85%, transparent);
+  transform: rotate(-8deg); }
+.lhf-seal b { font-family: var(--font-body); font-weight: 700; font-size: 0.58rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted-d); }
+.lhf-seal i { font-family: var(--font-display); font-style: normal; font-weight: 700;
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem); line-height: 0.9; letter-spacing: 0.01em; }
+.lhf-seal small { font-family: var(--font-body); font-weight: 600; font-size: 0.42rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-d); }
+
+.lhf-hero__cred { display: flex; flex-wrap: wrap; gap: 0.7rem 1.5rem; list-style: none;
+  margin: clamp(1.6rem, 3.5vw, 2.4rem) 0 0; padding: clamp(1.2rem, 2.5vw, 1.6rem) 0 0;
+  border-top: 1px solid var(--line); }
+.lhf-hero__cred li { display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.82rem;
+  letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink); }
+.lhf-hero__cred li::before { content: ""; width: 7px; height: 7px; flex: none;
+  transform: rotate(45deg); background: var(--brass-d); }
+
+/* ============================================================
+   MONUMENT — walnut band; the numbers ARE the design
+   ============================================================ */
+.lhf-monument { background: var(--walnut); color: var(--on-dark);
+  border-block: 1px solid color-mix(in oklch, var(--brass) 42%, transparent);
+  padding-block: var(--sp); overflow: hidden; }
+.lhf-monument__in { display: grid; grid-template-columns: 1.25fr 0.75fr;
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.lhf-monument__eyebrow { font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.72rem;
+  color: var(--brass); margin: 0 0 0.5rem; }
+.lhf-monument__figure { font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(3.6rem, 1.5rem + 15vw, 8.4rem); line-height: 0.86;
+  letter-spacing: -0.02em; color: var(--brass); margin: 0 0 1rem;
+  text-shadow: 0 2px 30px color-mix(in oklch, var(--brass) 22%, transparent); }
+.lhf-monument__cap { color: var(--muted-d); font-size: clamp(1.02rem, 0.96rem + 0.5vw, 1.24rem);
+  line-height: 1.55; max-width: 40ch; margin: 0; }
+.lhf-monument__cap b { color: var(--on-dark); font-weight: 600; }
+
+.lhf-monument__ledger { list-style: none; margin: 0; padding: 0; display: grid;
+  gap: 0; align-self: stretch; }
+.lhf-monument__ledger li { display: grid; grid-template-columns: 3.4rem 1fr;
+  gap: 0.2rem 1.3rem; align-items: center; padding: 1.1rem 0;
+  border-top: 1px solid var(--edge); }
+.lhf-monument__ledger li:last-child { border-bottom: 1px solid var(--edge); }
+.lhf-monument__ledger b { font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2rem, 1.4rem + 2vw, 2.9rem); line-height: 0.9; color: var(--on-dark);
+  text-align: right; font-variant-numeric: lining-nums tabular-nums; }
+.lhf-monument__ledger span { font-family: var(--font-body); font-weight: 500;
+  font-size: 0.92rem; color: var(--muted-d); line-height: 1.4; align-self: center; }
+
+/* ============================================================
+   THE FLOOR — asymmetric department mosaic (1 feature + 2 stack)
+   ============================================================ */
+.lhf-floor { padding-block: var(--sp); }
+.lhf-floor__head { margin-bottom: clamp(2rem, 4vw, 3.2rem); max-width: 60ch; }
+.lhf-floor__head h2 { font-size: clamp(2.1rem, 1.4rem + 3vw, 3.6rem); margin: 0 0 0.9rem;
+  color: var(--ink); }
+
+.lhf-floor__grid { display: grid; grid-template-columns: 1.32fr 1fr;
+  grid-auto-rows: minmax(0, 1fr); gap: clamp(0.9rem, 1.8vw, 1.4rem); }
+.lhf-dept { position: relative; margin: 0; border-radius: var(--radius); overflow: hidden;
+  min-height: clamp(220px, 30vw, 300px); isolation: isolate;
+  outline: 1px solid var(--line); outline-offset: -1px; }
+.lhf-dept--feature { grid-row: span 2; min-height: clamp(340px, 44vw, 560px); }
+.lhf-dept img { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: -2; transition: transform 0.8s cubic-bezier(0.2,0.6,0.2,1); }
+.lhf-dept:hover img { transform: scale(1.05); }
+.lhf-dept::after { content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(to top,
+    color-mix(in oklch, var(--walnut) 92%, transparent) 0%,
+    color-mix(in oklch, var(--walnut) 72%, transparent) 26%,
+    color-mix(in oklch, var(--walnut) 20%, transparent) 52%, transparent 78%); }
+.lhf-dept__body { position: absolute; inset: auto 0 0 0; z-index: 1;
+  padding: clamp(1.15rem, 2.4vw, 1.9rem); color: var(--on-dark); }
+.lhf-dept__sub { font-family: var(--font-body); font-weight: 700; font-size: 0.72rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass); margin: 0 0 0.35rem; }
+.lhf-dept h3 { font-family: var(--font-display); font-weight: 600; color: var(--on-dark);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); margin: 0 0 0.5rem; }
+.lhf-dept--feature h3 { font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem); }
+.lhf-dept__desc { color: color-mix(in oklch, var(--on-dark) 88%, var(--walnut));
+  font-size: 0.98rem; line-height: 1.5; max-width: 36ch; margin: 0 0 1.1rem; }
+.lhf-dept__body .lhf-textcta { margin-top: 0.4rem; }
+
+/* ============================================================
+   FINANCING — soft oxblood plaque with a double-rule frame
+   ============================================================ */
+.lhf-financing { padding-block: 0 var(--sp); }
+.lhf-financing__panel { position: relative;
+  background: color-mix(in oklch, var(--oxblood) 7%, var(--paper));
+  border: 1px solid color-mix(in oklch, var(--oxblood) 22%, var(--line));
+  border-radius: var(--radius); padding: clamp(1.9rem, 4.5vw, 3.6rem);
+  display: grid; grid-template-columns: 1.35fr 0.9fr;
+  gap: clamp(1.75rem, 4vw, 3.5rem); align-items: center; }
+.lhf-financing__panel::before { content: ""; position: absolute; inset: 9px;
+  border: 1px solid color-mix(in oklch, var(--oxblood) 20%, transparent);
+  border-radius: 2px; pointer-events: none; }
+.lhf-financing__lead { position: relative; }
+.lhf-financing__lead h2 { font-size: clamp(1.9rem, 1.3rem + 2.4vw, 3.1rem);
+  margin: 0 0 0.85rem; color: var(--ink); }
+.lhf-financing__lead h2 em { font-style: italic; font-weight: 500; color: var(--oxblood); }
+.lhf-financing__lead > p { color: var(--muted); max-width: 46ch; margin: 0 0 1.4rem; }
+.lhf-financing__points { list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: 0.55rem 1.4rem; }
+.lhf-financing__points li { display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.92rem; color: var(--ink); }
+.lhf-financing__points li::before { content: ""; width: 8px; height: 8px; flex: none;
+  transform: rotate(45deg); background: var(--oxblood); }
+.lhf-financing__cta { position: relative; display: flex; flex-direction: column;
+  gap: 0.75rem; align-items: stretch; }
+.lhf-financing__note { font-family: var(--font-body); font-size: 0.8rem; color: var(--muted);
+  text-align: center; margin: 0.15rem 0 0; letter-spacing: 0.02em; }
+
+/* ============================================================
+   STORY — editorial spread, framed portrait + brass Est. plate
+   ============================================================ */
+.lhf-story { padding-block: 0 var(--sp); }
+.lhf-story__in { display: grid; grid-template-columns: 0.82fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.lhf-story__media { position: relative; margin: 0; }
+.lhf-story__frame { border-radius: var(--radius); overflow: hidden;
+  padding: clamp(8px, 1vw, 12px); background: var(--paper-2);
+  outline: 1px solid var(--line); outline-offset: -1px;
+  box-shadow: 0 34px 60px -42px color-mix(in oklch, var(--ink) 72%, transparent); }
+.lhf-story__frame img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; }
+.lhf-story__plate { position: absolute; z-index: 2; right: clamp(-6px, 1vw, 12px); bottom: 1.4rem;
+  background: var(--walnut); color: var(--brass); text-align: center; line-height: 0.9;
+  padding: 0.8rem 1.15rem; border-radius: var(--radius);
+  border: 1px solid color-mix(in oklch, var(--brass) 55%, transparent);
+  box-shadow: 0 14px 30px -18px color-mix(in oklch, var(--ink) 85%, transparent); }
+.lhf-story__plate b { display: block; font-family: var(--font-body); font-weight: 700;
+  font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted-d); }
+.lhf-story__plate span { font-family: var(--font-display); font-weight: 700; font-size: 1.7rem; }
+
+.lhf-story__body h2 { font-size: clamp(2rem, 1.35rem + 2.8vw, 3.4rem); margin: 0 0 1.1rem;
+  color: var(--ink); max-width: 16ch; }
+.lhf-story__body > p { color: var(--muted); max-width: 52ch; line-height: 1.65; }
+.lhf-quote { margin: 1.6rem 0; padding: 0.2rem 0 0; position: relative;
+  font-family: var(--font-display); font-style: italic; font-weight: 500;
+  font-size: clamp(1.25rem, 1rem + 1.1vw, 1.7rem); line-height: 1.35; color: var(--ink);
+  max-width: 30ch; }
+.lhf-quote::before { content: "\201C"; display: block; font-family: var(--font-display);
+  font-weight: 700; font-style: normal; font-size: 2.6rem; line-height: 0.6; color: var(--brass-d);
+  margin-bottom: 0.35rem; }
+.lhf-story__marks { list-style: none; margin: 1.7rem 0 0; padding: 0; display: grid; }
+.lhf-story__marks li { display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr;
+  gap: 0.3rem 1.3rem; align-items: baseline; padding: 0.95rem 0; border-top: 1px solid var(--line); }
+.lhf-story__marks li:last-child { border-bottom: 1px solid var(--line); }
+.lhf-story__marks b { font-family: var(--font-display); font-weight: 600; color: var(--oxblood);
+  font-size: 1.12rem; }
+.lhf-story__marks span { font-family: var(--font-body); color: var(--muted); font-size: 0.94rem;
+  line-height: 1.45; }
+
+/* ============================================================
+   VISIT
+   ============================================================ */
+.lhf-visit { padding-block: 0 var(--sp); }
+.lhf-visit__head { margin-bottom: clamp(1.6rem, 3.5vw, 2.6rem); }
+.lhf-visit__head h2 { font-size: clamp(1.9rem, 1.3rem + 2.4vw, 3.1rem); margin: 0; color: var(--ink); }
+.lhf-visit__grid { display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.4rem, 3vw, 2.4rem); border-top: 2px solid var(--rule);
+  padding-top: clamp(1.6rem, 3vw, 2.4rem); }
+.lhf-visit__col h3 { font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.14em; font-size: 0.76rem; color: var(--brass-d); margin: 0 0 0.9rem; }
+.lhf-visit__col p { color: var(--ink); margin: 0 0 0.5rem; font-size: 0.98rem; }
+.lhf-visit__fine { font-family: var(--font-body); font-weight: 600; font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 0.9rem; }
+
+/* ============================================================
+   FOOTER — walnut, brass baseline
+   ============================================================ */
+.lhf-foot { background: var(--walnut); color: var(--on-dark);
+  border-top: 3px solid var(--brass); padding-block: clamp(3rem, 6vw, 4.5rem) 2rem; }
+.lhf-foot__grid { display: grid; grid-template-columns: 1.5fr 1fr 1.2fr;
+  gap: clamp(2rem, 5vw, 4rem); padding-bottom: 2.5rem; border-bottom: 1px solid var(--edge); }
+.lhf-brand--foot .lhf-brand__name { color: var(--on-dark); }
+.lhf-brand--foot .lhf-brand__sub { color: var(--brass); }
+.lhf-foot__tag { color: var(--muted-d); max-width: 36ch; font-size: 0.96rem; margin: 1rem 0 0; }
+.lhf-foot__stamp { font-family: var(--font-body); font-weight: 600; font-size: 0.76rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass); margin: 1rem 0 0; }
+.lhf-foot__col h4 { font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.16em; font-size: 0.74rem; color: var(--brass); margin: 0 0 1.1rem; }
+.lhf-foot__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.lhf-foot__col a { color: color-mix(in oklch, var(--on-dark) 88%, var(--walnut)); }
+.lhf-foot__col a:hover { color: var(--brass); }
+.lhf-foot__contact p { color: var(--muted-d); font-size: 0.94rem; margin: 0 0 0.5rem; }
+.lhf-foot__contact a { color: var(--on-dark); font-weight: 600; }
+.lhf-foot__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem;
+  padding-top: 1.75rem; font-family: var(--font-body); font-size: 0.8rem; color: var(--muted-d); }
+
+/* required concept-demo notice — restyled to fit, text unchanged */
+.demo-notice { background: var(--walnut);
+  color: color-mix(in oklch, var(--muted-d) 94%, var(--on-dark));
+  border-top: 1px solid var(--edge); font-family: var(--font-body); font-size: 0.8rem;
+  letter-spacing: 0.01em; padding: 1rem 1.25rem; text-align: center; }
+.demo-notice b { color: var(--brass); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .lhf-navtoggle { display: inline-flex; flex-direction: column; justify-content: center;
+    gap: 5px; width: 44px; height: 40px; padding: 0 9px; background: transparent;
+    border: 0; cursor: pointer; }
+  .lhf-navtoggle span { display: block; height: 2px; width: 100%; background: var(--ink);
+    transition: transform 0.25s ease, opacity 0.2s ease; }
+  .lhf-navtoggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .lhf-navtoggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .lhf-navtoggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .lhf-nav { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column;
+    align-items: stretch; gap: 0; background: var(--paper);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    padding: 0.5rem clamp(1.1rem, 4vw, 2rem) 1.25rem;
+    box-shadow: 0 26px 40px -26px color-mix(in oklch, var(--ink) 80%, transparent);
+    clip-path: inset(0 0 100% 0); pointer-events: none; transition: clip-path 0.3s ease; }
+  .lhf-nav.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; }
+  .lhf-nav a:not(.lhf-btn) { padding: 0.95rem 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
+  .lhf-nav a:not(.lhf-btn)::after { display: none; }
+  .lhf-nav .lhf-btn { margin-top: 1rem; }
+
+  .lhf-hero__head { grid-template-columns: 1fr; align-items: start; gap: 1.4rem; }
+  .lhf-hero__title { max-width: 18ch; }
+  .lhf-hero__frame img { aspect-ratio: 16 / 9; }
+
+  .lhf-monument__in { grid-template-columns: 1fr; gap: clamp(1.8rem, 6vw, 2.8rem); }
+  .lhf-financing__panel { grid-template-columns: 1fr; gap: 1.6rem; }
+  .lhf-story__in { grid-template-columns: 1fr; gap: clamp(2rem, 7vw, 3rem); }
+  .lhf-story__media { max-width: 440px; }
+}
+
+@media (max-width: 640px) {
+  .lhf-floor__grid { grid-template-columns: 1fr; }
+  .lhf-dept--feature { grid-row: auto; min-height: clamp(300px, 62vw, 420px); }
+  .lhf-dept { min-height: clamp(260px, 60vw, 340px); }
+
+  .lhf-visit__grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .lhf-story__marks li { grid-template-columns: 1fr; gap: 0.15rem; }
+  .lhf-foot__grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+@media (max-width: 430px) {
+  .lhf-hero__cta { flex-direction: column; align-items: stretch; }
+  .lhf-masthead__side--r { font-size: 0.6rem; }
+  .lhf-monument__ledger b { font-size: 2.1rem; }
+}

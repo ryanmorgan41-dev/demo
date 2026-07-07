@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Moab Red Rock Bakery — Fresh Bread, Pastries &amp; Coffee in Moab, UT</title>
+<meta name="description" content="A Moab bakery and cafe since 1997. Pastries, hearth breads, espresso and grab-and-go breakfast, baked fresh every morning. Custom cakes and big-group orders on request.">
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Moab Red Rock Bakery — Fresh Bread, Pastries &amp; Coffee in Moab, UT">
+<meta property="og:description" content="Pastries, hearth breads, espresso and grab-and-go breakfast, baked fresh every morning in Moab, Utah since 1997.">
+<meta property="og:image" content="images/og.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- foundation (invisible plumbing) FIRST, then the bespoke stylesheet -->
+<link rel="stylesheet" href="../../shared/foundation.css">
+<link rel="stylesheet" href="style.css">
+
+<style>
+  /* Design tokens live here so the whole warm palette is one source of truth
+     (and so the distinctness fingerprint can read the accent + fonts). */
+  :root {
+    --font-display: "Spectral", Georgia, serif;
+    --font-body:    "Nunito Sans", system-ui, -apple-system, sans-serif;
+
+    --bg:          oklch(0.972 0.016 74);   /* warm cream paper            */
+    --paper-2:     oklch(0.945 0.022 70);   /* a shade deeper for panels   */
+    --ink:         oklch(0.255 0.030 46);   /* espresso brown text         */
+    --muted:       oklch(0.44 0.034 50);    /* softened brown              */
+    --line:        oklch(0.87 0.028 66);    /* warm hairline               */
+    --accent:      oklch(0.56 0.15 45);     /* terracotta / baked crust    */
+    --accent-deep: oklch(0.45 0.135 42);    /* brick, for text + fills     */
+    --on-accent:   oklch(0.985 0.012 80);   /* warm white                  */
+    --crust:       oklch(0.30 0.045 48);    /* dark crust band             */
+    --crust-2:     oklch(0.245 0.038 46);   /* deeper crust                */
+    --butter:      oklch(0.85 0.105 82);    /* wheat / butter highlight    */
+
+    --maxw: 1180px;
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Moab Red Rock Bakery",
+  "description": "Bakery and cafe in Moab, Utah since 1997. Fresh pastries, hearth breads, espresso and grab-and-go breakfast, plus custom cakes and group orders.",
+  "telephone": "+1-435-259-5941",
+  "email": "MoabRedRockBakery@gmail.com",
+  "foundingDate": "1997",
+  "areaServed": "Moab, UT",
+  "servesCuisine": "Bakery, Coffee",
+  "address": { "@type": "PostalAddress", "addressLocality": "Moab", "addressRegion": "UT" }
+}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ MASTHEAD ============ -->
+<header class="rrb-head" data-header>
+  <div class="container rrb-head__in">
+    <a class="rrb-mark" href="#top" aria-label="Moab Red Rock Bakery, home">
+      <span class="rrb-mark__name">Red Rock <em>Bakery</em></span>
+      <span class="rrb-mark__est">Moab, Utah &middot; est. 1997</span>
+    </a>
+
+    <button class="rrb-burger" data-nav-toggle aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="rrb-nav" id="nav" data-nav aria-label="Primary">
+      <a href="#case">From the case</a>
+      <a href="#board">The board</a>
+      <a href="#cakes">Cakes &amp; orders</a>
+      <a href="#visit">Visit</a>
+      <a class="rrb-btn rrb-btn--solid rrb-btn--sm" href="tel:+14352595941">Call (435)&nbsp;259-5941</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO — editorial split ============ -->
+  <section class="rrb-hero" id="top">
+    <div class="container rrb-hero__grid">
+      <div class="rrb-hero__lede" data-reveal>
+        <p class="rrb-kicker">Baking Moab since 1997 &middot; 29 years on</p>
+        <h1 class="rrb-hero__h">Baked <em>fresh</em><br>every Moab morning.</h1>
+        <p class="rrb-hero__sub">Pastries, hearth breads, espresso and grab-and-go breakfast, made from scratch and set out warm. The kind of bakery a town keeps coming back to for three decades.</p>
+        <div class="rrb-hero__cta">
+          <a class="rrb-btn rrb-btn--solid rrb-btn--lg" href="tel:+14352595941">Call to order ahead</a>
+          <a class="rrb-btn rrb-btn--quiet rrb-btn--lg" data-cta="primary" href="#">Order online</a>
+        </div>
+      </div>
+
+      <figure class="rrb-hero__figure" data-reveal>
+        <img src="images/hero.webp" width="1600" height="900"
+             alt="A wooden bakery case in warm morning light, stacked with croissants, sugared pastries, baguettes and rustic sourdough loaves"
+             fetchpriority="high" decoding="async">
+        <figcaption>Fresh out of the oven, most mornings by seven.</figcaption>
+      </figure>
+    </div>
+
+    <div class="container">
+      <ul class="rrb-hero__strip" aria-label="What we bake">
+        <li>Pastries</li>
+        <li>Hearth breads</li>
+        <li>Espresso bar</li>
+        <li>Grab-and-go breakfast</li>
+        <li>Custom cakes</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ FROM THE CASE — photo essay filmstrip ============ -->
+  <section class="rrb-filmstrip" id="case">
+    <div class="container rrb-filmstrip__head" data-reveal>
+      <p class="rrb-eyebrow">From the case</p>
+      <h2>Whatever's out came out this morning.</h2>
+      <p class="rrb-lead">Stop in before the trailhead or between stops downtown. Nothing sits overnight, so the case looks a little different every day.</p>
+    </div>
+
+    <ul class="rrb-reel" data-reveal aria-label="A look at what we bake">
+      <li class="rrb-reel__item">
+        <figure>
+          <img src="images/sell-1.webp" width="1200" height="900" loading="lazy" decoding="async"
+               alt="Sugar-dusted croissants beside glazed cinnamon rolls in a wooden tray against a warm brick wall">
+          <figcaption>
+            <span class="rrb-reel__tag">Pastries</span>
+            <span class="rrb-reel__note">Butter croissants, cinnamon rolls, morning buns and scones, laminated and rolled by hand.</span>
+          </figcaption>
+        </figure>
+      </li>
+      <li class="rrb-reel__item">
+        <figure>
+          <img src="images/hero.webp" width="1600" height="900" loading="lazy" decoding="async"
+               alt="Rustic sourdough boules, baguettes and seeded loaves stacked on a wooden bakery rack">
+          <figcaption>
+            <span class="rrb-reel__tag">Hearth breads</span>
+            <span class="rrb-reel__note">Sourdough boules, baguettes and sandwich loaves baked on the hearth, sliced to order.</span>
+          </figcaption>
+        </figure>
+      </li>
+      <li class="rrb-reel__item">
+        <figure>
+          <img src="images/sell-2.webp" width="1200" height="900" loading="lazy" decoding="async"
+               alt="A steaming cup of black coffee beside a crumb-topped muffin on a small ceramic plate">
+          <figcaption>
+            <span class="rrb-reel__tag">The espresso bar</span>
+            <span class="rrb-reel__note">Drip, lattes, cappuccinos and cold brew, poured to go for the road or the trail.</span>
+          </figcaption>
+        </figure>
+      </li>
+      <li class="rrb-reel__item">
+        <figure>
+          <img src="images/sell-3.webp" width="1200" height="900" loading="lazy" decoding="async"
+               alt="A three-tier white celebration cake trimmed with delicate sugar flowers on a silver stand">
+          <figcaption>
+            <span class="rrb-reel__tag">Cakes to order</span>
+            <span class="rrb-reel__note">Celebration cakes finished by hand for birthdays, weddings and Moab occasions.</span>
+          </figcaption>
+        </figure>
+      </li>
+    </ul>
+    <p class="container rrb-reel__hint" aria-hidden="true">Drag to see more &rarr;</p>
+  </section>
+
+  <!-- ============ THE BOARD — the daily menu as a typeset feature ============ -->
+  <section class="rrb-board" id="board">
+    <div class="container rrb-board__wrap" data-reveal>
+      <header class="rrb-board__masthead">
+        <p class="rrb-eyebrow rrb-eyebrow--onpaper">The daily board</p>
+        <h2>What&rsquo;s <em>fresh</em> today</h2>
+        <p class="rrb-board__note">
+          Baked through the morning and set out as it comes off the sheet pan. Ask the counter what&rsquo;s still warm.
+          <span class="rrb-confirm">Items &amp; prices to confirm</span>
+        </p>
+      </header>
+
+      <div class="rrb-menu">
+        <div class="rrb-menu__col">
+          <h3 class="rrb-menu__cat">From the oven</h3>
+          <ul class="rrb-menu__list">
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Butter croissant</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$4.25</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Cinnamon roll</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$5.00</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Morning bun</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$4.75</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Almond scone</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$4.00</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Blueberry muffin</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$3.75</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Sourdough loaf</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$8.00</span></li>
+          </ul>
+        </div>
+
+        <div class="rrb-menu__col">
+          <h3 class="rrb-menu__cat">The espresso bar</h3>
+          <ul class="rrb-menu__list">
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Drip coffee</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$3.00</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Latte</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$5.00</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Cappuccino</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$4.50</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Cold brew</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$5.25</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Chai latte</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$5.00</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Hot cocoa</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$4.00</span></li>
+          </ul>
+        </div>
+
+        <div class="rrb-menu__col">
+          <h3 class="rrb-menu__cat">Breakfast to go</h3>
+          <ul class="rrb-menu__list">
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Breakfast sandwich</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$8.50</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Ham &amp; cheese croissant</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$7.00</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Quiche of the day</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$7.50</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Bagel &amp; cream cheese</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$4.50</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Yogurt &amp; granola</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$6.00</span></li>
+            <li class="rrb-menu__row"><span class="rrb-menu__name">Cookie of the day</span><span class="rrb-menu__dots" aria-hidden="true"></span><span class="rrb-menu__price">$3.50</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="rrb-board__foot">Whole loaves, dozen boxes and trailhead lunch bags on request &mdash; just ask at the counter.</p>
+    </div>
+  </section>
+
+  <!-- ============ CAKES & ORDERS — warm crust band ============ -->
+  <section class="rrb-cake" id="cakes">
+    <div class="container rrb-cake__grid" data-reveal>
+      <figure class="rrb-cake__figure">
+        <img src="images/sell-3.webp" width="1200" height="900" loading="lazy" decoding="async"
+             alt="A tiered white celebration cake trimmed with pastel sugar flowers on a silver cake stand">
+      </figure>
+      <div class="rrb-cake__body">
+        <p class="rrb-eyebrow rrb-eyebrow--ondark">Made to order</p>
+        <h2>Cakes and big orders, handled.</h2>
+        <p>Planning a birthday, a wedding, a big group breakfast or catering for a Moab crew on the move? Give us the date and the headcount and we&rsquo;ll have it boxed and ready when you walk in.</p>
+        <ul class="rrb-cake__list">
+          <li>Celebration &amp; wedding cakes, finished by hand</li>
+          <li>Pastry boxes &amp; loaf orders for groups</li>
+          <li>Trailhead breakfast &amp; lunch bags to go</li>
+        </ul>
+        <div class="rrb-cake__cta">
+          <a class="rrb-btn rrb-btn--butter rrb-btn--lg" href="tel:+14352595941">Call to place an order</a>
+          <a class="rrb-btn rrb-btn--outline rrb-btn--lg" data-cta="primary" href="#">Request a quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VISIT ============ -->
+  <section class="rrb-visit" id="visit">
+    <div class="container">
+      <div class="rrb-visit__head" data-reveal>
+        <p class="rrb-eyebrow rrb-eyebrow--onpaper">Come see us</p>
+        <h2>Find the counter</h2>
+      </div>
+
+      <div class="rrb-visit__grid" data-reveal>
+        <figure class="rrb-visit__figure">
+          <img src="images/about.webp" width="900" height="1200" loading="lazy" decoding="async"
+               alt="A baker's flour-dusted hands kneading dough on a wooden work table in warm low light">
+          <figcaption>Kneaded by hand, the same way, since 1997.</figcaption>
+        </figure>
+
+        <div class="rrb-visit__cols">
+          <div class="rrb-visit__block">
+            <h3>Hours</h3>
+            <p>Mon &ndash; Sat &middot; 7am &ndash; 4pm <span class="rrb-confirm rrb-confirm--sm">confirm</span></p>
+            <p>Sunday &middot; 8am &ndash; 2pm <span class="rrb-confirm rrb-confirm--sm">confirm</span></p>
+            <p class="rrb-visit__fine">Fresh bakes come out through the morning. Come early for the full case.</p>
+          </div>
+          <div class="rrb-visit__block">
+            <h3>Find us</h3>
+            <p>Moab, Utah <span class="rrb-confirm rrb-confirm--sm">confirm address</span></p>
+            <p><a class="rrb-link" href="https://www.google.com/maps/search/?api=1&amp;query=Moab+Red+Rock+Bakery+Moab+UT" rel="noopener">Open in Maps &rarr;</a></p>
+          </div>
+          <div class="rrb-visit__block">
+            <h3>Get in touch</h3>
+            <p><a class="rrb-link" href="tel:+14352595941">(435) 259-5941</a></p>
+            <p><a class="rrb-link" href="mailto:MoabRedRockBakery@gmail.com">MoabRedRockBakery@gmail.com</a></p>
+            <p class="rrb-visit__fine">Call ahead for large or custom orders.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="rrb-foot">
+  <div class="container rrb-foot__grid">
+    <div class="rrb-foot__brand">
+      <a class="rrb-mark rrb-mark--foot" href="#top" aria-label="Moab Red Rock Bakery, home">
+        <span class="rrb-mark__name">Red Rock <em>Bakery</em></span>
+        <span class="rrb-mark__est">Moab, Utah &middot; est. 1997</span>
+      </a>
+      <p class="rrb-foot__tag">A Moab bakery and cafe for 29 years. Pastries, hearth breads, espresso and grab-and-go breakfast, baked fresh every morning.</p>
+    </div>
+    <nav class="rrb-foot__nav" aria-label="Footer">
+      <h4>Look around</h4>
+      <a href="#case">From the case</a>
+      <a href="#board">The daily board</a>
+      <a href="#cakes">Cakes &amp; orders</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <div class="rrb-foot__contact">
+      <h4>Stop by or call</h4>
+      <p><a class="rrb-link rrb-link--foot" href="tel:+14352595941">(435) 259-5941</a></p>
+      <p><a class="rrb-link rrb-link--foot" href="mailto:MoabRedRockBakery@gmail.com">MoabRedRockBakery@gmail.com</a></p>
+      <p>Moab, Utah</p>
+    </div>
+  </div>
+  <div class="rrb-foot__base container">
+    <span>&copy; <span data-year>2026</span> Moab Red Rock Bakery</span>
+    <span>Baking Moab since 1997</span>
+  </div>
+</footer>
+
+<p class="demo-notice">
+  Concept demo prepared for Moab Red Rock Bakery — not affiliated, pending owner approval. Photos are AI illustrations.
+</p>
+
+<script src="js/config.js"></script>
+<script src="../../shared/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+/* ============================================================
+   Sandi's Drive Inn — BESPOKE stylesheet (one-of-a-kind).
+   Loads AFTER shared/foundation.css. Every bit of chrome, hero,
+   menu board, showcase, footer and button is built from scratch.
+
+   Direction: "Retro neon drive-in." A 1970s carhop joint after
+   dark: deep midnight base so the neon pops, hot-pink / turquoise
+   / marquee-gold light, a blocky signage face (Bungee) over a
+   crisp grotesque (Space Grotesk). Signature motifs: a scrolling
+   lightbulb reader-board, an illuminated menu BOARD as the feature
+   moment, glowing sign-tube type, and a diner checker seam.
+   Loud and fun, saturated and bright. Not aged, not sepia.
+   ============================================================ */
+
+:root {
+  --font-display: "Bungee", "Arial Black", system-ui, sans-serif;
+  --font-body:    "Space Grotesk", system-ui, -apple-system, sans-serif;
+
+  /* --- palette (OKLCH) — neon night --- */
+  --midnight:   oklch(0.171 0.038 274);   /* page base, deep night blue */
+  --midnight-2: oklch(0.225 0.046 274);   /* raised panel */
+  --midnight-3: oklch(0.276 0.050 273);   /* card surface */
+  --cream:      oklch(0.962 0.020 92);    /* primary text on dark */
+  --muted:      oklch(0.760 0.028 250);   /* muted text on dark */
+  --line:       oklch(0.400 0.050 274);   /* hairline on dark */
+
+  --pink:       oklch(0.705 0.232 4);     /* neon hot pink — primary action */
+  --pink-deep:  oklch(0.605 0.212 6);     /* pink hover */
+  --cyan:       oklch(0.842 0.132 199);   /* neon turquoise */
+  --gold:       oklch(0.865 0.160 92);    /* marquee bulb gold */
+  --ink:        oklch(0.171 0.030 274);   /* dark ink for text on bright neon */
+  --on-neon:    oklch(0.150 0.028 20);    /* dark ink on pink fill */
+
+  /* foundation token overrides (so nothing degrades to a shared look) */
+  --bg:          var(--midnight);
+  --accent:      oklch(0.705 0.232 4);    /* mirrors --pink; hue read by distinctness */
+  --accent-deep: var(--pink-deep);
+  --on-accent:   var(--on-neon);
+
+  --maxw: 1200px;
+  --sp: clamp(3.5rem, 8vw, 6.75rem);      /* section rhythm */
+  --edge: color-mix(in oklch, var(--cream) 12%, transparent); /* hairline on dark panels */
+  --glass: color-mix(in oklch, var(--midnight) 60%, transparent);
+}
+
+/* ---- base ------------------------------------------------- */
+body {
+  background:
+    radial-gradient(140% 90% at 12% -8%, color-mix(in oklch, var(--pink) 16%, transparent), transparent 55%),
+    radial-gradient(120% 80% at 100% 0%, color-mix(in oklch, var(--cyan) 12%, transparent), transparent 50%),
+    var(--midnight);
+  color: var(--cream);
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.02; }
+p { margin: 0 0 1rem; }
+a { text-decoration: none; }
+::selection { background: color-mix(in oklch, var(--pink) 55%, var(--midnight)); color: var(--cream); }
+
+/* glow helpers */
+.sdi-glow-pink { text-shadow:
+  0 0 6px color-mix(in oklch, var(--pink) 78%, transparent),
+  0 0 20px color-mix(in oklch, var(--pink) 55%, transparent),
+  0 0 46px color-mix(in oklch, var(--pink) 38%, transparent); }
+.sdi-glow-cyan { text-shadow:
+  0 0 6px color-mix(in oklch, var(--cyan) 72%, transparent),
+  0 0 20px color-mix(in oklch, var(--cyan) 48%, transparent); }
+.sdi-glow-gold { text-shadow:
+  0 0 6px color-mix(in oklch, var(--gold) 70%, transparent),
+  0 0 20px color-mix(in oklch, var(--gold) 46%, transparent); }
+
+.container { max-width: var(--maxw); }
+
+/* ---- reveal (nicer easing over foundation) ---------------- */
+.js .reveal-init { opacity: 0; transform: translateY(22px);
+  animation: none; transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+.js .is-revealed { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-init { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- eyebrow --------------------------------------------- */
+.sdi-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.22em;
+  font-size: 0.74rem; color: var(--pink); margin: 0 0 1rem;
+}
+.sdi-eyebrow::before { content: ""; width: 26px; height: 2px; background: currentColor;
+  box-shadow: 0 0 8px currentColor; }
+.sdi-eyebrow--cyan { color: var(--cyan); }
+.sdi-eyebrow--gold { color: var(--gold); }
+.sdi-eyebrow--ink { color: var(--ink); }
+.sdi-eyebrow--ink::before { box-shadow: none; }
+
+/* ============================================================
+   BUTTONS — neon pills. Fills + glow, never an accent border on
+   a rounded card. Outline variants use a neutral cream border.
+   ============================================================ */
+.sdi-btn {
+  display: inline-flex; align-items: center; gap: 0.55ch;
+  font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.82rem;
+  line-height: 1; padding: 0.9rem 1.4rem; border-radius: 999px;
+  border: 2px solid transparent; cursor: pointer; white-space: nowrap;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.sdi-btn .ar { transition: transform 0.25s ease; }
+.sdi-btn:hover .ar { transform: translateX(4px); }
+.sdi-btn--lg { padding: 1.05rem 1.7rem; font-size: 0.9rem; }
+
+.sdi-btn--neon { background: var(--pink); color: var(--on-neon);
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--pink) 60%, transparent),
+    0 10px 30px -12px var(--pink), 0 0 22px -6px color-mix(in oklch, var(--pink) 70%, transparent); }
+.sdi-btn--neon:hover { background: var(--pink-deep); transform: translateY(-2px);
+  box-shadow: 0 0 0 1px var(--pink), 0 16px 40px -14px var(--pink),
+    0 0 34px -4px color-mix(in oklch, var(--pink) 80%, transparent); }
+
+.sdi-btn--line { background: transparent; color: var(--cream);
+  border-color: color-mix(in oklch, var(--cream) 45%, transparent); }
+.sdi-btn--line:hover { background: var(--cream); color: var(--midnight);
+  border-color: var(--cream); transform: translateY(-2px); }
+
+/* dark buttons for use on the bright order panel */
+.sdi-btn--ink { background: var(--ink); color: var(--gold);
+  box-shadow: 0 12px 30px -14px color-mix(in oklch, var(--ink) 90%, transparent); }
+.sdi-btn--ink:hover { background: color-mix(in oklch, var(--ink) 82%, black);
+  transform: translateY(-2px); }
+.sdi-btn--inkline { background: transparent; color: var(--ink);
+  border-color: color-mix(in oklch, var(--ink) 45%, transparent); }
+.sdi-btn--inkline:hover { background: var(--ink); color: var(--gold); border-color: var(--ink);
+  transform: translateY(-2px); }
+
+/* pending "coming soon" gap (foundation appends the label text) */
+.sdi-btn.is-pending { opacity: 0.75; box-shadow: none; }
+.sdi-btn.is-pending::after { letter-spacing: 0.05em; font-size: 0.72rem; text-transform: none; }
+
+/* text-link CTA with sliding underline */
+.sdi-textcta { display: inline-flex; align-items: center; gap: 0.45ch;
+  font-family: var(--font-body); font-weight: 700; font-size: 0.9rem;
+  color: var(--cyan); padding-bottom: 2px;
+  border-bottom: 2px solid color-mix(in oklch, var(--cyan) 40%, transparent);
+  transition: border-color 0.2s ease, gap 0.2s ease; }
+.sdi-textcta:hover { border-color: var(--cyan); gap: 0.9ch; }
+.sdi-textcta .ar { transition: transform 0.25s ease; }
+.sdi-textcta:hover .ar { transform: translateX(3px); }
+
+/* small "to confirm" tag */
+.sdi-tag { display: inline-block; font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.62rem;
+  padding: 0.28rem 0.6rem; border-radius: 999px; vertical-align: middle;
+  background: color-mix(in oklch, var(--cream) 10%, transparent); color: var(--muted); }
+
+/* brand star mark */
+.sdi-brand { display: inline-flex; align-items: center; gap: 0.65rem; color: var(--cream); }
+.sdi-brand__star { width: 30px; height: 30px; flex: none; background: var(--gold);
+  box-shadow: 0 0 14px -1px color-mix(in oklch, var(--gold) 75%, transparent);
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.sdi-brand__txt { display: grid; line-height: 0.95; }
+.sdi-brand__txt b { font-family: var(--font-display); font-size: 1.24rem; letter-spacing: 0.01em;
+  color: var(--cream); }
+.sdi-brand__txt span { font-family: var(--font-body); font-weight: 600; font-size: 0.6rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); }
+
+/* ============================================================
+   HEADER — solid night bar, neon underline on scroll.
+   ============================================================ */
+.sdi-head { position: sticky; top: 0; z-index: 60;
+  background: color-mix(in oklch, var(--midnight) 82%, transparent);
+  backdrop-filter: blur(9px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+.sdi-head.is-scrolled { background: color-mix(in oklch, var(--midnight) 94%, transparent);
+  border-bottom-color: color-mix(in oklch, var(--pink) 55%, transparent);
+  box-shadow: 0 8px 30px -18px color-mix(in oklch, var(--pink) 80%, transparent); }
+.sdi-head__in { display: flex; align-items: center; justify-content: space-between;
+  gap: 1.25rem; padding-block: clamp(0.7rem, 1.5vw, 1rem); position: relative; }
+
+.sdi-nav { display: flex; align-items: center; gap: clamp(0.9rem, 2vw, 1.75rem); }
+.sdi-nav a:not(.sdi-btn) { font-family: var(--font-body); font-weight: 600; font-size: 0.86rem;
+  letter-spacing: 0.02em; color: var(--cream); position: relative; padding: 0.35rem 0; }
+.sdi-nav a:not(.sdi-btn)::after { content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 2px; background: var(--pink); box-shadow: 0 0 8px var(--pink);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+.sdi-nav a:not(.sdi-btn):hover::after, .sdi-nav a:not(.sdi-btn):focus-visible::after { transform: scaleX(1); }
+.sdi-nav__call { color: var(--gold) !important; }
+.sdi-nav .sdi-btn { padding: 0.6rem 1.1rem; font-size: 0.76rem; }
+.sdi-navtoggle { display: none; }
+
+/* ============================================================
+   READER-BOARD — scrolling lightbulb marquee under the header.
+   ============================================================ */
+.sdi-reader { overflow: hidden; background: var(--ink);
+  border-block: 2px solid color-mix(in oklch, var(--gold) 55%, transparent);
+  box-shadow: inset 0 0 24px -6px color-mix(in oklch, var(--gold) 45%, transparent); }
+.sdi-reader__track { display: inline-flex; align-items: center; gap: 1.6rem;
+  padding-block: 0.5rem; white-space: nowrap; will-change: transform;
+  animation: sdi-scroll 34s linear infinite; }
+.sdi-reader__track span { font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.76rem;
+  color: var(--gold); }
+.sdi-reader__track b { color: var(--pink); font-size: 0.7rem;
+  text-shadow: 0 0 8px color-mix(in oklch, var(--pink) 70%, transparent); }
+@keyframes sdi-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .sdi-reader__track { animation: none; } }
+
+/* ============================================================
+   HERO — full-bleed griddle shot, bottom-set neon headline.
+   ============================================================ */
+.sdi-hero { position: relative; isolation: isolate;
+  min-height: min(90svh, 800px); display: flex; align-items: flex-end;
+  overflow: clip; }
+.sdi-hero__img { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 64% 52%; z-index: -2; }
+.sdi-hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(66deg, color-mix(in oklch, var(--midnight) 90%, transparent) 0%,
+      color-mix(in oklch, var(--midnight) 55%, transparent) 40%, transparent 74%),
+    linear-gradient(to top, var(--midnight) 2%,
+      color-mix(in oklch, var(--midnight) 55%, transparent) 32%, transparent 62%); }
+.sdi-hero__in { padding-top: clamp(3rem, 9vw, 5.5rem); padding-bottom: clamp(2.5rem, 6vw, 4.25rem); }
+.sdi-hero .sdi-eyebrow { color: var(--cyan); }
+.sdi-hero h1 { font-size: clamp(2.5rem, 8.5vw, 6rem); line-height: 0.94; margin: 0 0 1.1rem;
+  max-width: 15ch; color: var(--cream);
+  text-shadow: 0 3px 26px color-mix(in oklch, var(--midnight) 70%, transparent); }
+.sdi-hero h1 em { font-style: normal; color: var(--pink);
+  text-shadow: 0 0 8px color-mix(in oklch, var(--pink) 80%, transparent),
+    0 0 26px color-mix(in oklch, var(--pink) 55%, transparent),
+    0 0 60px color-mix(in oklch, var(--pink) 40%, transparent);
+  animation: sdi-flicker 6.5s linear 1.5s infinite; }
+@keyframes sdi-flicker {
+  0%,17%,19%,21%,80%,100% { opacity: 1; }
+  18%,20% { opacity: 0.72; } 82%,84% { opacity: 0.85; }
+}
+@media (prefers-reduced-motion: reduce) { .sdi-hero h1 em { animation: none; } }
+.sdi-hero__lead { color: color-mix(in oklch, var(--cream) 92%, var(--midnight));
+  font-size: clamp(1.04rem, 0.98rem + 0.6vw, 1.28rem); line-height: 1.55; max-width: 48ch;
+  margin: 0 0 1.9rem; text-shadow: 0 1px 12px color-mix(in oklch, var(--midnight) 65%, transparent); }
+.sdi-hero__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2.2rem; }
+
+.sdi-cred { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.4rem;
+  padding-top: 1.4rem; border-top: 1px solid var(--edge); list-style: none; margin: 0; }
+.sdi-cred li { display: flex; align-items: center; gap: 0.55rem;
+  font-family: var(--font-body); font-weight: 700; font-size: 0.78rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: color-mix(in oklch, var(--cream) 90%, var(--midnight)); }
+.sdi-cred li::before { content: ""; width: 8px; height: 8px; flex: none; border-radius: 50%;
+  background: var(--gold); box-shadow: 0 0 9px var(--gold); }
+
+/* ============================================================
+   MENU BOARD — the signature illuminated board. Neon ring drawn
+   with box-shadow (glow), never a flat accent border.
+   ============================================================ */
+.sdi-board { padding-block: var(--sp); }
+.sdi-board__head { text-align: center; margin-bottom: clamp(1.75rem, 4vw, 2.75rem); }
+.sdi-board__head .sdi-eyebrow { justify-content: center; }
+.sdi-board__head h2 { font-size: clamp(2.4rem, 7vw, 4.5rem); margin: 0 0 0.7rem;
+  color: var(--cream); text-transform: uppercase; letter-spacing: 0.02em; }
+.sdi-board__head h2 em { font-style: normal; color: var(--cyan);
+  text-shadow: 0 0 7px color-mix(in oklch, var(--cyan) 70%, transparent),
+    0 0 24px color-mix(in oklch, var(--cyan) 45%, transparent); }
+.sdi-board__note { font-family: var(--font-body); color: var(--muted); font-size: 0.86rem; margin: 0; }
+
+.sdi-board__panel { position: relative; border-radius: 22px; padding: clamp(1.5rem, 4vw, 3rem);
+  background:
+    linear-gradient(180deg, color-mix(in oklch, var(--midnight-2) 96%, transparent), var(--midnight-2)),
+    repeating-linear-gradient(0deg, transparent, transparent 3px,
+      color-mix(in oklch, var(--cyan) 4%, transparent) 3px, color-mix(in oklch, var(--cyan) 4%, transparent) 4px);
+  box-shadow:
+    0 0 0 2px color-mix(in oklch, var(--cyan) 45%, transparent),
+    inset 0 0 0 6px color-mix(in oklch, var(--midnight) 55%, transparent),
+    inset 0 0 42px -6px color-mix(in oklch, var(--cyan) 30%, transparent),
+    0 0 44px -10px color-mix(in oklch, var(--cyan) 40%, transparent),
+    0 40px 80px -40px black; }
+/* bulb strip along the top edge of the board */
+.sdi-board__bulbs { position: absolute; left: 12%; right: 12%; top: -7px; height: 12px;
+  background-image: radial-gradient(circle, var(--gold) 34%, transparent 38%);
+  background-size: 26px 12px; background-repeat: repeat-x; background-position: center;
+  filter: drop-shadow(0 0 5px color-mix(in oklch, var(--gold) 75%, transparent)); }
+
+.sdi-board__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3rem) clamp(2rem, 6vw, 4.5rem); }
+.sdi-cat__title { font-family: var(--font-display); font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  color: var(--pink); margin: 0 0 1rem; padding-bottom: 0.6rem;
+  text-transform: uppercase; letter-spacing: 0.03em;
+  border-bottom: 2px dashed color-mix(in oklch, var(--pink) 40%, transparent);
+  text-shadow: 0 0 10px color-mix(in oklch, var(--pink) 45%, transparent); }
+
+.sdi-item { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.42rem 0;
+  font-family: var(--font-body); }
+.sdi-item__name { font-weight: 600; color: var(--cream); font-size: 1.01rem;
+  display: inline-flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+.sdi-item__dots { flex: 1 1 auto; align-self: center; height: 0;
+  border-bottom: 2px dotted color-mix(in oklch, var(--cream) 28%, transparent); }
+.sdi-item__price { font-family: var(--font-display); font-size: 0.95rem; color: var(--gold);
+  letter-spacing: 0.01em; text-shadow: 0 0 10px color-mix(in oklch, var(--gold) 40%, transparent); }
+.sdi-fav { font-family: var(--font-body); font-weight: 700; font-size: 0.58rem;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--midnight);
+  background: var(--cyan); padding: 0.16rem 0.5rem; border-radius: 999px; align-self: center;
+  box-shadow: 0 0 12px -2px color-mix(in oklch, var(--cyan) 70%, transparent); }
+
+/* ============================================================
+   EATS — playful asymmetric showcase, motion on hover.
+   ============================================================ */
+.sdi-eats { padding-block: 0 var(--sp); }
+.sdi-eats__head { margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
+.sdi-eats__head h2 { font-size: clamp(2rem, 5.5vw, 3.6rem); color: var(--cream);
+  text-transform: uppercase; letter-spacing: 0.01em; margin: 0; }
+.sdi-eats__grid { display: grid; grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: clamp(150px, 20vw, 220px); gap: clamp(0.8rem, 1.6vw, 1.15rem); }
+.sdi-plate { position: relative; margin: 0; overflow: hidden; border-radius: 16px;
+  box-shadow: 0 24px 50px -30px black, 0 0 0 1px var(--edge);
+  transform: translateZ(0); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.sdi-plate--feature { grid-column: span 2; grid-row: span 2; }
+.sdi-plate--wide { grid-column: span 3; grid-row: span 1; }
+.sdi-plate img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.2,0.6,0.2,1); }
+.sdi-plate::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, color-mix(in oklch, var(--midnight) 92%, transparent) 4%,
+    color-mix(in oklch, var(--midnight) 30%, transparent) 42%, transparent 70%); }
+.sdi-plate figcaption { position: absolute; left: 0; bottom: 0; z-index: 2;
+  padding: clamp(0.9rem, 2vw, 1.35rem); display: grid; gap: 0.15rem; }
+.sdi-plate figcaption b { font-family: var(--font-display); font-size: clamp(0.95rem, 2vw, 1.35rem);
+  color: var(--cream); letter-spacing: 0.01em; line-height: 1.05;
+  text-shadow: 0 2px 12px color-mix(in oklch, var(--midnight) 80%, transparent); }
+.sdi-plate figcaption span { font-family: var(--font-body); font-weight: 500; font-size: 0.82rem;
+  color: color-mix(in oklch, var(--cream) 82%, var(--midnight)); }
+.sdi-plate:hover { transform: translateY(-4px);
+  box-shadow: 0 30px 60px -28px black, 0 0 0 1px color-mix(in oklch, var(--pink) 55%, transparent),
+    0 0 34px -10px color-mix(in oklch, var(--pink) 55%, transparent); }
+.sdi-plate:hover img { transform: scale(1.06); }
+.sdi-plate__badge { position: absolute; z-index: 3; top: 0.85rem; right: 0.85rem;
+  font-family: var(--font-display); font-size: 0.82rem; color: var(--on-neon);
+  background: var(--pink); padding: 0.5rem 0.7rem; border-radius: 50%;
+  transform: rotate(-12deg); line-height: 0.9; text-align: center;
+  box-shadow: 0 0 18px -2px color-mix(in oklch, var(--pink) 75%, transparent);
+  transition: transform 0.3s ease; }
+.sdi-plate--feature:hover .sdi-plate__badge { transform: rotate(0deg) scale(1.05); }
+
+/* ============================================================
+   STORY — neon nostalgia. Giant outline "1976", photo + statement.
+   ============================================================ */
+.sdi-story { position: relative; padding-block: var(--sp); overflow: clip;
+  background:
+    linear-gradient(180deg, transparent, color-mix(in oklch, var(--pink) 8%, transparent) 60%, transparent),
+    var(--midnight); }
+.sdi-story__ghost { position: absolute; z-index: 0; top: 50%; left: 50%;
+  transform: translate(-50%, -50%); font-family: var(--font-display);
+  font-size: clamp(11rem, 42vw, 34rem); line-height: 1; letter-spacing: 0.02em;
+  color: transparent; -webkit-text-stroke: 2px color-mix(in oklch, var(--cyan) 26%, transparent);
+  opacity: 0.5; pointer-events: none; user-select: none; white-space: nowrap; }
+.sdi-story__grid { position: relative; z-index: 1;
+  display: grid; grid-template-columns: 0.86fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.sdi-story__media { position: relative; }
+.sdi-story__media img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 16px;
+  box-shadow: 0 0 0 1px var(--edge), 0 40px 80px -40px black,
+    0 0 40px -14px color-mix(in oklch, var(--pink) 45%, transparent); }
+.sdi-story__stamp { position: absolute; z-index: 2; right: -0.6rem; bottom: -0.6rem;
+  background: var(--pink); color: var(--on-neon); display: grid; justify-items: center;
+  padding: 0.85rem 1.15rem; border-radius: 14px; line-height: 0.85; transform: rotate(-4deg);
+  box-shadow: 0 0 26px -4px color-mix(in oklch, var(--pink) 75%, transparent); }
+.sdi-story__stamp b { font-family: var(--font-display); font-size: 2.1rem; }
+.sdi-story__stamp i { font-family: var(--font-body); font-weight: 700; font-style: normal;
+  font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase; margin-top: 0.2rem; }
+.sdi-story__body h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); color: var(--cream); margin: 0 0 1.2rem;
+  max-width: 16ch; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.02; }
+.sdi-story__body h2 em { font-style: normal; color: var(--pink);
+  text-shadow: 0 0 8px color-mix(in oklch, var(--pink) 60%, transparent),
+    0 0 26px color-mix(in oklch, var(--pink) 38%, transparent); }
+.sdi-story__body p { color: var(--muted); max-width: 50ch; line-height: 1.65; font-size: 1.04rem; }
+.sdi-notes { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+.sdi-notes li { display: flex; align-items: center; gap: 0.55rem;
+  font-family: var(--font-body); font-weight: 700; color: var(--cream); font-size: 0.9rem;
+  letter-spacing: 0.02em; }
+.sdi-notes li::before { content: ""; width: 9px; height: 9px; flex: none; border-radius: 50%;
+  background: var(--cyan); box-shadow: 0 0 9px var(--cyan); }
+
+/* ============================================================
+   ORDER — bright neon conversion panel (dark ink on hot light).
+   ============================================================ */
+.sdi-order { padding-block: 0 var(--sp); }
+.sdi-order__panel { position: relative; overflow: hidden; border-radius: 24px;
+  padding: clamp(2rem, 5vw, 3.75rem);
+  background:
+    radial-gradient(120% 160% at 100% 0%, color-mix(in oklch, var(--gold) 65%, transparent), transparent 55%),
+    linear-gradient(120deg, var(--pink), color-mix(in oklch, var(--pink) 60%, var(--gold)));
+  box-shadow: 0 40px 90px -46px color-mix(in oklch, var(--pink) 85%, transparent),
+    0 0 0 1px color-mix(in oklch, var(--gold) 40%, transparent);
+  display: grid; grid-template-columns: 1.25fr 0.9fr; gap: clamp(1.75rem, 4vw, 3.25rem); align-items: center; }
+.sdi-order__panel::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, color-mix(in oklch, var(--ink) 22%, transparent) 22%, transparent 26%);
+  background-size: 24px 24px; opacity: 0.28; mix-blend-mode: multiply; }
+.sdi-order__copy { position: relative; }
+.sdi-order__copy h2 { font-size: clamp(1.9rem, 4.4vw, 3.1rem); color: var(--ink); margin: 0 0 0.9rem;
+  max-width: 16ch; text-transform: uppercase; letter-spacing: 0.005em; line-height: 1.02; }
+.sdi-order__copy p { color: color-mix(in oklch, var(--ink) 88%, var(--pink)); max-width: 44ch;
+  font-weight: 500; margin: 0; }
+.sdi-order__cta { position: relative; display: flex; flex-direction: column; gap: 0.8rem; align-items: stretch; }
+.sdi-order__cta .sdi-btn { justify-content: center; }
+.sdi-order__note { font-family: var(--font-body); font-weight: 500; font-size: 0.76rem; text-align: center;
+  margin: 0.1rem 0 0; color: var(--ink); opacity: 0.82; letter-spacing: 0.01em; }
+
+/* ============================================================
+   VISIT — three neon cards.
+   ============================================================ */
+.sdi-visit { padding-block: 0 var(--sp); }
+.sdi-visit__head { margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
+.sdi-visit__head h2 { font-size: clamp(2rem, 5vw, 3.4rem); color: var(--cream);
+  text-transform: uppercase; letter-spacing: 0.01em; margin: 0; }
+.sdi-visit__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.4vw, 1.5rem); }
+.sdi-vcard { position: relative; background: var(--midnight-2); border-radius: 16px;
+  padding: clamp(1.4rem, 3vw, 2rem); box-shadow: 0 0 0 1px var(--edge), 0 24px 50px -34px black;
+  transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.sdi-vcard:hover { transform: translateY(-3px);
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--cyan) 45%, transparent),
+    0 0 30px -12px color-mix(in oklch, var(--cyan) 50%, transparent), 0 30px 60px -36px black; }
+.sdi-vcard h3 { font-family: var(--font-display); font-size: 1.15rem; color: var(--gold);
+  margin: 0 0 0.85rem; text-transform: uppercase; letter-spacing: 0.03em;
+  text-shadow: 0 0 12px color-mix(in oklch, var(--gold) 35%, transparent); }
+.sdi-vcard p { color: var(--muted); font-size: 0.98rem; line-height: 1.55; margin: 0 0 0.6rem; }
+.sdi-vcard p:last-child { margin-bottom: 0; }
+.sdi-vcard a:not(.sdi-textcta) { color: var(--cream); font-weight: 600; }
+.sdi-vcard a:not(.sdi-textcta):hover { color: var(--cyan); }
+
+/* ============================================================
+   FOOTER — checker seam, night footer.
+   ============================================================ */
+.sdi-checker { height: 16px;
+  background-image:
+    conic-gradient(var(--cream) 90deg, transparent 90deg 180deg, var(--cream) 180deg 270deg, transparent 270deg);
+  background-size: 16px 16px; opacity: 0.9; }
+.sdi-foot { background: color-mix(in oklch, var(--midnight) 60%, black); color: var(--cream);
+  padding-bottom: 2rem; }
+.sdi-foot .container { padding-top: clamp(2.75rem, 6vw, 4rem); }
+.sdi-foot__grid { display: grid; grid-template-columns: 1.5fr 1fr 1.3fr; gap: clamp(2rem, 5vw, 4rem);
+  padding-bottom: 2.25rem; border-bottom: 1px solid var(--edge); }
+.sdi-brand--foot { margin-bottom: 1rem; }
+.sdi-foot__tag { color: var(--muted); max-width: 36ch; font-size: 0.95rem; margin: 0; }
+.sdi-foot h4 { font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.16em; font-size: 0.72rem; color: var(--pink); margin: 0 0 1.05rem; }
+.sdi-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.sdi-foot a { color: color-mix(in oklch, var(--cream) 88%, var(--midnight)); }
+.sdi-foot ul a:hover, .sdi-foot__contact a:hover { color: var(--cyan); }
+.sdi-foot__contact p { color: var(--muted); font-size: 0.94rem; margin: 0 0 0.55rem; }
+.sdi-foot__contact a { color: var(--cream); font-weight: 600; }
+.sdi-foot__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem;
+  padding-top: 1.6rem; font-family: var(--font-body); font-size: 0.8rem; color: var(--muted); }
+.sdi-foot__bottom b { color: var(--cream); font-weight: 600; }
+
+/* required concept-demo notice — restyled to fit, text unchanged */
+.demo-notice { background: color-mix(in oklch, var(--midnight) 55%, black);
+  color: color-mix(in oklch, var(--muted) 92%, var(--cream));
+  border-top: 1px solid var(--edge); font-family: var(--font-body);
+  font-size: 0.8rem; letter-spacing: 0.01em; padding: 1rem 1.25rem; text-align: center; }
+.demo-notice b { color: var(--gold); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 940px) {
+  .sdi-navtoggle { display: inline-flex; flex-direction: column; justify-content: center;
+    gap: 5px; width: 46px; height: 42px; padding: 0 10px; background: transparent; border: 0; cursor: pointer; }
+  .sdi-navtoggle span { display: block; height: 2px; width: 100%; background: var(--cream);
+    transition: transform 0.25s ease, opacity 0.2s ease; }
+  .sdi-navtoggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .sdi-navtoggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .sdi-navtoggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .sdi-nav { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch;
+    gap: 0; background: color-mix(in oklch, var(--midnight) 97%, black); border-top: 1px solid var(--edge);
+    padding: 0.5rem clamp(1.1rem, 4vw, 2rem) 1.2rem;
+    box-shadow: 0 26px 44px -24px black; clip-path: inset(0 0 100% 0); pointer-events: none;
+    transition: clip-path 0.3s ease; }
+  .sdi-nav.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; }
+  .sdi-nav a:not(.sdi-btn) { padding: 0.95rem 0; border-bottom: 1px solid var(--edge); font-size: 1rem; }
+  .sdi-nav a:not(.sdi-btn)::after { display: none; }
+  .sdi-nav .sdi-btn { margin-top: 1rem; justify-content: center; padding: 0.9rem 1.1rem; font-size: 0.84rem; }
+}
+
+@media (max-width: 780px) {
+  .sdi-board__grid { grid-template-columns: 1fr; }
+  .sdi-eats__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: clamp(150px, 34vw, 210px); }
+  .sdi-plate--feature { grid-column: span 2; grid-row: span 2; }
+  .sdi-plate--wide { grid-column: span 2; }
+  .sdi-story__grid { grid-template-columns: 1fr; gap: clamp(2rem, 8vw, 3rem); }
+  .sdi-story__media { max-width: 440px; }
+  .sdi-order__panel { grid-template-columns: 1fr; }
+  .sdi-visit__grid { grid-template-columns: 1fr; }
+  .sdi-foot__grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+@media (max-width: 440px) {
+  .sdi-hero__cta { flex-direction: column; align-items: stretch; }
+  .sdi-hero__cta .sdi-btn { justify-content: center; }
+  .sdi-eats__grid { grid-template-columns: 1fr; grid-auto-rows: clamp(170px, 56vw, 230px); }
+  .sdi-plate--feature { grid-column: span 1; grid-row: span 1; }
+  .sdi-plate--wide { grid-column: span 1; }
+  .sdi-story__stamp b { font-size: 1.75rem; }
+}

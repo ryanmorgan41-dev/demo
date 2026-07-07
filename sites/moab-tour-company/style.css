@@ -1,0 +1,446 @@
+/* ============================================================
+   Moab Tour Company — BESPOKE stylesheet (one-of-a-kind).
+   Loads AFTER shared/foundation.css. All chrome, hero, sections,
+   buttons and footer are designed from scratch here.
+
+   Direction: "expedition dispatch" — a cinematic high-desert
+   outfitter. Warm bone paper against deep canyon-shadow ink,
+   a rust-ember action color and a golden-hour highlight. A heavy
+   condensed poster face (Anton) over a warm grotesque (Hanken).
+   Signature motif: a single chamfered "route-marker" corner and
+   a hairline route-node rule. No cards grid, no stat bar, no
+   numbered steps: a full-bleed alternating trip reel instead.
+   ============================================================ */
+
+:root {
+  --font-display: "Anton", "Arial Narrow", system-ui, sans-serif;
+  --font-body:    "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+
+  /* --- palette (OKLCH) --- */
+  --sand:    oklch(0.962 0.016 74);   /* warm bone — page base */
+  --sand-2:  oklch(0.928 0.026 72);   /* secondary warm surface */
+  --sand-3:  oklch(0.886 0.034 68);   /* deeper warm surface */
+  --ink:     oklch(0.225 0.023 46);   /* deep canyon shadow (warm near-black) */
+  --rock:    oklch(0.300 0.045 40);   /* red-rock brown — dark panels */
+  --muted:   oklch(0.455 0.030 50);   /* body-muted on light */
+  --muted-d: oklch(0.800 0.020 74);   /* muted on dark */
+  --line:    oklch(0.858 0.028 70);   /* hairline on light */
+  --ember:   oklch(0.520 0.150 40);   /* deep rust — primary action fill */
+  --ember-2: oklch(0.440 0.130 37);   /* darker rust — hover */
+  --ember-br:oklch(0.660 0.175 45);   /* bright ember — glow/accent only */
+  --gold:    oklch(0.795 0.115 78);   /* golden-hour — accent on dark */
+  --on-ember:oklch(0.985 0.010 82);   /* near-white on ember */
+
+  --bg: var(--sand);
+  --maxw: 1200px;
+  --radius: 4px;
+  --cut: 15px;                        /* chamfer size — route-marker corner */
+  --sp: clamp(3.75rem, 8vw, 7.25rem); /* section rhythm */
+  --edge: color-mix(in oklch, var(--sand) 15%, transparent); /* hairline on dark */
+}
+
+/* ---- base type ------------------------------------------- */
+body { background: var(--sand); color: var(--ink); }
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.95;
+}
+p { margin: 0 0 1rem; }
+a { text-decoration: none; }
+::selection { background: color-mix(in oklch, var(--ember) 30%, var(--sand)); }
+
+.mt-lead { font-size: clamp(1.08rem, 1rem + 0.6vw, 1.32rem); line-height: 1.55;
+  color: var(--muted); max-width: 46ch; }
+
+/* ---- reveal: scroll-triggered fade-up (overrides foundation) --- */
+.js .reveal-init { opacity: 0; transform: translateY(22px);
+  animation: none; transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+.js .is-revealed { opacity: 1; transform: none; }
+.js [data-reveal].d1 { transition-delay: 0.08s; }
+.js [data-reveal].d2 { transition-delay: 0.16s; }
+.js [data-reveal].d3 { transition-delay: 0.24s; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-init { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- shared components ----------------------------------- */
+.mt-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.65rem;
+  font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  font-size: 0.76rem; color: var(--ember); margin: 0 0 1rem;
+}
+.mt-eyebrow::before { content: ""; width: 30px; height: 2px;
+  background: currentColor; }
+.on-dark .mt-eyebrow, .mt-eyebrow--gold { color: var(--gold); }
+
+/* buttons — crisp rectangles, tracked caps, sliding arrow.
+   (kept as plain rectangles so :focus-visible ring is never clipped) */
+.mt-btn {
+  display: inline-flex; align-items: center; gap: 0.6ch;
+  font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.09em; font-size: 0.86rem;
+  line-height: 1; padding: 0.95rem 1.5rem; border-radius: var(--radius);
+  border: 2px solid transparent; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease, box-shadow 0.2s ease;
+}
+.mt-btn .ar { transition: transform 0.25s ease; }
+.mt-btn:hover .ar { transform: translateX(4px); }
+
+.mt-btn--primary { background: var(--ember); color: var(--on-ember);
+  box-shadow: 0 8px 22px -12px color-mix(in oklch, var(--ember) 85%, transparent); }
+.mt-btn--primary:hover { background: var(--ember-2); transform: translateY(-2px);
+  box-shadow: 0 14px 30px -14px color-mix(in oklch, var(--ember) 90%, transparent); }
+
+.mt-btn--line { background: transparent; color: var(--ink);
+  border-color: color-mix(in oklch, var(--ink) 45%, transparent); }
+.mt-btn--line:hover { background: var(--ink); color: var(--sand); border-color: var(--ink); }
+
+/* on dark backgrounds / over the hero image */
+.on-dark .mt-btn--line, .mt-btn--line.is-onhero {
+  color: var(--sand); border-color: color-mix(in oklch, var(--sand) 55%, transparent); }
+.on-dark .mt-btn--line:hover, .mt-btn--line.is-onhero:hover {
+  background: var(--sand); color: var(--ink); border-color: var(--sand); }
+
+/* text-link CTA */
+.mt-textcta {
+  display: inline-flex; align-items: center; gap: 0.5ch;
+  font-family: var(--font-body); font-weight: 700; font-size: 0.9rem;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--ember);
+  padding-bottom: 3px; border-bottom: 2px solid color-mix(in oklch, var(--ember) 40%, transparent);
+  transition: border-color 0.2s ease, gap 0.2s ease; }
+.mt-textcta:hover { border-color: var(--ember); gap: 0.9ch; }
+
+/* pending "coming soon" gap (foundation appends the label) */
+.mt-btn.is-pending, .mt-textcta.is-pending { opacity: 0.62; }
+.mt-btn.is-pending::after { letter-spacing: 0.06em; font-size: 0.76rem; }
+
+/* route-marker tag (chamfered) — non-interactive, so clip is safe */
+.mt-tag {
+  display: inline-block; font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.7rem;
+  padding: 0.4rem 0.85rem 0.4rem 0.7rem;
+  background: color-mix(in oklch, var(--ember) 14%, var(--sand));
+  color: var(--ember-2);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%);
+}
+.mt-tag--confirm { background: color-mix(in oklch, var(--ink) 8%, var(--sand-2));
+  color: var(--muted); letter-spacing: 0.1em; }
+
+.container { max-width: var(--maxw); }
+
+/* ============================================================
+   HEADER — transparent over the hero, flips to solid canyon ink
+   on scroll. Poster lockup + route glyph, growing-underline nav.
+   ============================================================ */
+.mt-head {
+  position: sticky; top: 0; z-index: 60;
+  background: linear-gradient(color-mix(in oklch, var(--ink) 40%, transparent), transparent);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+.mt-head.is-scrolled {
+  background: var(--ink);
+  border-bottom-color: color-mix(in oklch, var(--gold) 55%, transparent);
+  box-shadow: 0 10px 34px -20px color-mix(in oklch, var(--ink) 90%, transparent);
+}
+.mt-head__in {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.25rem; padding-block: clamp(0.85rem, 1.6vw, 1.15rem); position: relative;
+}
+.mt-brand { display: inline-flex; align-items: center; gap: 0.7rem; color: var(--sand);
+  text-shadow: 0 1px 6px color-mix(in oklch, var(--ink) 60%, transparent); }
+.is-scrolled .mt-brand { text-shadow: none; }
+.mt-brand__glyph { /* CSS route-node compass mark */
+  width: 30px; height: 30px; flex: none; position: relative;
+  border: 2px solid var(--gold); transform: rotate(45deg); border-radius: 3px; }
+.mt-brand__glyph::after { content: ""; position: absolute; inset: 5px;
+  background: var(--ember-br); border-radius: 1px; }
+.mt-brand__txt { display: grid; line-height: 0.9; }
+.mt-brand__txt b { font-family: var(--font-display); font-weight: 400;
+  font-size: 1.32rem; letter-spacing: 0.03em; }
+.mt-brand__txt span { font-family: var(--font-body); font-weight: 600;
+  font-size: 0.62rem; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--gold); }
+
+.mt-nav { display: flex; align-items: center; gap: clamp(1.1rem, 2.2vw, 2rem); }
+.mt-nav a { font-family: var(--font-body); font-weight: 600; font-size: 0.86rem;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--sand);
+  text-shadow: 0 1px 5px color-mix(in oklch, var(--ink) 55%, transparent);
+  position: relative; padding: 0.35rem 0; }
+.is-scrolled .mt-nav a { text-shadow: none; }
+.mt-nav a:not(.mt-btn)::after { content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 2px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+.mt-nav a:not(.mt-btn):hover::after, .mt-nav a:not(.mt-btn):focus-visible::after { transform: scaleX(1); }
+.mt-nav .mt-btn { padding: 0.6rem 1.05rem; font-size: 0.78rem; }
+
+.mt-navtoggle { display: none; }
+
+/* ============================================================
+   HERO — full-bleed cinematic slickrock, bottom-left set copy,
+   trust folded into an overlaid credential strip (no stat bar).
+   ============================================================ */
+.mt-hero { position: relative; isolation: isolate;
+  min-height: min(94svh, 860px); display: flex; align-items: flex-end;
+  margin-top: calc(-1 * (clamp(0.85rem,1.6vw,1.15rem) * 2 + 30px)); /* pull under sticky header */
+  padding-top: clamp(6rem, 14vh, 9rem); }
+.mt-hero__img { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 60% 55%; z-index: -2; }
+.mt-hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(78deg, color-mix(in oklch, var(--ink) 84%, transparent) 0%,
+      color-mix(in oklch, var(--ink) 40%, transparent) 42%, transparent 72%),
+    linear-gradient(to top, color-mix(in oklch, var(--ink) 78%, transparent) 0%,
+      transparent 40%); }
+.mt-hero__in { padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  padding-top: clamp(2.5rem, 8vw, 5rem); }
+.mt-hero .mt-eyebrow { color: var(--gold); }
+.mt-hero h1 { color: var(--sand); font-size: clamp(2.9rem, 9.6vw, 6.7rem);
+  line-height: 0.88; margin: 0 0 1.1rem; max-width: 16ch;
+  text-shadow: 0 2px 18px color-mix(in oklch, var(--ink) 55%, transparent); }
+.mt-hero h1 em { font-style: normal; color: var(--gold); }
+.mt-hero__lead { color: color-mix(in oklch, var(--sand) 92%, var(--ink));
+  font-size: clamp(1.05rem, 0.98rem + 0.6vw, 1.28rem); line-height: 1.55;
+  max-width: 50ch; margin: 0 0 1.9rem;
+  text-shadow: 0 1px 10px color-mix(in oklch, var(--ink) 55%, transparent); }
+.mt-hero__cta { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-bottom: 2.4rem; }
+
+.mt-cred { display: flex; flex-wrap: wrap; align-items: center; gap: 0.65rem 1.35rem;
+  padding-top: 1.5rem; border-top: 1px solid var(--edge);
+  list-style: none; margin: 0; }
+.mt-cred li { display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.82rem;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: color-mix(in oklch, var(--sand) 88%, var(--ink)); }
+.mt-cred li::before { content: ""; width: 7px; height: 7px; flex: none;
+  background: var(--ember-br); transform: rotate(45deg); }
+
+/* ============================================================
+   CREED — editorial spread. Overlapping image + big statement.
+   Answers "why 23 years matters".
+   ============================================================ */
+.mt-creed { padding-block: var(--sp); overflow-x: clip; }
+.mt-creed__grid { display: grid; grid-template-columns: 0.82fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.mt-creed__media { position: relative; }
+.mt-creed__media::before { content: ""; position: absolute; z-index: 0;
+  right: -20px; bottom: -20px; width: 62%; height: 58%;
+  background: color-mix(in oklch, var(--ember) 24%, var(--sand));
+  clip-path: polygon(0 0, 100% 0, 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut))); }
+.mt-creed__media img { position: relative; z-index: 1; width: 100%;
+  aspect-ratio: 4/5; object-fit: cover; border-radius: 2px;
+  box-shadow: 0 30px 60px -34px color-mix(in oklch, var(--ink) 75%, transparent); }
+.mt-creed__stamp { position: absolute; z-index: 2; top: 1rem; left: -0.6rem;
+  background: var(--ink); color: var(--gold); padding: 0.8rem 1.1rem;
+  font-family: var(--font-display); line-height: 0.85; text-align: center;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%); }
+.mt-creed__stamp b { display: block; font-size: 2.2rem; }
+.mt-creed__stamp span { font-family: var(--font-body); font-weight: 700;
+  font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted-d); }
+.mt-creed h2 { font-size: clamp(2rem, 4.6vw, 3.5rem); margin: 0 0 1.25rem; max-width: 18ch; }
+.mt-creed h2 em { font-style: normal; color: var(--ember); }
+.mt-creed p { color: var(--muted); max-width: 52ch; line-height: 1.65;
+  font-size: 1.06rem; }
+.mt-creed__notes { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem;
+  margin-top: 1.6rem; padding: 0; list-style: none; }
+.mt-creed__notes li { display: flex; align-items: baseline; gap: 0.6rem;
+  font-family: var(--font-body); font-weight: 600; color: var(--ink);
+  font-size: 0.92rem; }
+.mt-creed__notes li::before { content: ""; width: 8px; height: 8px; flex: none;
+  align-self: center; background: var(--ember); transform: rotate(45deg); }
+
+/* ============================================================
+   TRIPS — full-bleed alternating cinematic reel (not a card grid).
+   ============================================================ */
+.mt-trips__head { padding-block: var(--sp) clamp(1.75rem, 4vw, 3rem); }
+.mt-trips__head h2 { font-size: clamp(2.1rem, 5vw, 3.7rem); margin: 0 0 0.9rem; }
+.mt-trips__head .mt-lead { max-width: 54ch; }
+
+.mt-trip { display: grid; grid-template-columns: repeat(2, 1fr);
+  align-items: stretch; }
+.mt-trip + .mt-trip { border-top: 1px solid var(--line); }
+.mt-trip__media { order: 2; min-height: clamp(340px, 52vh, 600px);
+  position: relative; overflow: hidden; }
+.mt-trip__media img { width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.2,0.6,0.2,1); }
+.mt-trip:hover .mt-trip__media img { transform: scale(1.045); }
+.mt-trip__body { order: 1; display: flex; flex-direction: column;
+  justify-content: center; padding: clamp(2.25rem, 5.5vw, 4.75rem);
+  background: var(--sand); }
+.mt-trip:nth-child(even) .mt-trip__body { order: 2; background: var(--sand-2); }
+.mt-trip:nth-child(even) .mt-trip__media { order: 1; }
+
+.mt-trip__kicker { display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.2em; font-size: 0.72rem; color: var(--ember); margin-bottom: 0.8rem; }
+.mt-trip__kicker span { color: var(--muted); letter-spacing: 0.14em; font-weight: 600; }
+.mt-trip h3 { font-size: clamp(1.75rem, 3.6vw, 2.7rem); margin: 0 0 0.65rem; }
+.mt-trip__meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.8rem 1.1rem;
+  margin: 0 0 1.15rem; }
+.mt-trip__price { font-family: var(--font-display); font-size: 1.5rem;
+  color: var(--ink); line-height: 1; }
+.mt-trip__price small { font-family: var(--font-body); font-weight: 600;
+  font-size: 0.82rem; color: var(--muted); letter-spacing: 0.02em; }
+.mt-trip p { color: var(--muted); max-width: 44ch; line-height: 1.6; }
+.mt-trip__good { font-size: 0.9rem; color: var(--ink); font-weight: 600;
+  margin-bottom: 1.4rem; }
+.mt-trip__good b { color: var(--ember-2); font-weight: 700; }
+
+/* ============================================================
+   KIT — dark canyon manifest. Detail photo + two-column list.
+   ============================================================ */
+.mt-kit { background: var(--ink); color: var(--sand); overflow-x: clip; }
+.mt-kit__grid { display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: stretch; }
+.mt-kit__media { position: relative; min-height: clamp(320px, 46vh, 560px); }
+.mt-kit__media img { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; }
+.mt-kit__media::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 55%, var(--ink) 100%),
+    linear-gradient(to top, color-mix(in oklch, var(--ink) 55%, transparent), transparent 45%); }
+.mt-kit__body { padding: var(--sp) clamp(1.5rem, 5vw, 4.5rem); }
+.mt-kit__body h2 { color: var(--sand); font-size: clamp(2rem, 4.4vw, 3.3rem);
+  margin: 0 0 0.9rem; max-width: 16ch; }
+.mt-kit__body h2 em { font-style: normal; color: var(--gold); }
+.mt-kit__body > p { color: var(--muted-d); max-width: 46ch; margin-bottom: 2rem; }
+.mt-manifest { list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem 2rem; }
+.mt-manifest li { display: flex; gap: 0.75rem; align-items: baseline;
+  padding-bottom: 0.85rem; border-bottom: 1px solid var(--edge);
+  font-size: 0.98rem; line-height: 1.4; color: color-mix(in oklch, var(--sand) 92%, var(--ink)); }
+.mt-manifest li::before { content: ""; width: 9px; height: 9px; flex: none;
+  align-self: center; background: var(--gold); transform: rotate(45deg); }
+.mt-manifest b { color: var(--gold); font-weight: 700; }
+
+/* ============================================================
+   PLAN — booking panel with the chamfer motif + route sequence.
+   ============================================================ */
+.mt-plan { padding-block: var(--sp); }
+.mt-plan__panel { position: relative; background: var(--rock); color: var(--sand);
+  padding: clamp(2.25rem, 5vw, 4rem);
+  clip-path: polygon(0 0, calc(100% - 46px) 0, 100% 46px, 100% 100%, 0 100%);
+  overflow: hidden; }
+.mt-plan__panel::before { content: ""; position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(120% 140% at 100% 0%,
+    color-mix(in oklch, var(--ember) 40%, transparent), transparent 55%); }
+.mt-plan__inner { position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: center; }
+.mt-plan h2 { color: var(--sand); font-size: clamp(2rem, 4.4vw, 3.3rem);
+  margin: 0 0 1rem; max-width: 15ch; }
+.mt-plan h2 em { font-style: normal; color: var(--gold); }
+.mt-plan p { color: color-mix(in oklch, var(--sand) 86%, var(--ink)); max-width: 46ch; }
+.mt-plan__cta { display: flex; flex-direction: column; gap: 0.85rem; align-items: stretch; }
+.mt-plan__cta .mt-btn { justify-content: center; }
+.mt-plan__cta .mt-btn--line { color: var(--sand);
+  border-color: color-mix(in oklch, var(--sand) 55%, transparent); }
+.mt-plan__cta .mt-btn--line:hover { background: var(--sand); color: var(--rock); border-color: var(--sand); }
+.mt-plan__note { font-size: 0.82rem; color: var(--muted-d); text-align: center;
+  letter-spacing: 0.03em; }
+
+.mt-route { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;
+  margin-top: 2.2rem; padding-top: 1.6rem; border-top: 1px solid var(--edge);
+  position: relative; z-index: 1; list-style: none; padding-left: 0; }
+.mt-route li { display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.09em; font-size: 0.8rem; color: var(--sand); }
+.mt-route li::before { content: ""; width: 9px; height: 9px; flex: none;
+  background: var(--gold); transform: rotate(45deg); }
+.mt-route li:not(:last-child)::after { content: ""; width: clamp(18px, 4vw, 42px);
+  height: 2px; background: color-mix(in oklch, var(--sand) 40%, transparent); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.mt-foot { background: var(--ink); color: var(--sand);
+  border-top: 3px solid var(--gold); padding-block: clamp(3rem, 6vw, 4.5rem) 2rem; }
+.mt-foot__grid { display: grid;
+  grid-template-columns: 1.4fr 1fr 1.2fr; gap: clamp(2rem, 5vw, 4rem);
+  padding-bottom: 2.5rem; border-bottom: 1px solid var(--edge); }
+.mt-foot .mt-brand { color: var(--sand); text-shadow: none; margin-bottom: 1rem; }
+.mt-foot__tag { color: var(--muted-d); max-width: 34ch; font-size: 0.96rem; }
+.mt-foot__coords { font-family: var(--font-body); font-weight: 600; font-size: 0.78rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-top: 1rem; }
+.mt-foot h4 { font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.16em; font-size: 0.74rem; color: var(--gold); margin: 0 0 1.1rem; }
+.mt-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.mt-foot a { color: color-mix(in oklch, var(--sand) 88%, var(--ink)); }
+.mt-foot ul a:hover, .mt-foot__contact a:hover { color: var(--gold); }
+.mt-foot__contact p { color: var(--muted-d); font-size: 0.94rem; }
+.mt-foot__contact a { color: var(--sand); font-weight: 600; }
+.mt-foot__bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
+  gap: 0.75rem; padding-top: 1.75rem; font-size: 0.82rem; color: var(--muted-d); }
+.mt-foot__bottom b { color: var(--sand); font-weight: 600; }
+
+/* required concept-demo notice — restyled to fit, text unchanged */
+.demo-notice { background: var(--ink);
+  color: color-mix(in oklch, var(--muted-d) 92%, var(--sand));
+  border-top: 1px solid var(--edge);
+  font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.01em;
+  padding: 1rem 1.25rem; text-align: center; }
+.demo-notice b { color: var(--gold); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .mt-navtoggle { display: inline-flex; flex-direction: column; justify-content: center;
+    gap: 5px; width: 46px; height: 42px; padding: 0 10px; background: transparent;
+    border: 0; cursor: pointer; }
+  .mt-navtoggle span { display: block; height: 2px; width: 100%; background: var(--sand);
+    box-shadow: 0 1px 4px color-mix(in oklch, var(--ink) 55%, transparent);
+    transition: transform 0.25s ease, opacity 0.2s ease; }
+  .is-scrolled .mt-navtoggle span { box-shadow: none; }
+  .mt-navtoggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .mt-navtoggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .mt-navtoggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mt-nav { position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--ink); border-top: 1px solid var(--edge);
+    padding: 0.5rem clamp(1.1rem, 4vw, 2rem) 1.25rem;
+    box-shadow: 0 26px 40px -24px color-mix(in oklch, var(--ink) 90%, transparent);
+    clip-path: inset(0 0 100% 0); pointer-events: none;
+    transition: clip-path 0.3s ease; }
+  .mt-nav.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; }
+  .mt-nav a { padding: 0.95rem 0; border-bottom: 1px solid var(--edge);
+    text-shadow: none; font-size: 1rem; }
+  .mt-nav a:not(.mt-btn)::after { display: none; }
+  .mt-nav .mt-btn { margin-top: 1rem; justify-content: center; padding: 0.9rem 1.05rem;
+    font-size: 0.86rem; }
+  /* header always solid once nav can open, for legibility */
+  .mt-head { background: var(--ink); border-bottom-color: color-mix(in oklch, var(--gold) 55%, transparent); }
+  .mt-hero { margin-top: 0; padding-top: clamp(4.5rem, 12vh, 7rem); }
+}
+
+@media (max-width: 780px) {
+  .mt-creed__grid { grid-template-columns: 1fr; gap: clamp(2rem, 8vw, 3rem); }
+  .mt-creed__media { max-width: 420px; }
+  .mt-creed__media::before { right: -12px; bottom: -12px; }
+
+  .mt-trip { grid-template-columns: 1fr; }
+  .mt-trip__media { order: 1 !important; min-height: clamp(240px, 48vw, 340px); }
+  .mt-trip__body { order: 2 !important; }
+
+  .mt-kit__grid { grid-template-columns: 1fr; }
+  .mt-kit__media { min-height: clamp(230px, 52vw, 340px); }
+  .mt-kit__media::after { background: linear-gradient(to top,
+    color-mix(in oklch, var(--ink) 80%, transparent), transparent 55%); }
+  .mt-manifest { grid-template-columns: 1fr; }
+
+  .mt-plan__inner { grid-template-columns: 1fr; }
+  .mt-plan__panel { clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%); }
+
+  .mt-foot__grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+@media (max-width: 430px) {
+  .mt-hero__cta { flex-direction: column; align-items: stretch; }
+  .mt-hero__cta .mt-btn { justify-content: center; }
+  .mt-creed__stamp b { font-size: 1.8rem; }
+}

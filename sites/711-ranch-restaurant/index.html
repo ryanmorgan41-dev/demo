@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>7-11 Ranch Restaurant & Gift Shop — Vernal, UT</title>
+<meta name="description" content="Vernal's oldest continuously family-owned business. Homestyle diner cooking and a western gift shop, all under one roof since 1933.">
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="7-11 Ranch Restaurant & Gift Shop — Vernal, UT">
+<meta property="og:description" content="A Vernal institution since 1933. Homestyle diner food and a western gift shop under one roof, still run by the same family.">
+<meta property="og:image" content="images/og.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Rye&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../shared/foundation.css">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --font-display: "Rye", "Playfair Display", Georgia, serif;
+    --font-body:    "Newsreader", Georgia, "Times New Roman", serif;
+
+    /* Heritage-sepia palette — the ONLY place raw oklch() is written.
+       Everything downstream is color-mix() from these. */
+    --paper:       oklch(0.963 0.019 78);   /* aged cream page */
+    --parchment:   oklch(0.929 0.030 74);   /* deeper cream surface */
+    --cream:       oklch(0.981 0.012 84);   /* lightest — photo mats, on-dark text */
+    --ink:         oklch(0.255 0.028 50);   /* espresso brown-black */
+    --muted:       oklch(0.428 0.035 48);   /* sepia body-muted */
+    --line:        oklch(0.812 0.030 70);   /* hairline */
+    --accent:      oklch(0.437 0.118 28);   /* oxblood barn red */
+    --accent-deep: oklch(0.342 0.100 28);   /* darker oxblood */
+    --ochre:       oklch(0.722 0.102 74);   /* mustard / roadhouse ochre */
+    --ochre-deep:  oklch(0.582 0.098 70);
+    --on-accent:   oklch(0.982 0.012 84);
+
+    /* foundation aliases */
+    --bg:     var(--paper);
+    --maxw:   1180px;
+    --radius: 4px;
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "7-11 Ranch Restaurant & Gift Shop",
+  "telephone": "+1-435-789-1170",
+  "email": "info@711ranchrestaurant.com",
+  "areaServed": "Vernal, UT",
+  "servesCuisine": "American",
+  "foundingDate": "1933",
+  "priceRange": "$$",
+  "address": { "@type": "PostalAddress", "addressLocality": "Vernal", "addressRegion": "UT" }
+}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="ranch-head" data-header>
+  <div class="container ranch-head__inner">
+    <a class="ranch-brand" href="#top">
+      <span class="ranch-brand__mark">7-11 Ranch</span>
+      <span class="ranch-brand__sub">Restaurant &amp; Gift Shop · Vernal, Utah</span>
+    </a>
+    <button class="ranch-burger" data-nav-toggle aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="ranch-nav" id="nav" data-nav aria-label="Primary">
+      <a href="#story">Our Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#gift">Gift Shop</a>
+      <a href="#visit">Visit</a>
+      <a class="ranch-btn ranch-btn--solid ranch-nav__call" href="tel:+14357891170">Call (435) 789-1170</a>
+    </nav>
+  </div>
+</header>
+
+<!-- establishment ribbon (static, letterpressed) -->
+<div class="ranch-ribbon" aria-hidden="true">
+  <div class="container ranch-ribbon__row">
+    <span>Est. 1933</span>
+    <span>Vernal's oldest family-owned business</span>
+    <span>Home cooking &amp; western goods</span>
+    <span>Open daily</span>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ========== HERO ========== -->
+  <section class="ranch-hero" id="top">
+    <div class="container ranch-hero__grid">
+      <div class="ranch-hero__copy">
+        <p class="ranch-eyebrow">Vernal, Utah · Established 1933</p>
+        <h1 class="ranch-hero__h">Nearly a century at the same table</h1>
+        <p class="ranch-hero__lead">Homestyle diner cooking and a western gift shop under one roof. The oldest continuously family-owned business in Vernal, still run by the family that opened the doors.</p>
+        <div class="ranch-hero__cta">
+          <a class="ranch-btn ranch-btn--solid ranch-btn--lg" href="tel:+14357891170">Call (435) 789-1170</a>
+          <a class="ranch-btn ranch-btn--line ranch-btn--lg" href="#menu">See the menu</a>
+        </div>
+        <ul class="ranch-hero__proof">
+          <li><strong>2,300</strong> neighbors following along</li>
+          <li><strong>90%</strong> recommend</li>
+          <li><strong>53</strong> reviews and counting</li>
+        </ul>
+      </div>
+
+      <div class="ranch-hero__art">
+        <figure class="ranch-print ranch-print--hero">
+          <img src="images/hero.webp" alt="A hearty homestyle breakfast of pancakes, eggs, bacon, orange juice and coffee on a rustic wooden diner table" fetchpriority="high" width="1600" height="900">
+          <figcaption>Breakfast at the Ranch — served all day, the way it always has been</figcaption>
+        </figure>
+        <span class="ranch-seal" aria-hidden="true">
+          <em>Est.</em><b>1933</b><i>Vernal · Utah</i>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STORY / HERITAGE TIMELINE ========== -->
+  <section class="ranch-story" id="story">
+    <div class="container">
+      <header class="ranch-story__head" data-reveal>
+        <p class="ranch-eyebrow ranch-eyebrow--center">Our story</p>
+        <h2 class="ranch-h2">Since 1933, and still counting</h2>
+        <p class="ranch-story__intro">Most of Vernal has never known a Main Street without the Ranch on it. Here is the long way to today, one generation at a time.</p>
+      </header>
+
+      <ol class="ranch-road">
+        <li class="ranch-stop" data-reveal>
+          <span class="ranch-year">1933</span>
+          <div class="ranch-stop__card">
+            <h3 class="ranch-stop__h">The doors open</h3>
+            <p>A family eatery takes root in Vernal, feeding ranch hands, oil crews and travelers passing through the Uinta Basin.</p>
+          </div>
+        </li>
+
+        <li class="ranch-stop" data-reveal>
+          <span class="ranch-year">1949</span>
+          <div class="ranch-stop__card">
+            <h3 class="ranch-stop__h">The 7-11 Ranch name</h3>
+            <p>The name Vernal still says today takes hold. The griddle never cools, and the coffee is always on.</p>
+          </div>
+        </li>
+
+        <li class="ranch-stop ranch-stop--wide" data-reveal>
+          <figure class="ranch-print ranch-print--band">
+            <img src="images/about.webp" alt="Inside the 7-11 Ranch diner: red leather booths, a lunch counter, and walls lined with framed historic photographs under warm lamplight" loading="lazy" width="900" height="1200">
+            <figcaption>Inside the Ranch, where the walls have kept the town's photographs for decades</figcaption>
+          </figure>
+        </li>
+
+        <li class="ranch-stop" data-reveal>
+          <span class="ranch-year">Decades on</span>
+          <div class="ranch-stop__card">
+            <h3 class="ranch-stop__h">Booths, pie &amp; regulars</h3>
+            <p>Generations of families grow up in the same red booths. The recipes stay put, and so do the regulars who order them by heart.</p>
+          </div>
+        </li>
+
+        <li class="ranch-stop" data-reveal>
+          <span class="ranch-year">Today</span>
+          <div class="ranch-stop__card">
+            <h3 class="ranch-stop__h">Still family-run</h3>
+            <p>The oldest continuously family-owned business in Vernal, with 2,300 neighbors following along and homemade pie still coming out of the oven.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========== MENU / BILL OF FARE ========== -->
+  <section class="ranch-menu" id="menu">
+    <div class="container ranch-menu__wrap">
+      <div class="ranch-card" data-reveal>
+        <div class="ranch-card__banner">
+          <p class="ranch-eyebrow ranch-eyebrow--center">The Ranch</p>
+          <h2 class="ranch-h2">Bill of Fare</h2>
+          <p class="ranch-card__sub">Real diner food, served all day, made the way it's always been.</p>
+        </div>
+
+        <div class="ranch-fare">
+          <div class="ranch-course">
+            <h3 class="ranch-course__h">Breakfast</h3>
+            <ul class="ranch-list">
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Ranch Breakfast Platter <b class="ranch-tag">House favorite</b></span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">11.99</span>
+                <span class="ranch-dish__note">Two eggs, bacon or sausage, hash browns and toast.</span>
+              </li>
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Buttermilk Pancakes</span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">8.49</span>
+                <span class="ranch-dish__note">A stack of three, griddled fresh, butter and syrup.</span>
+              </li>
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Biscuits &amp; Gravy</span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">7.99</span>
+                <span class="ranch-dish__note">Sausage gravy over fresh-baked biscuits.</span>
+              </li>
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Farmhand Omelet</span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">10.49</span>
+                <span class="ranch-dish__note">Ham, cheese, peppers and onions.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="ranch-course">
+            <h3 class="ranch-course__h">Burgers &amp; Sandwiches</h3>
+            <ul class="ranch-list">
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">7-11 Ranch Burger <b class="ranch-tag">House favorite</b></span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">10.99</span>
+                <span class="ranch-dish__note">Hand-pattied, lettuce, tomato and onion, with fries.</span>
+              </li>
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Club Sandwich</span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">9.99</span>
+                <span class="ranch-dish__note">Triple-decker turkey, bacon and swiss.</span>
+              </li>
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Patty Melt</span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">9.49</span>
+                <span class="ranch-dish__note">Grilled onions and swiss on rye.</span>
+              </li>
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Classic BLT</span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">7.99</span>
+                <span class="ranch-dish__note">Thick-cut bacon, lettuce and tomato.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="ranch-course">
+            <h3 class="ranch-course__h">Homestyle Plates</h3>
+            <ul class="ranch-list">
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Chicken Fried Steak <b class="ranch-tag">House favorite</b></span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">13.99</span>
+                <span class="ranch-dish__note">Country gravy, mashed potatoes and a dinner roll.</span>
+              </li>
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Meatloaf Plate</span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">12.49</span>
+                <span class="ranch-dish__note">Mashed potatoes, gravy and the vegetable of the day.</span>
+              </li>
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Roast Turkey Dinner</span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">12.99</span>
+                <span class="ranch-dish__note">Stuffing, mashed potatoes and cranberry.</span>
+              </li>
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Country Fried Chicken</span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">13.49</span>
+                <span class="ranch-dish__note">Golden fried, mashed potatoes and gravy.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="ranch-course">
+            <h3 class="ranch-course__h">Pie &amp; Dessert</h3>
+            <ul class="ranch-list">
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Homemade Pie <b class="ranch-tag">House favorite</b></span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">5.49</span>
+                <span class="ranch-dish__note">Ask what came out of the oven this morning.</span>
+              </li>
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Cobbler à la Mode</span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">6.49</span>
+                <span class="ranch-dish__note">Warm fruit cobbler with vanilla ice cream.</span>
+              </li>
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Hand-Spun Milkshake</span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">5.99</span>
+                <span class="ranch-dish__note">Ask about today's flavors.</span>
+              </li>
+              <li class="ranch-dish">
+                <span class="ranch-dish__name">Ice Cream Sundae</span>
+                <span class="ranch-dish__dots" aria-hidden="true"></span>
+                <span class="ranch-dish__price">5.49</span>
+                <span class="ranch-dish__note">Hot fudge, whipped cream and a cherry on top.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ranch-card__foot">
+          <p class="ranch-card__note">Sample menu. Items and prices to confirm with the owner.</p>
+          <div class="ranch-card__cta">
+            <a class="ranch-btn ranch-btn--solid" data-cta="primary" href="#">View the full menu</a>
+            <a class="ranch-btn ranch-btn--line" href="tel:+14357891170">Call to order</a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="ranch-menu__sides" data-reveal>
+        <figure class="ranch-print ranch-print--tilt">
+          <img src="images/sell-1.webp" alt="A classic diner cheeseburger with crinkle-cut fries and a pickle on a metal tray" loading="lazy" width="1200" height="900">
+          <figcaption>The 7-11 Ranch Burger</figcaption>
+        </figure>
+        <figure class="ranch-print ranch-print--tilt ranch-print--tilt-r">
+          <img src="images/sell-2.webp" alt="A slice of golden homemade apple pie with cream on a diner plate beside a coffee mug" loading="lazy" width="1200" height="900">
+          <figcaption>Pie, out of the oven</figcaption>
+        </figure>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ========== TABLE / GALLERY ========== -->
+  <section class="ranch-table">
+    <div class="container">
+      <header class="ranch-table__head" data-reveal>
+        <p class="ranch-eyebrow ranch-eyebrow--center">Pull up a chair</p>
+        <h2 class="ranch-h2">A little of everything the Ranch is known for</h2>
+      </header>
+    </div>
+    <div class="container ranch-table__strip">
+      <figure class="ranch-snap">
+        <img src="images/sell-1.webp" alt="Diner cheeseburger and crinkle fries" loading="lazy" width="1200" height="900">
+        <figcaption>Griddle &amp; grill</figcaption>
+      </figure>
+      <figure class="ranch-snap">
+        <img src="images/about.webp" alt="Warm interior of the ranch diner with red booths and a wall of framed photos" loading="lazy" width="900" height="1200">
+        <figcaption>The dining room</figcaption>
+      </figure>
+      <figure class="ranch-snap">
+        <img src="images/sell-3.webp" alt="A rustic wooden shelf of western gift-shop goods: pottery mugs, carved animals, woven blankets and horseshoes" loading="lazy" width="1200" height="900">
+        <figcaption>The gift shop</figcaption>
+      </figure>
+      <figure class="ranch-snap">
+        <img src="images/sell-2.webp" alt="A slice of homemade apple pie on a diner plate" loading="lazy" width="1200" height="900">
+        <figcaption>Homemade pie</figcaption>
+      </figure>
+      <figure class="ranch-snap">
+        <img src="images/hero.webp" alt="Homestyle breakfast plate with pancakes, eggs and bacon" loading="lazy" width="1200" height="900">
+        <figcaption>Breakfast, all day</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========== GIFT SHOP ========== -->
+  <section class="ranch-gift" id="gift">
+    <div class="container ranch-gift__grid">
+      <figure class="ranch-print ranch-print--gift" data-reveal>
+        <img src="images/sell-3.webp" alt="Western gift-shop shelf with steer-horn mugs, hand-carved wooden animals, woven Southwest blankets, horseshoes and turquoise" loading="lazy" width="1200" height="900">
+      </figure>
+      <div class="ranch-gift__copy" data-reveal>
+        <p class="ranch-eyebrow ranch-eyebrow--on-dark">Under the same roof</p>
+        <h2 class="ranch-h2 ranch-h2--on-dark">A piece of the West to take home</h2>
+        <p class="ranch-gift__lead">Past the counter, the gift shop is stocked with western décor, hand-carved keepsakes, woven goods and Vernal souvenirs. Stop in after your meal, or come by just to browse.</p>
+        <div class="ranch-gift__cta">
+          <a class="ranch-btn ranch-btn--cream" data-cta="primary" href="#">See what's in store</a>
+          <a class="ranch-btn ranch-btn--line-light" href="tel:+14357891170">Call for hours</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== VISIT ========== -->
+  <section class="ranch-visit" id="visit">
+    <div class="container">
+      <header class="ranch-visit__head" data-reveal>
+        <p class="ranch-eyebrow ranch-eyebrow--center">Come see us</p>
+        <h2 class="ranch-h2">Find the Ranch</h2>
+      </header>
+      <div class="ranch-visit__grid">
+        <div class="ranch-plate" data-reveal>
+          <h3 class="ranch-plate__h">Where</h3>
+          <p>Vernal, Utah <span class="ranch-pending">address to confirm</span></p>
+          <p>Right on Main Street, where it has always been.</p>
+        </div>
+        <div class="ranch-plate" data-reveal>
+          <h3 class="ranch-plate__h">When</h3>
+          <p>Open daily <span class="ranch-pending">hours to confirm</span></p>
+          <p>Breakfast, lunch and dinner, plus the gift shop.</p>
+        </div>
+        <div class="ranch-plate" data-reveal>
+          <h3 class="ranch-plate__h">Get in touch</h3>
+          <p><a class="ranch-link" href="tel:+14357891170">(435) 789-1170</a></p>
+          <p><a class="ranch-link" href="mailto:info@711ranchrestaurant.com">info@711ranchrestaurant.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ranch-foot">
+  <div class="container ranch-foot__inner">
+    <a class="ranch-brand ranch-brand--foot" href="#top">
+      <span class="ranch-brand__mark">7-11 Ranch</span>
+      <span class="ranch-brand__sub">Restaurant &amp; Gift Shop · Est. 1933</span>
+    </a>
+    <p class="ranch-foot__line">Vernal, Utah · <a class="ranch-link" href="tel:+14357891170">(435) 789-1170</a> · <a class="ranch-link" href="mailto:info@711ranchrestaurant.com">info@711ranchrestaurant.com</a></p>
+    <p class="ranch-foot__line">© <span data-year>2026</span> 7-11 Ranch Restaurant &amp; Gift Shop</p>
+  </div>
+</footer>
+
+<p class="demo-notice">
+  Concept demo prepared for 7-11 Ranch Restaurant &amp; Gift Shop — not affiliated, pending owner approval. Photos are AI illustrations.
+</p>
+
+<script src="js/config.js"></script>
+<script src="../../shared/main.js"></script>
+</body>
+</html>
