@@ -14,23 +14,23 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="../../shared/styles.css">
 <link rel="stylesheet" href="style.css">
 <style>
   :root {
-    --font-display: "Fraunces", Georgia, serif;
+    --font-display: "Zilla Slab", Georgia, serif;
     --font-body: "Inter", system-ui, sans-serif;
-    --bg:          oklch(0.985 0.01 70);
-    --surface:     oklch(0.96 0.018 64);
-    --ink:         oklch(0.26 0.03 48);
-    --muted:       oklch(0.46 0.03 50);
-    --line:        oklch(0.89 0.018 64);
-    --accent:      oklch(0.47 0.08 55);
-    --accent-deep: oklch(0.39 0.07 52);
+    --bg:          oklch(0.975 0.012 75);
+    --surface:     oklch(0.94 0.02 68);
+    --ink:         oklch(0.27 0.035 50);
+    --muted:       oklch(0.46 0.03 52);
+    --line:        oklch(0.85 0.022 65);
+    --accent:      oklch(0.62 0.13 70);
+    --accent-deep: oklch(0.40 0.09 45);
     --on-accent:   oklch(0.99 0 0);
-    --hero-tint:   oklch(0.25 0.04 50 / 0.5);
+    --hero-tint:   oklch(0.24 0.04 50 / 0.5);
   }
 </style>
 
@@ -65,85 +65,107 @@
 </header>
 
 <main id="main">
-  <section class="ch-hero" id="top">
-    <div class="container ch-hero__grid">
+  <section class="fd-hero" id="top">
+    <div class="container fd-hero__grid">
       <div data-reveal>
-        <div class="ch-hero__rule"></div>
-        <p class="eyebrow">Layton · since 1999</p>
+        <p class="fd-hero__plate">Layton · since 1999</p>
         <h1>Bring your furniture <em>back to life</em></h1>
-        <p class="ch-hero__lead">Refinishing, repair and upholstery for the pieces worth keeping — heirlooms, hand-me-downs and the chair you can't part with.</p>
-        <div class="ch-hero__cta">
+        <p class="fd-hero__lead">Refinishing, repair and upholstery for the pieces worth keeping: heirlooms, hand-me-downs, the chair you can't part with.</p>
+        <div class="fd-hero__cta">
           <a class="btn btn-primary btn-lg" href="tel:+18015448668">Call (801) 544-8668</a>
           <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Get a quote</a>
         </div>
-        <p class="ch-hero__note" style="margin-top:1rem">Free estimates · pickup &amp; delivery available</p>
       </div>
-      <div class="ch-hero__img" data-reveal>
-        <img src="images/hero.webp" alt="A beautifully restored wooden dresser in a workshop" fetchpriority="high">
+      <div class="fd-hero__bench" data-reveal>
+        <figure class="fd-hero__frame fd-hero__frame--a">
+          <img src="images/hero.webp" alt="A beautifully restored wooden dresser in a workshop" fetchpriority="high">
+          <figcaption>The shop</figcaption>
+        </figure>
+        <figure class="fd-hero__frame fd-hero__frame--b">
+          <img src="images/sell-1.webp" alt="A craftsman refinishing a chair">
+          <figcaption>The work</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <section class="ch-serv" id="services">
+  <section class="fd-trust">
+    <div class="container fd-trust__row">
+      <div class="fd-trust__item" data-reveal>
+        <b>Since 1999</b>
+        <span>25+ years restoring Layton's furniture</span>
+      </div>
+      <div class="fd-trust__item" data-reveal>
+        <b>5.0 ★</b>
+        <span>Rated on HomeAdvisor</span>
+      </div>
+      <div class="fd-trust__item" data-reveal>
+        <b>Free estimates</b>
+        <span>Pickup &amp; delivery available</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fd-craft" id="services">
     <div class="container">
-      <div class="ch-serv__head" data-reveal>
+      <div class="fd-craft__head" data-reveal>
         <p class="eyebrow">What we do</p>
         <h2>Repair, refinish, restore</h2>
-        <p class="lead" style="margin-inline:auto">Real craftsmanship — the kind that makes a tired piece look better than new.</p>
+        <p class="lead">Real craftsmanship, the kind that makes a tired piece look better than new.</p>
       </div>
-      <div class="ch-list">
-        <div class="ch-row" data-reveal>
-          <span class="ch-row__n">i</span>
-          <div><h3>Refinishing &amp; repair</h3><p>Stripping, staining, gluing and structural fixes — scratches, water rings and wobbles gone.</p></div>
+      <div class="fd-craft__list">
+        <div class="fd-craft__row" data-reveal>
+          <span class="fd-craft__n">01</span>
+          <div><h3>Refinishing &amp; repair</h3><p>Stripping, staining, gluing and structural fixes for scratches, water rings and wobbles.</p></div>
         </div>
-        <div class="ch-row" data-reveal>
-          <span class="ch-row__n">ii</span>
-          <div><h3>Upholstery</h3><p>New fabric and foam for chairs, sofas and dining seats — pick a look, we rebuild it.</p></div>
+        <div class="fd-craft__row" data-reveal>
+          <span class="fd-craft__n">02</span>
+          <div><h3>Upholstery</h3><p>New fabric and foam for chairs, sofas and dining seats; pick a look and we'll rebuild it.</p></div>
         </div>
-        <div class="ch-row" data-reveal>
-          <span class="ch-row__n">iii</span>
+        <div class="fd-craft__row" data-reveal>
+          <span class="fd-craft__n">03</span>
           <div><h3>Antique restoration</h3><p>Careful, period-respectful work on the heirlooms you want to pass down.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="ch-look" id="lookbook">
+  <section class="fd-gallery" id="lookbook">
     <div class="container">
-      <div class="ch-look__head" data-reveal>
+      <div class="fd-gallery__head" data-reveal>
         <p class="eyebrow">The work</p>
         <h2>From worn to wow</h2>
       </div>
-      <div class="ch-look__grid" data-reveal>
-        <figure class="tall wide"><img src="images/sell-1.webp" alt="A craftsman refinishing a chair"></figure>
-        <figure><img src="images/sell-2.webp" alt="Reupholstering a chair seat"></figure>
-        <figure><img src="images/sell-3.webp" alt="Restored glossy wood grain"></figure>
-        <figure class="wide"><img src="images/about.webp" alt="A furniture restoration workshop"></figure>
+      <div class="fd-gallery__grid" data-reveal>
+        <figure class="fd-pin fd-pin--l"><img src="images/sell-1.webp" alt="A craftsman refinishing a chair"></figure>
+        <figure class="fd-pin fd-pin--r"><img src="images/sell-2.webp" alt="Reupholstering a chair seat"></figure>
+        <figure class="fd-pin fd-pin--l"><img src="images/sell-3.webp" alt="Restored glossy wood grain"></figure>
+        <figure class="fd-pin fd-pin--r"><img src="images/about.webp" alt="A furniture restoration workshop"></figure>
       </div>
     </div>
   </section>
 
-  <section class="ch-how">
+  <section class="fd-process">
     <div class="container">
-      <div class="ch-how__head" data-reveal>
+      <div class="fd-process__head" data-reveal>
         <p class="eyebrow">How it works</p>
         <h2>Three simple steps</h2>
       </div>
-      <div class="ch-how__grid">
-        <div class="ch-how__step" data-reveal><h3>Bring it in</h3><p>Drop it by or send a photo — we'll give you a free, honest estimate.</p></div>
-        <div class="ch-how__step" data-reveal><h3>We restore it</h3><p>Repaired, refinished or reupholstered by hand, the right way.</p></div>
-        <div class="ch-how__step" data-reveal><h3>Like new</h3><p>Pick up a piece that looks — and lasts — better than the day you got it.</p></div>
+      <div class="fd-process__line">
+        <div class="fd-process__step" data-reveal><span class="fd-process__dot"></span><h3>Bring it in</h3><p>Drop it by or send a photo, and we'll give you a free, honest estimate.</p></div>
+        <div class="fd-process__step" data-reveal><span class="fd-process__dot"></span><h3>We restore it</h3><p>Repaired, refinished or reupholstered by hand, the right way.</p></div>
+        <div class="fd-process__step" data-reveal><span class="fd-process__dot"></span><h3>Like new</h3><p>Pick up a piece that looks and lasts better than the day you got it.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="ch-appt">
+  <section class="fd-quote">
     <div class="container">
-      <div class="ch-appt__inner" data-reveal>
+      <div class="fd-quote__ticket" data-reveal>
         <p class="eyebrow">Got a piece worth saving?</p>
         <h2>Tell us about your furniture</h2>
-        <p>Heirloom dresser, sagging sofa, or a chair with sentimental value — send a photo and we'll tell you what's possible.</p>
-        <div class="ch-appt__cta">
+        <p>Heirloom dresser, sagging sofa, or a chair with sentimental value: send a photo and we'll tell you what's possible.</p>
+        <div class="fd-quote__cta">
           <a class="btn btn-primary btn-lg" href="tel:+18015448668">Call (801) 544-8668</a>
           <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Get a quote</a>
         </div>
@@ -151,25 +173,25 @@
     </div>
   </section>
 
-  <section class="ch-visit" id="visit">
+  <section class="fd-visit" id="visit">
     <div class="container">
-      <div class="ch-look__head" data-reveal>
+      <div class="fd-visit__head" data-reveal>
         <p class="eyebrow">Find us</p>
         <h2>Stop by the workshop</h2>
       </div>
-      <div class="ch-visit__grid" data-reveal>
-        <div class="ch-visit__col">
+      <div class="fd-visit__grid" data-reveal>
+        <div class="fd-visit__col">
           <h3>Hours</h3>
           <p>Mon–Fri · 9am–5pm <span class="tag">confirm</span></p>
           <p>Saturday · by appointment <span class="tag">confirm</span></p>
         </div>
-        <div class="ch-visit__col">
+        <div class="fd-visit__col">
           <h3>Find us</h3>
           <p>554 W 600 S</p>
           <p>Layton, UT 84041</p>
           <p><a href="https://www.google.com/maps/search/?api=1&query=The+Furniture+Doctor+554+W+600+S+Layton+UT" rel="noopener">Open in Maps →</a></p>
         </div>
-        <div class="ch-visit__col">
+        <div class="fd-visit__col">
           <h3>Get in touch</h3>
           <p><a href="tel:+18015448668">(801) 544-8668</a></p>
           <p>Call or send a photo for a free estimate.</p>

@@ -1,79 +1,120 @@
 /* ============================================================
-   Full House Pre-Owned Furniture — bespoke SHOWROOM / CATALOG layout.
-   Layered over shared/styles.css. Split hero + room tiles + financing
-   band = a furniture store, not the universal template. fh-* classes.
+   J&J Nursery & Garden Center — bespoke GARDEN CENTER layout.
+   Layered over shared/styles.css (foundation: tokens, buttons,
+   header/nav, footer, demo-notice, reveal, a11y). New class names
+   (jj-*) so nothing collides with the generic components. Wide
+   landscape hero, an acreage "stamp," a giant trust-stat band, a
+   seasonal yard row, a terracotta delivery band, a framed about
+   photo and a plan-your-visit strip. Sunny and practical.
    ============================================================ */
 
-/* ---------- Split hero (text + image, light — reads "retail") ---------- */
-.fh-hero { padding-block: clamp(2.5rem, 6vw, 5rem); }
-.fh-hero__grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(1.5rem, 4vw, 3.5rem);
-  align-items: center; }
-.fh-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--surface);
-  border: 1px solid var(--line); color: var(--accent-deep); font-weight: 700; font-size: 0.82rem;
-  padding: 0.4rem 0.85rem; border-radius: 999px; margin-bottom: 1.1rem; }
-.fh-hero h1 { margin: 0 0 0.6rem; }
-.fh-hero__lead { color: var(--muted); font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem); max-width: 46ch; }
-.fh-hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.6rem; }
-.fh-hero__img { border-radius: calc(var(--radius) + 6px); overflow: hidden; box-shadow: var(--shadow); }
-.fh-hero__img img { width: 100%; aspect-ratio: 4 / 3.2; object-fit: cover; }
+/* ---------- Hero: full-bleed landscape photo, bottom-anchored copy ---------- */
+.jj-hero { position: relative; isolation: isolate; color: var(--on-accent);
+  min-height: min(86vh, 720px); display: flex; align-items: flex-end; overflow: hidden; }
+.jj-hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.jj-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(
+  180deg, oklch(0.22 0.05 160 / 0.05) 0%, oklch(0.2 0.05 160 / 0.32) 55%, oklch(0.15 0.05 160 / 0.84) 100%); }
+.jj-hero__inner { width: 100%; padding-block: clamp(2.4rem, 6vw, 4.5rem); }
 
-/* ---------- Value strip (dark band: financing / delivery / solid wood) ---------- */
-.fh-values { background: var(--ink); color: oklch(0.97 0 0 / 0.9); }
-.fh-values__inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding-block: 1.5rem;
-  text-align: center; }
-.fh-values b { color: oklch(0.99 0 0); font-family: var(--font-display); font-size: 1.15rem; }
-.fh-values span { display: block; font-size: 0.85rem; color: oklch(0.97 0 0 / 0.7); }
+/* corner "seed packet" stamp — the acreage flourish */
+.jj-stamp { position: absolute; top: clamp(1rem, 3vw, 2.2rem); right: clamp(1rem, 3vw, 2.2rem);
+  z-index: 2; width: clamp(84px, 10vw, 108px); aspect-ratio: 1; border-radius: 50%;
+  border: 2px dashed oklch(0.99 0 0 / 0.75); display: flex; flex-direction: column; align-items: center;
+  justify-content: center; transform: rotate(-9deg); color: oklch(0.99 0 0);
+  font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.04em;
+  text-align: center; line-height: 1.1; background: oklch(0.2 0.05 160 / 0.28); }
+.jj-stamp span { font-size: clamp(1.3rem, 1rem + 1.4vw, 1.9rem); font-weight: 700; display: block; }
 
-/* ---------- Room tiles (signature module) ---------- */
-.fh-rooms { padding-block: clamp(3.5rem, 7vw, 6rem); }
-.fh-rooms__head { max-width: 52ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
-.fh-rooms__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.5vw, 1.5rem); }
-.fh-tile { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm);
-  isolation: isolate; min-height: 340px; display: flex; align-items: flex-end;
-  transition: transform 0.2s ease, box-shadow 0.2s ease; }
-.fh-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-.fh-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
-.fh-tile::after { content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, transparent 35%, oklch(0.2 0.03 60 / 0.8)); }
-.fh-tile__label { color: oklch(0.99 0 0); padding: 1.3rem 1.4rem; }
-.fh-tile__label h3 { color: oklch(0.99 0 0); margin: 0 0 0.2rem; }
-.fh-tile__label p { color: oklch(0.98 0 0 / 0.85); margin: 0; font-size: 0.92rem; }
+.jj-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: oklch(1 0 0 / 0.14);
+  border: 1px solid oklch(1 0 0 / 0.4); color: oklch(0.99 0 0); font-weight: 700; font-size: 0.82rem;
+  padding: 0.4rem 0.85rem; border-radius: 999px; margin-bottom: 1.1rem; backdrop-filter: blur(6px); }
+.jj-hero h1 { color: oklch(0.99 0 0); max-width: 16ch; text-shadow: 0 2px 22px oklch(0.15 0.03 160 / 0.5); }
+.jj-hero__lead { color: oklch(0.98 0 0 / 0.92); font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem); max-width: 42ch; }
+.jj-hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.6rem; }
+.jj-hero .btn-ghost { color: var(--on-accent); border-color: oklch(1 0 0 / 0.55); background: oklch(1 0 0 / 0.07); }
+.jj-hero .btn-ghost:hover { border-color: var(--on-accent); background: oklch(1 0 0 / 0.16); }
 
-/* ---------- Financing band ---------- */
-.fh-fin { background: var(--accent); color: var(--on-accent); padding-block: clamp(3rem, 6vw, 4.5rem); }
-.fh-fin__inner { display: grid; grid-template-columns: 1.4fr auto; gap: 2rem; align-items: center; }
-.fh-fin h2 { color: var(--on-accent); margin: 0 0 0.5rem; }
-.fh-fin p { color: oklch(1 0 0 / 0.92); max-width: 46ch; margin: 0; }
-.fh-fin__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-.fh-fin .btn-primary { background: var(--ink); color: oklch(0.99 0 0); }
-.fh-fin .btn-primary:hover { background: oklch(0.18 0.02 60); }
-.fh-fin .btn-ghost { color: var(--on-accent); border-color: oklch(1 0 0 / 0.6); background: oklch(1 0 0 / 0.05); }
-.fh-fin .btn-ghost:hover { border-color: var(--on-accent); background: oklch(1 0 0 / 0.14); }
+/* ---------- Giant trust-stat band — the biggest type on the page ---------- */
+.jj-stats { background: var(--ink); color: oklch(0.97 0 0 / 0.9); padding-block: clamp(2.4rem, 6vw, 3.8rem); }
+.jj-stats__grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: clamp(1.6rem, 4vw, 2rem); }
+.jj-stat { flex: 1 1 220px; text-align: center; position: relative; padding-inline: 1rem; }
+.jj-stat:not(:first-child)::before { content: ""; position: absolute; left: 0; top: 8%; bottom: 8%;
+  width: 1px; background: oklch(1 0 0 / 0.16); }
+.jj-stat b { display: block; font-family: var(--font-display); font-weight: 700; line-height: 1;
+  font-size: clamp(2.6rem, 1.8rem + 4vw, 4.6rem); color: oklch(0.99 0 0); }
+.jj-stars { color: var(--accent); font-size: 0.7em; vertical-align: 0.06em; }
+.jj-stat span { display: block; margin-top: 0.6rem; font-size: 0.92rem; color: oklch(0.97 0 0 / 0.7);
+  max-width: 24ch; margin-inline: auto; }
 
-/* ---------- Story ---------- */
-.fh-story { padding-block: clamp(3.5rem, 7vw, 6rem); }
-.fh-story__grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(1.5rem, 4vw, 3.5rem);
-  align-items: center; }
-.fh-story__img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
-.fh-story__img img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+/* ---------- Yard row: seasonal tiles, gentle organic tilt on desktop ---------- */
+.jj-yard { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.jj-yard__head { max-width: 56ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.jj-yard__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
+.jj-tile { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.jj-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.jj-tile__photo { position: relative; }
+.jj-tile__photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.jj-tile__tag { position: absolute; top: 0.75rem; left: 0.75rem; background: var(--accent);
+  color: var(--on-accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; padding: 0.3rem 0.7rem; border-radius: 999px; }
+.jj-tile__body { padding: 1.2rem 1.3rem 1.4rem; }
+.jj-tile__body h3 { margin: 0 0 0.3rem; }
+.jj-tile__body p { color: var(--muted); margin: 0; font-size: 0.95rem; }
+@media (min-width: 821px) {
+  .jj-tile:nth-child(1) { transform: rotate(-1deg); }
+  .jj-tile:nth-child(2) { transform: rotate(0.8deg); }
+  .jj-tile:nth-child(3) { transform: rotate(-0.6deg); }
+  .jj-tile:hover { transform: translateY(-4px) rotate(0deg); }
+}
 
-/* ---------- Visit ---------- */
-.fh-visit { background: var(--surface); padding-block: clamp(3rem, 6vw, 5rem); }
-.fh-visit__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
-.fh-visit__col h3 { font-family: var(--font-body); font-weight: 700; font-size: 0.82rem; text-transform: uppercase;
+/* ---------- Delivery band — terracotta, flips the palette for a beat ---------- */
+.jj-delivery { background: var(--accent-deep); color: var(--on-accent); padding-block: clamp(3rem, 6vw, 4.5rem); }
+.jj-delivery__inner { display: grid; grid-template-columns: auto 1.5fr auto; gap: 1.6rem 2.2rem; align-items: center; }
+.jj-delivery__icon { font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; }
+.jj-delivery h2 { color: var(--on-accent); margin: 0 0 0.5rem; }
+.jj-delivery p { color: oklch(1 0 0 / 0.92); max-width: 46ch; margin: 0; }
+.jj-delivery__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.jj-delivery .btn-ghost { color: var(--on-accent); border-color: oklch(1 0 0 / 0.6); background: oklch(1 0 0 / 0.08); }
+.jj-delivery .btn-ghost:hover { border-color: var(--on-accent); background: oklch(1 0 0 / 0.16); }
+
+/* ---------- About: framed photo with an overlapping badge ---------- */
+.jj-about { padding-block: clamp(3.5rem, 7vw, 6rem); background: var(--surface); }
+.jj-about__grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(2rem, 4vw, 3.5rem); align-items: center; }
+.jj-about__frame { position: relative; padding: 0.8rem; background: var(--bg); border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 6px); box-shadow: var(--shadow); }
+.jj-about__frame img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); display: block; }
+.jj-about__badge { position: absolute; bottom: -1rem; left: 1.5rem; background: var(--accent);
+  color: var(--on-accent); font-family: var(--font-display); font-weight: 700; font-size: 0.85rem;
+  padding: 0.6rem 1.1rem; border-radius: 999px; box-shadow: var(--shadow-sm); }
+
+/* ---------- Visit: plan-your-visit strip ---------- */
+.jj-visit { padding-block: clamp(3rem, 6vw, 5rem); }
+.jj-visit__head { max-width: 52ch; margin-bottom: clamp(1.8rem, 4vw, 2.6rem); }
+.jj-visit__strip { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden; background: var(--bg); box-shadow: var(--shadow-sm); }
+.jj-visit__col { padding: 1.6rem 1.7rem; border-left: 1px solid var(--line); }
+.jj-visit__col:first-child { border-left: 0; }
+.jj-visit__col h3 { font-family: var(--font-body); font-weight: 700; font-size: 0.82rem; text-transform: uppercase;
   letter-spacing: 0.12em; color: var(--accent-deep); margin-bottom: 0.6rem; }
-.fh-visit__col p { color: var(--muted); margin: 0 0 0.3rem; }
-.fh-visit__col a { color: var(--ink); font-weight: 600; border-bottom: 1.5px solid var(--accent); text-decoration: none; }
-.fh-visit .tag { display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--accent-deep);
-  background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 0.15rem 0.6rem; margin-left: 0.3rem; }
+.jj-visit__col p { color: var(--muted); margin: 0 0 0.3rem; }
+.jj-visit__col a { color: var(--ink); font-weight: 600; border-bottom: 1.5px solid var(--accent); text-decoration: none; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 820px) {
-  .fh-hero__grid, .fh-story__grid, .fh-fin__inner { grid-template-columns: 1fr; }
-  .fh-rooms__grid { grid-template-columns: 1fr 1fr; }
-  .fh-visit__grid { grid-template-columns: 1fr; }
+  .jj-yard__grid { grid-template-columns: 1fr 1fr; }
+  .jj-delivery__inner { grid-template-columns: 1fr; text-align: left; }
+  .jj-about__grid { grid-template-columns: 1fr; }
+  .jj-visit__strip { grid-template-columns: 1fr; }
+  .jj-visit__col { border-left: 0; border-top: 1px solid var(--line); }
+  .jj-visit__col:first-child { border-top: 0; }
+  .jj-stat:not(:first-child)::before { display: none; }
 }
 @media (max-width: 560px) {
-  .fh-rooms__grid { grid-template-columns: 1fr; }
-  .fh-values__inner { grid-template-columns: 1fr; gap: 0.6rem; }
+  .jj-yard__grid { grid-template-columns: 1fr; }
+  .jj-stats__grid { flex-direction: column; text-align: center; gap: 1.4rem; }
+  .jj-stamp { width: 76px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jj-tile { transition: none; }
 }

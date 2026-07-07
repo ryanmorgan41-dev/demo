@@ -1,82 +1,106 @@
 /* ============================================================
-   Chay Dressmaking & Alterations — bespoke BOUTIQUE / EDITORIAL layout.
-   Layered over shared/styles.css. Airy editorial hero + refined service
-   list + lookbook gallery + minimal "how it works" = an atelier, not the
-   universal template. ch-* classes.
+   Annie's Main Street Floral — bespoke FLOWER MARKET layout.
+   Layered over shared/styles.css (foundation: tokens, buttons,
+   header/nav, footer, demo-notice, reveal, a11y). New class names
+   (af-*) so nothing collides with the generic components. The point:
+   fresh, warm, alive — a Main Street flower stall, not a template.
    ============================================================ */
 
-/* ---------- Editorial hero (text + tall portrait image) ---------- */
-.ch-hero { padding-block: clamp(2.5rem, 6vw, 5rem); }
-.ch-hero__grid { display: grid; grid-template-columns: 1fr 0.82fr; gap: clamp(1.5rem, 5vw, 4.5rem);
+/* ---------- Hero: arched photo in a bed of blooms, copy alongside ---------- */
+.af-hero { padding-block: clamp(2.5rem, 6vw, 5rem); overflow: clip; }
+.af-hero__grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(1.8rem, 5vw, 4rem);
   align-items: center; }
-.ch-hero__rule { width: 56px; height: 2px; background: var(--accent); margin-bottom: 1.4rem; }
-.ch-hero h1 { margin: 0 0 0.8rem; }
-.ch-hero h1 em { font-style: italic; color: var(--accent-deep); }
-.ch-hero__lead { color: var(--muted); font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem); max-width: 42ch; }
-.ch-hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.7rem; align-items: center; }
-.ch-hero__note { color: var(--muted); font-size: 0.9rem; font-style: italic; }
-.ch-hero__img { border-radius: 200px 200px var(--radius) var(--radius); overflow: hidden; box-shadow: var(--shadow);
-  aspect-ratio: 3 / 4; }
-.ch-hero__img img { width: 100%; height: 100%; object-fit: cover; }
+.af-hero__copy { min-width: 0; }
+.af-hero__eyebrow { display: inline-flex; align-items: center; gap: 0.55rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.78rem; color: var(--accent-deep);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+  padding: 0.4rem 0.9rem 0.4rem 0.7rem; margin: 0 0 1.3rem; }
+.af-hero__eyebrow span { color: var(--accent); font-size: 1rem; }
+.af-hero h1 { margin: 0 0 0.8rem; }
+.af-hero h1 em { font-style: italic; color: var(--accent); }
+.af-hero__lead { color: var(--muted); font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem); max-width: 44ch; }
+.af-hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.7rem; align-items: center; }
+.af-hero__note { color: var(--muted); font-size: 0.9rem; font-style: italic; margin: 1.1rem 0 0; }
 
-/* ---------- Refined service list (no images — editorial) ---------- */
-.ch-serv { padding-block: clamp(3.5rem, 7vw, 6rem); background: var(--surface); }
-.ch-serv__head { max-width: 50ch; margin-bottom: clamp(1.6rem, 3vw, 2.4rem); text-align: center; margin-inline: auto; }
-.ch-list { max-width: 760px; margin-inline: auto; }
-.ch-row { display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 1.6rem; align-items: baseline;
-  padding: 1.5rem 0; border-top: 1px solid var(--line); }
-.ch-row:last-child { border-bottom: 1px solid var(--line); }
-.ch-row__n { font-family: var(--font-display); font-style: italic; color: var(--accent); font-size: 1.4rem; }
-.ch-row h3 { margin: 0 0 0.2rem; }
-.ch-row p { color: var(--muted); margin: 0; max-width: 60ch; }
+.af-hero__art { position: relative; }
+.af-hero__blob { position: absolute; border-radius: 50%; z-index: 0; filter: blur(1px); }
+.af-hero__blob--rose { width: 46%; aspect-ratio: 1; background: oklch(0.85 0.07 15 / 0.55);
+  top: -8%; right: -10%; }
+.af-hero__blob--leaf { width: 34%; aspect-ratio: 1; background: oklch(0.82 0.08 145 / 0.5);
+  bottom: -10%; left: -8%; }
+.af-hero__frame { position: relative; z-index: 1; overflow: hidden; aspect-ratio: 3 / 4;
+  border-radius: 50% 50% var(--radius) var(--radius) / 32% 32% var(--radius) var(--radius);
+  box-shadow: var(--shadow); border: 6px solid var(--bg); outline: 1px solid var(--line); }
+.af-hero__frame img { width: 100%; height: 100%; object-fit: cover; }
 
-/* ---------- Lookbook gallery (asymmetric editorial grid) ---------- */
-.ch-look { padding-block: clamp(3.5rem, 7vw, 6rem); }
-.ch-look__head { margin-bottom: clamp(1.8rem, 3.5vw, 2.6rem); text-align: center; }
-.ch-look__grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: clamp(0.8rem, 2vw, 1.2rem); }
-.ch-look figure { margin: 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
-.ch-look figure img { width: 100%; height: 100%; object-fit: cover; }
-.ch-look .tall { grid-row: span 2; }
-.ch-look .wide { grid-column: span 2; }
+/* ---------- Occasions grid (signature module — three living tiles) ---------- */
+.af-occ { padding-block: clamp(3.5rem, 7vw, 6rem); background: var(--surface); }
+.af-occ__head { max-width: 52ch; margin-bottom: clamp(1.8rem, 3.5vw, 2.6rem); text-align: center;
+  margin-inline: auto; }
+.af-occ__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.5vw, 1.6rem); }
+.af-occ__tile { position: relative; margin: 0; aspect-ratio: 4 / 5; border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.af-occ__tile:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.af-occ__tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.af-occ__tile figcaption { position: absolute; inset: auto 0 0 0; padding: 2.2rem 1.2rem 1.2rem;
+  background: linear-gradient(180deg, oklch(0.15 0.03 30 / 0) 0%, oklch(0.13 0.03 30 / 0.55) 55%,
+  oklch(0.1 0.03 30 / 0.9) 100%); }
+.af-occ__tile h3 { color: oklch(0.99 0 0); margin: 0 0 0.3rem; font-size: 1.1rem; }
+.af-occ__tile p { color: oklch(0.95 0 0 / 0.92); margin: 0; font-size: 0.87rem; }
 
-/* ---------- How it works (minimal numbered) ---------- */
-.ch-how { padding-block: clamp(3.5rem, 7vw, 6rem); background: var(--surface); }
-.ch-how__head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
-.ch-how__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 4vw, 3rem);
-  counter-reset: s; max-width: 920px; margin-inline: auto; }
-.ch-how__step { text-align: center; }
-.ch-how__step::before { counter-increment: s; content: counter(s, decimal-leading-zero);
-  font-family: var(--font-display); font-style: italic; font-size: 2.4rem; color: var(--accent);
-  display: block; margin-bottom: 0.6rem; }
-.ch-how__step h3 { margin: 0 0 0.3rem; }
-.ch-how__step p { color: var(--muted); margin: 0; font-size: 0.95rem; }
+/* ---------- Order-by urgency ribbon (thin, stamped, hard to miss) ---------- */
+.af-urgency { background: var(--accent); color: var(--on-accent); }
+.af-urgency__inner { display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+  flex-wrap: wrap; text-align: center; padding-block: 0.9rem; }
+.af-urgency__icon { font-size: 1.05rem; }
+.af-urgency__text { margin: 0; font-weight: 650; }
+.af-urgency__text a { color: var(--on-accent); text-decoration: underline; text-underline-offset: 2px; }
 
-/* ---------- Appointment band (elegant, not loud) ---------- */
-.ch-appt { padding-block: clamp(3rem, 6vw, 4.5rem); }
-.ch-appt__inner { max-width: 760px; margin-inline: auto; text-align: center; border: 1px solid var(--line);
-  border-radius: var(--radius); padding: clamp(2rem, 5vw, 3rem); background: var(--bg); box-shadow: var(--shadow-sm); }
-.ch-appt h2 { margin: 0 0 0.5rem; }
-.ch-appt p { color: var(--muted); max-width: 52ch; margin: 0 auto 1.4rem; }
-.ch-appt__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+/* ---------- Story / trust band (15 years on Main Street) ---------- */
+.af-story { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.af-story__grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(1.6rem, 4vw, 3.5rem);
+  align-items: center; }
+.af-story__img img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius);
+  box-shadow: var(--shadow); }
+.af-story__copy p { color: var(--muted); max-width: 56ch; }
+.af-story__stat { display: flex; align-items: baseline; gap: 0.7rem; margin-top: 1.3rem; }
+.af-story__stat b { font-family: var(--font-display); font-style: italic; font-weight: 600;
+  font-size: clamp(2.2rem, 1.8rem + 1.6vw, 3rem); color: var(--accent-deep); line-height: 1; }
+.af-story__stat span { color: var(--muted); font-size: 0.9rem; max-width: 16ch; }
+
+/* ---------- Order band (elegant card, rose/leaf accent stripe) ---------- */
+.af-order { padding-block: clamp(3rem, 6vw, 4.5rem); background: var(--surface); }
+.af-order__inner { position: relative; max-width: 760px; margin-inline: auto; text-align: center;
+  border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(2.2rem, 5vw, 3rem);
+  background: var(--bg); box-shadow: var(--shadow-sm); }
+.af-order__inner::before { content: ""; position: absolute; top: 0; left: 50%; translate: -50% -50%;
+  width: 68px; height: 5px; border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-deep)); }
+.af-order h2 { margin: 0 0 0.5rem; }
+.af-order p { color: var(--muted); max-width: 52ch; margin: 0 auto 1.4rem; }
+.af-order__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
 
 /* ---------- Visit ---------- */
-.ch-visit { padding-block: clamp(3rem, 6vw, 5rem); background: var(--surface); }
-.ch-visit__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
-.ch-visit__col h3 { font-family: var(--font-body); font-weight: 700; font-size: 0.82rem; text-transform: uppercase;
+.af-visit { padding-block: clamp(3rem, 6vw, 5rem); }
+.af-visit__head { margin-bottom: clamp(1.6rem, 3vw, 2.4rem); text-align: center; }
+.af-visit__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
+.af-visit__col h3 { font-family: var(--font-body); font-weight: 700; font-size: 0.82rem; text-transform: uppercase;
   letter-spacing: 0.12em; color: var(--accent-deep); margin-bottom: 0.6rem; }
-.ch-visit__col p { color: var(--muted); margin: 0 0 0.3rem; }
-.ch-visit__col a { color: var(--ink); font-weight: 600; border-bottom: 1.5px solid var(--accent); text-decoration: none; }
-.ch-visit .tag { display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--accent-deep);
-  background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 0.15rem 0.6rem; margin-left: 0.3rem; }
+.af-visit__col p { color: var(--muted); margin: 0 0 0.3rem; }
+.af-visit__col a { color: var(--ink); font-weight: 600; border-bottom: 1.5px solid var(--accent); text-decoration: none; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 820px) {
-  .ch-hero__grid { grid-template-columns: 1fr; }
-  .ch-hero__img { max-width: 420px; }
-  .ch-how__grid { grid-template-columns: 1fr; gap: 2rem; }
-  .ch-visit__grid { grid-template-columns: 1fr; }
+  .af-hero__grid { grid-template-columns: 1fr; }
+  .af-hero__art { max-width: 420px; margin-inline: auto; order: -1; }
+  .af-story__grid { grid-template-columns: 1fr; }
+  .af-story__img { max-width: 420px; margin-inline: auto; }
+  .af-visit__grid { grid-template-columns: 1fr; }
 }
-@media (max-width: 560px) {
-  .ch-look__grid { grid-template-columns: 1fr 1fr; }
-  .ch-look .wide { grid-column: span 2; }
+@media (max-width: 640px) {
+  .af-occ__grid { grid-template-columns: 1fr; }
+  .af-occ__tile { aspect-ratio: 4 / 3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .af-occ__tile { transition: none; }
 }

@@ -14,23 +14,23 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="../../shared/styles.css">
 <link rel="stylesheet" href="style.css">
 <style>
   :root {
-    --font-display: "Oswald", "Arial Narrow", sans-serif;
+    --font-display: "Archivo", "Arial Black", sans-serif;
     --font-body: "Inter", system-ui, sans-serif;
-    --bg:          oklch(0.98 0.004 250);
-    --surface:     oklch(0.955 0.006 250);
-    --ink:         oklch(0.22 0.018 252);
-    --muted:       oklch(0.46 0.02 252);
-    --line:        oklch(0.89 0.008 250);
-    --accent:      oklch(0.54 0.13 245);
-    --accent-deep: oklch(0.45 0.13 248);
+    --bg:          oklch(0.97 0.006 240);
+    --surface:     oklch(0.94 0.009 240);
+    --ink:         oklch(0.24 0.03 255);
+    --muted:       oklch(0.48 0.02 255);
+    --line:        oklch(0.88 0.012 240);
+    --accent:      oklch(0.55 0.15 250);
+    --accent-deep: oklch(0.42 0.14 252);
     --on-accent:   oklch(0.99 0 0);
-    --hero-tint:   oklch(0.18 0.02 252 / 0.6);
+    --hero-tint:   oklch(0.2 0.03 255 / 0.45);
   }
 </style>
 
@@ -56,8 +56,9 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="nav" id="nav" data-nav aria-label="Primary">
-      <a href="#process">How it works</a>
+      <a href="#story">Our story</a>
       <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
       <a href="#visit">Visit</a>
       <a class="btn btn-primary" href="tel:+18012920261">Call (801) 292-0261</a>
     </nav>
@@ -65,104 +66,121 @@
 </header>
 
 <main id="main">
-  <section class="ac-hero" id="top">
-    <img class="ac-hero__img" src="images/hero.webp" alt="A car on a lift in a clean auto repair shop" fetchpriority="high">
-    <div class="container ac-hero__inner">
-      <span class="ac-kicker">⬢ Auto Repair · Tires · Since 1965</span>
-      <h1>Honest auto repair, trusted since 1965</h1>
-      <p>Bountiful's family-owned full-service shop — diagnostics, brakes, tires and maintenance, done right the first time.</p>
-      <div class="ac-hero__cta">
-        <a class="btn btn-primary btn-lg" href="tel:+18012920261">Call (801) 292-0261</a>
-        <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Request an estimate</a>
+  <section class="ld-hero" id="top">
+    <div class="container ld-hero__inner">
+      <div class="ld-hero__text">
+        <span class="ld-kicker">Family-Owned · Since 1965</span>
+        <h1>Honest auto repair, trusted for 60 years</h1>
+        <p>Bountiful's family-owned full-service shop for diagnostics, brakes, tires and maintenance, done right the first time.</p>
+        <div class="ld-hero__cta">
+          <a class="btn btn-primary btn-lg" href="tel:+18012920261">Call (801) 292-0261</a>
+          <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Request an estimate</a>
+        </div>
+      </div>
+      <div class="ld-hero__media" data-reveal>
+        <img class="ld-hero__img" src="images/hero.webp" alt="A car on a lift in a clean auto repair shop" fetchpriority="high">
+        <div class="ld-hero__card">
+          <p class="ld-hero__card-label">Call to book</p>
+          <a class="ld-hero__card-phone" href="tel:+18012920261">(801) 292-0261</a>
+          <a class="btn btn-primary" href="tel:+18012920261">Book an appointment</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="ac-stats">
-    <div class="container ac-stats__inner">
-      <div><b>4.8★</b><span>Google rating</span></div>
-      <div><b>156+</b><span>Customer reviews</span></div>
-      <div><b>1965</b><span>Family-owned since</span></div>
-      <div><b>All makes</b><span>Foreign &amp; domestic</span></div>
+  <section class="ld-story" id="story">
+    <div class="container ld-story__inner">
+      <img class="ld-story__img" data-reveal src="images/about.webp" alt="Lodder Automotive's family-owned garage in Bountiful">
+      <div class="ld-story__content" data-reveal>
+        <p class="eyebrow">Our story</p>
+        <h2>Family-owned since 1965</h2>
+        <p class="lead">Straight answers, solid repairs: the same approach for six decades of honest auto repair in Bountiful.</p>
+        <ol class="ld-timeline">
+          <li class="ld-timeline__item">
+            <span class="ld-timeline__year">1965</span>
+            <h3>A family garage opens</h3>
+            <p>Lodder Automotive begins serving Bountiful with honest, straight-answer repair work.</p>
+          </li>
+          <li class="ld-timeline__item">
+            <span class="ld-timeline__year">Every visit</span>
+            <h3>No upsells, no runaround</h3>
+            <p>We tell you what your car needs and fix it right the first time, not what pads the bill.</p>
+          </li>
+          <li class="ld-timeline__item">
+            <span class="ld-timeline__year">Today</span>
+            <h3>60 years of know-how</h3>
+            <p>Foreign and domestic, brakes to engines, still family-owned and trusted across town.</p>
+          </li>
+        </ol>
+      </div>
     </div>
   </section>
 
-  <section class="ac-process" id="process">
+  <section class="ld-services" id="services">
     <div class="container">
-      <div class="ac-process__head" data-reveal>
-        <p class="eyebrow">How it works</p>
-        <h2>Straight answers, solid repairs</h2>
-        <p class="lead">No upsells, no runaround — we tell you what your car needs and fix it right.</p>
-      </div>
-      <div class="ac-steps">
-        <div class="ac-step" data-reveal><h3>Bring it in</h3><p>Drop by or call — we'll take a look and give you a straight estimate.</p></div>
-        <div class="ac-step" data-reveal><h3>We diagnose</h3><p>Honest diagnostics so you only pay for what your car actually needs.</p></div>
-        <div class="ac-step" data-reveal><h3>Expert repair</h3><p>60 years of know-how on foreign and domestic, brakes to engines.</p></div>
-        <div class="ac-step" data-reveal><h3>Back on the road</h3><p>Done right the first time, so you're not back next week.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="ac-serv" id="services">
-    <div class="container">
-      <div class="ac-serv__head" data-reveal>
+      <div class="ld-services__head" data-reveal>
         <p class="eyebrow">What we do</p>
         <h2>Full-service repair &amp; tire</h2>
         <p class="lead">One shop for everything your car needs to stay safe and reliable.</p>
       </div>
-      <div class="ac-serv__grid">
-        <article class="ac-card" data-reveal>
-          <img src="images/sell-1.webp" alt="A mechanic running engine diagnostics" loading="lazy">
-          <div class="ac-card__b"><h3>Repair &amp; diagnostics</h3><p>Check-engine lights, engine and transmission work, electrical — diagnosed honestly and fixed right.</p></div>
+      <div class="ld-services__grid">
+        <article class="ld-service" data-reveal>
+          <h3>Repair &amp; diagnostics</h3>
+          <p>Check-engine lights, engine and transmission work, electrical: diagnosed honestly and fixed right.</p>
         </article>
-        <article class="ac-card" data-reveal>
-          <img src="images/sell-2.webp" alt="Car brakes being serviced on a lift" loading="lazy">
-          <div class="ac-card__b"><h3>Brakes</h3><p>Pads, rotors and full brake service — stop safely without overpaying.</p></div>
+        <article class="ld-service" data-reveal>
+          <h3>Brakes</h3>
+          <p>Pads, rotors and full brake service, so you stop safely without overpaying.</p>
         </article>
-        <article class="ac-card" data-reveal>
-          <img src="images/sell-3.webp" alt="New tires in an auto shop" loading="lazy">
-          <div class="ac-card__b"><h3>Tires &amp; maintenance</h3><p>Tires, oil changes, fluids and tune-ups to keep you on the road.</p></div>
+        <article class="ld-service" data-reveal>
+          <h3>Tires &amp; maintenance</h3>
+          <p>Tires, oil changes, fluids and tune-ups to keep you on the road.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="ac-cta">
-    <div class="container ac-cta__inner" data-reveal>
-      <div>
-        <h2>Need a repair or an estimate?</h2>
-        <p>Bring it by or give us a call — we'll take a look and tell you straight what it needs.</p>
+  <section class="ld-reviews" id="reviews">
+    <div class="container ld-reviews__inner" data-reveal>
+      <div class="ld-reviews__score">
+        <span class="ld-reviews__stars" aria-hidden="true">★★★★★</span>
+        <div class="ld-reviews__num"><b>4.8</b><span>out of 5</span></div>
       </div>
-      <div class="ac-cta__btns">
-        <a class="btn btn-primary btn-lg" href="tel:+18012920261">Call (801) 292-0261</a>
-        <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Request an estimate</a>
+      <div class="ld-reviews__body">
+        <h2>Trusted by Bountiful drivers</h2>
+        <p>156+ Google reviews from customers who keep coming back for honest work and fair prices, on all makes, foreign and domestic.</p>
       </div>
     </div>
   </section>
 
-  <section class="ac-visit" id="visit">
+  <section class="ld-visit" id="visit">
     <div class="container">
-      <div class="ac-process__head" data-reveal>
+      <div class="ld-visit__head" data-reveal>
         <p class="eyebrow">Find us</p>
         <h2>Bring it by the shop</h2>
+        <p class="lead">Need a repair or an estimate? Bring it by or give us a call, and we'll take a look and tell you straight what it needs.</p>
       </div>
-      <div class="ac-visit__grid" data-reveal>
-        <div class="ac-visit__col">
+      <div class="ld-visit__grid" data-reveal>
+        <div class="ld-visit__col">
           <h3>Hours</h3>
           <p>Mon–Fri · 8am–6pm <span class="tag">confirm</span></p>
           <p>Sat–Sun · Closed <span class="tag">confirm</span></p>
         </div>
-        <div class="ac-visit__col">
+        <div class="ld-visit__col">
           <h3>Find us</h3>
           <p>520 W 600 S</p>
           <p>Bountiful, UT 84010</p>
           <p><a href="https://www.google.com/maps/search/?api=1&query=Lodder+Automotive+520+W+600+S+Bountiful+UT" rel="noopener">Open in Maps →</a></p>
         </div>
-        <div class="ac-visit__col">
+        <div class="ld-visit__col">
           <h3>Get in touch</h3>
           <p><a href="tel:+18012920261">(801) 292-0261</a></p>
           <p>Call for a free estimate or to book a repair.</p>
         </div>
+      </div>
+      <div class="ld-visit__cta">
+        <a class="btn btn-primary btn-lg" href="tel:+18012920261">Call (801) 292-0261</a>
+        <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Request an estimate</a>
       </div>
     </div>
   </section>

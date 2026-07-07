@@ -14,23 +14,23 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="../../shared/styles.css">
 <link rel="stylesheet" href="style.css">
 <style>
   :root {
-    --font-display: "Bitter", Georgia, serif;
-    --font-body: "Work Sans", system-ui, sans-serif;
-    --bg:          oklch(0.985 0.012 140);
-    --surface:     oklch(0.96 0.02 142);
-    --ink:         oklch(0.28 0.04 150);
-    --muted:       oklch(0.47 0.03 150);
-    --line:        oklch(0.89 0.02 142);
-    --accent:      oklch(0.52 0.13 145);
-    --accent-deep: oklch(0.42 0.12 145);
+    --font-display: "Outfit", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+    --bg:          oklch(0.985 0.012 120);
+    --surface:     oklch(0.965 0.022 122);
+    --ink:         oklch(0.27 0.045 155);
+    --muted:       oklch(0.47 0.03 155);
+    --line:        oklch(0.89 0.018 128);
+    --accent:      oklch(0.60 0.13 145);
+    --accent-deep: oklch(0.50 0.14 45);
     --on-accent:   oklch(0.99 0 0);
-    --hero-tint:   oklch(0.26 0.05 150 / 0.5);
+    --hero-tint:   oklch(0.22 0.05 160 / 0.5);
   }
 </style>
 
@@ -65,101 +65,129 @@
 </header>
 
 <main id="main">
-  <section class="fh-hero" id="top">
-    <div class="container fh-hero__grid">
-      <div data-reveal>
-        <span class="fh-badge">🌿 Utah's largest nursery · 100+ acres</span>
-        <h1>Grow something beautiful</h1>
-        <p class="fh-hero__lead">Trees, shrubs, flowers, annuals, pottery and everything your yard needs — grown right here in Layton for over 50 years.</p>
-        <div class="fh-hero__cta">
+  <section class="jj-hero" id="top">
+    <img class="jj-hero__img" src="images/hero.webp" alt="Wide view across rows of trees, shrubs and flowers at J&J Nursery's 100+ acre growing grounds" fetchpriority="high">
+    <div class="jj-stamp" aria-hidden="true"><span>100+</span>acres</div>
+    <div class="jj-hero__inner">
+      <div class="container" data-reveal>
+        <span class="jj-badge">🌿 Utah's largest nursery</span>
+        <h1>Grow something beautiful.</h1>
+        <p class="jj-hero__lead">Trees, shrubs, flowers, annuals, pottery and everything your yard needs — grown right here in Layton for over 50 years.</p>
+        <div class="jj-hero__cta">
           <a class="btn btn-primary btn-lg" href="tel:+18015441211">Call (801) 544-1211</a>
           <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Browse the nursery</a>
         </div>
       </div>
-      <div class="fh-hero__img" data-reveal>
-        <img src="images/hero.webp" alt="A lush garden center nursery with rows of plants and flowers" fetchpriority="high">
+    </div>
+  </section>
+
+  <section class="jj-stats">
+    <div class="container jj-stats__grid" data-reveal>
+      <div class="jj-stat">
+        <b><span class="jj-stars">★</span> 4.6</b>
+        <span>Average Google rating</span>
+      </div>
+      <div class="jj-stat">
+        <b>1,071+</b>
+        <span>Google reviews and counting</span>
+      </div>
+      <div class="jj-stat">
+        <b>100+</b>
+        <span>Acres of growing grounds — Utah's largest</span>
       </div>
     </div>
   </section>
 
-  <section class="fh-values">
-    <div class="container fh-values__inner">
-      <div><b>100+ acres</b><span>Utah's largest grower</span></div>
-      <div><b>1,071+ reviews</b><span>Trusted for generations</span></div>
-      <div><b>Trees → annuals</b><span>Everything for your yard</span></div>
-    </div>
-  </section>
-
-  <section class="fh-rooms" id="shop">
+  <section class="jj-yard" id="shop">
     <div class="container">
-      <div class="fh-rooms__head" data-reveal>
-        <p class="eyebrow">Shop the nursery</p>
+      <div class="jj-yard__head" data-reveal>
+        <p class="eyebrow">In the yard now</p>
         <h2>Everything your garden needs</h2>
         <p class="lead">Grown on-site and ready to plant — come walk the rows or call ahead and we'll have it waiting.</p>
       </div>
-      <div class="fh-rooms__grid">
-        <article class="fh-tile" data-reveal>
-          <img src="images/sell-1.webp" alt="Rows of potted trees and shrubs">
-          <div class="fh-tile__label"><h3>Trees &amp; shrubs</h3><p>Shade, fruit and ornamentals, grown for Utah yards.</p></div>
+      <div class="jj-yard__grid">
+        <article class="jj-tile" data-reveal>
+          <div class="jj-tile__photo">
+            <img src="images/sell-1.webp" alt="Rows of potted trees and shrubs">
+            <span class="jj-tile__tag">In season</span>
+          </div>
+          <div class="jj-tile__body">
+            <h3>Trees &amp; shrubs</h3>
+            <p>Shade, fruit and ornamentals, grown for Utah yards.</p>
+          </div>
         </article>
-        <article class="fh-tile" data-reveal>
-          <img src="images/sell-2.webp" alt="Colorful flowering annuals and hanging baskets">
-          <div class="fh-tile__label"><h3>Flowers &amp; annuals</h3><p>Hanging baskets, perennials and seasonal color.</p></div>
+        <article class="jj-tile" data-reveal>
+          <div class="jj-tile__photo">
+            <img src="images/sell-2.webp" alt="Colorful flowering annuals and hanging baskets">
+            <span class="jj-tile__tag">In season</span>
+          </div>
+          <div class="jj-tile__body">
+            <h3>Flowers &amp; annuals</h3>
+            <p>Hanging baskets, perennials and seasonal color.</p>
+          </div>
         </article>
-        <article class="fh-tile" data-reveal>
-          <img src="images/sell-3.webp" alt="Garden pottery and decor">
-          <div class="fh-tile__label"><h3>Pottery &amp; decor</h3><p>Planters, fountains and finishing touches.</p></div>
+        <article class="jj-tile" data-reveal>
+          <div class="jj-tile__photo">
+            <img src="images/sell-3.webp" alt="Garden pottery and decor">
+            <span class="jj-tile__tag">In season</span>
+          </div>
+          <div class="jj-tile__body">
+            <h3>Pottery &amp; decor</h3>
+            <p>Planters, fountains and finishing touches.</p>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="fh-fin" id="delivery">
-    <div class="container fh-fin__inner" data-reveal>
+  <section class="jj-delivery" id="delivery">
+    <div class="container jj-delivery__inner" data-reveal>
+      <span class="jj-delivery__icon">🚚</span>
       <div>
         <h2>Big trees? We deliver &amp; plant.</h2>
         <p>Don't wrestle a balled-and-burlapped tree into your trunk — our crew delivers and plants it for you. Ask about delivery when you call.</p>
       </div>
-      <div class="fh-fin__cta">
+      <div class="jj-delivery__cta">
         <a class="btn btn-primary btn-lg" href="tel:+18015441211">Call about delivery</a>
         <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Browse plants</a>
       </div>
     </div>
   </section>
 
-  <section class="fh-story">
-    <div class="container fh-story__grid">
-      <div class="fh-story__img" data-reveal>
+  <section class="jj-about">
+    <div class="container jj-about__grid">
+      <div class="jj-about__frame" data-reveal>
         <img src="images/about.webp" alt="Inside a lush greenhouse with sunlight">
+        <span class="jj-about__badge">50+ years growing</span>
       </div>
       <div data-reveal>
         <p class="eyebrow">Our story</p>
         <h2>From a family farm to Utah's largest nursery</h2>
-        <p>What started as a family farm has grown into more than 100 acres of producing nursery — the largest in the state — supplying Davis County gardens with healthy, locally grown plants.</p>
+        <p>What started as a family farm has grown into more than 100 acres of producing nursery, the largest in the state, supplying Davis County gardens with healthy, locally grown plants.</p>
         <p>Knowledgeable staff, fair prices, and plants that actually thrive here. Come see why generations of Utahns shop J&amp;J.</p>
       </div>
     </div>
   </section>
 
-  <section class="fh-visit" id="visit">
+  <section class="jj-visit" id="visit">
     <div class="container">
-      <div class="fh-rooms__head" data-reveal>
+      <div class="jj-visit__head" data-reveal>
         <p class="eyebrow">Find us</p>
-        <h2>Visit the garden center</h2>
+        <h2>Plan your visit</h2>
       </div>
-      <div class="fh-visit__grid" data-reveal>
-        <div class="fh-visit__col">
+      <div class="jj-visit__strip" data-reveal>
+        <div class="jj-visit__col">
           <h3>Hours</h3>
           <p>Mon–Sat · 9am–6pm <span class="tag">confirm</span></p>
           <p>Sunday · Closed <span class="tag">confirm</span></p>
         </div>
-        <div class="fh-visit__col">
+        <div class="jj-visit__col">
           <h3>Find us</h3>
           <p>1815 W Gentile St</p>
           <p>Layton, UT 84041</p>
           <p><a href="https://www.google.com/maps/search/?api=1&query=J%26J+Nursery+1815+W+Gentile+St+Layton+UT" rel="noopener">Open in Maps →</a></p>
         </div>
-        <div class="fh-visit__col">
+        <div class="jj-visit__col">
           <h3>Get in touch</h3>
           <p><a href="tel:+18015441211">(801) 544-1211</a></p>
           <p>Call for plant availability or delivery.</p>

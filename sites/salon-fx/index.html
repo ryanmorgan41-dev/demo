@@ -14,23 +14,23 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="../../shared/styles.css">
 <link rel="stylesheet" href="style.css">
 <style>
   :root {
-    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-display: "Manrope", system-ui, sans-serif;
     --font-body: "Inter", system-ui, sans-serif;
-    --bg:          oklch(0.985 0.008 200);
-    --surface:     oklch(0.96 0.015 195);
-    --ink:         oklch(0.25 0.025 210);
-    --muted:       oklch(0.46 0.025 205);
-    --line:        oklch(0.90 0.014 198);
-    --accent:      oklch(0.52 0.08 200);
-    --accent-deep: oklch(0.42 0.08 205);
+    --bg:          oklch(0.95 0.012 80);
+    --surface:     oklch(0.905 0.014 75);
+    --ink:         oklch(0.17 0.01 55);
+    --muted:       oklch(0.42 0.02 60);
+    --line:        oklch(0.82 0.018 70);
+    --accent:      oklch(0.58 0.12 55);
+    --accent-deep: oklch(0.28 0.045 45);
     --on-accent:   oklch(0.99 0 0);
-    --hero-tint:   oklch(0.25 0.04 205 / 0.5);
+    --hero-tint:   oklch(0.16 0.03 50 / 0.55);
   }
 </style>
 
@@ -65,111 +65,112 @@
 </header>
 
 <main id="main">
-  <section class="ch-hero" id="top">
-    <div class="container ch-hero__grid">
-      <div data-reveal>
-        <div class="ch-hero__rule"></div>
-        <p class="eyebrow">Kaysville · Main Street since 1994</p>
-        <h1>Hair &amp; nails, done with <em>care</em></h1>
-        <p class="ch-hero__lead">A full-service salon on historic Main Street — cuts, color, styling, manicures and waxing, by stylists who've kept Kaysville looking good for 30 years.</p>
-        <div class="ch-hero__cta">
-          <a class="btn btn-primary btn-lg" href="tel:+18015460476">Call (801) 546-0476</a>
-          <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Book an appointment</a>
-        </div>
-        <p class="ch-hero__note" style="margin-top:1rem">Walk-ins welcome · call to book ahead</p>
+  <section class="fx-hero" id="top">
+    <img class="fx-hero__img" src="images/hero.webp" alt="An elegant hair salon interior with a styling chair and mirror" fetchpriority="high">
+    <div class="container fx-hero__inner" data-reveal>
+      <p class="eyebrow">Kaysville · Main Street since 1994</p>
+      <h1 class="fx-hero__h1">Hair &amp; nails,<br>done with <span>care</span></h1>
+      <p class="fx-hero__lead">A full-service salon on historic Main Street — cuts, color, styling, manicures and waxing, by stylists who've kept Kaysville looking good for 30 years.</p>
+      <div class="fx-hero__cta">
+        <a class="btn btn-primary btn-lg" href="tel:+18015460476">Call (801) 546-0476</a>
+        <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Book an appointment</a>
       </div>
-      <div class="ch-hero__img" data-reveal>
-        <img src="images/hero.webp" alt="An elegant hair salon interior with a styling chair and mirror" fetchpriority="high">
-      </div>
+      <p class="fx-hero__note">Walk-ins welcome · call to book ahead</p>
     </div>
   </section>
 
-  <section class="ch-serv" id="services">
+  <section class="fx-menu" id="services">
     <div class="container">
-      <div class="ch-serv__head" data-reveal>
-        <p class="eyebrow">What we do</p>
+      <div class="section__head" data-reveal>
+        <p class="eyebrow">The menu</p>
         <h2>One salon for the whole look</h2>
-        <p class="lead" style="margin-inline:auto">Hair, nails and the little extras — all under one roof, all done right.</p>
+        <p class="lead">Hair, nails and the little extras — all under one roof, all done right. <span class="fx-tag">Call for pricing</span></p>
       </div>
-      <div class="ch-list">
-        <div class="ch-row" data-reveal>
-          <span class="ch-row__n">i</span>
-          <div><h3>Hair</h3><p>Cuts, color, highlights, blowouts and styling for every length and occasion.</p></div>
+      <div class="fx-menu__list">
+        <div class="fx-menu__row" data-reveal>
+          <div class="fx-menu__line">
+            <h3 class="fx-menu__name">Hair</h3>
+            <span class="fx-menu__leader" aria-hidden="true"></span>
+            <span class="fx-menu__price">Call for pricing</span>
+          </div>
+          <p class="fx-menu__desc">Cuts, color, highlights, blowouts and styling for every length and occasion.</p>
         </div>
-        <div class="ch-row" data-reveal>
-          <span class="ch-row__n">ii</span>
-          <div><h3>Nails</h3><p>Manicures, pedicures and gel — polished, relaxing, and done with care.</p></div>
+        <div class="fx-menu__row" data-reveal>
+          <div class="fx-menu__line">
+            <h3 class="fx-menu__name">Nails</h3>
+            <span class="fx-menu__leader" aria-hidden="true"></span>
+            <span class="fx-menu__price">Call for pricing</span>
+          </div>
+          <p class="fx-menu__desc">Manicures, pedicures and gel — polished, relaxing, and done with care.</p>
         </div>
-        <div class="ch-row" data-reveal>
-          <span class="ch-row__n">iii</span>
-          <div><h3>Waxing &amp; extras</h3><p>Brows, waxing and the finishing touches before your big day.</p></div>
+        <div class="fx-menu__row" data-reveal>
+          <div class="fx-menu__line">
+            <h3 class="fx-menu__name">Waxing &amp; extras</h3>
+            <span class="fx-menu__leader" aria-hidden="true"></span>
+            <span class="fx-menu__price">Call for pricing</span>
+          </div>
+          <p class="fx-menu__desc">Brows, waxing and the finishing touches before your big day.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="ch-look" id="lookbook">
+  <section class="fx-gallery" id="lookbook">
     <div class="container">
-      <div class="ch-look__head" data-reveal>
+      <div class="section__head" data-reveal>
         <p class="eyebrow">The work</p>
         <h2>A look at the chair</h2>
       </div>
-      <div class="ch-look__grid" data-reveal>
-        <figure class="tall wide"><img src="images/sell-2.webp" alt="Balayage blonde hair color"></figure>
+      <div class="fx-gallery__grid" data-reveal>
+        <figure><img src="images/sell-2.webp" alt="Balayage blonde hair color"></figure>
         <figure><img src="images/sell-1.webp" alt="A stylist blow-drying hair"></figure>
         <figure><img src="images/sell-3.webp" alt="A fresh manicure"></figure>
-        <figure class="wide"><img src="images/about.webp" alt="A salon styling station"></figure>
+        <figure><img src="images/about.webp" alt="A salon styling station"></figure>
       </div>
     </div>
   </section>
 
-  <section class="ch-how">
-    <div class="container">
-      <div class="ch-how__head" data-reveal>
-        <p class="eyebrow">How it works</p>
-        <h2>Easy as can be</h2>
+  <section class="fx-since">
+    <div class="container fx-since__inner" data-reveal>
+      <div class="fx-since__figure">
+        <span class="fx-since__year">1994</span>
+        <span class="fx-since__label">Main Street, Kaysville</span>
       </div>
-      <div class="ch-how__grid">
-        <div class="ch-how__step" data-reveal><h3>Book</h3><p>Call or walk in — tell us what you're after.</p></div>
-        <div class="ch-how__step" data-reveal><h3>Relax</h3><p>Sit back while we do our thing in a chair you actually enjoy.</p></div>
-        <div class="ch-how__step" data-reveal><h3>Love it</h3><p>Walk out feeling like the best version of you.</p></div>
+      <p class="fx-since__text">Three decades in the same storefront on historic Main Street: stylists who've kept Kaysville looking good for 30 years.</p>
+    </div>
+  </section>
+
+  <section class="fx-appt">
+    <div class="container fx-appt__inner" data-reveal>
+      <p class="eyebrow">Ready for a refresh?</p>
+      <h2>Book your chair on Main Street</h2>
+      <p>Color, cut, nails or all three — call ahead and we'll get you in with the right stylist.</p>
+      <div class="fx-appt__cta">
+        <a class="btn btn-primary btn-lg" href="tel:+18015460476">Call (801) 546-0476</a>
+        <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Book an appointment</a>
       </div>
     </div>
   </section>
 
-  <section class="ch-appt">
+  <section class="section section--tint" id="visit">
     <div class="container">
-      <div class="ch-appt__inner" data-reveal>
-        <p class="eyebrow">Ready for a refresh?</p>
-        <h2>Book your chair on Main Street</h2>
-        <p>Color, cut, nails or all three — call ahead and we'll get you in with the right stylist.</p>
-        <div class="ch-appt__cta">
-          <a class="btn btn-primary btn-lg" href="tel:+18015460476">Call (801) 546-0476</a>
-          <a class="btn btn-ghost btn-lg" data-cta="primary" href="#">Book an appointment</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="ch-visit" id="visit">
-    <div class="container">
-      <div class="ch-look__head" data-reveal>
+      <div class="section__head" data-reveal>
         <p class="eyebrow">Find us</p>
         <h2>Stop by the salon</h2>
       </div>
-      <div class="ch-visit__grid" data-reveal>
-        <div class="ch-visit__col">
+      <div class="visit" data-reveal>
+        <div class="visit__col">
           <h3>Hours</h3>
           <p>Mon–Sat · 9am–6pm <span class="tag">confirm</span></p>
           <p>Sunday · Closed <span class="tag">confirm</span></p>
         </div>
-        <div class="ch-visit__col">
+        <div class="visit__col">
           <h3>Find us</h3>
           <p>41 N Main St</p>
           <p>Kaysville, UT 84037</p>
           <p><a href="https://www.google.com/maps/search/?api=1&query=Salon+FX+41+N+Main+St+Kaysville+UT" rel="noopener">Open in Maps →</a></p>
         </div>
-        <div class="ch-visit__col">
+        <div class="visit__col">
           <h3>Get in touch</h3>
           <p><a href="tel:+18015460476">(801) 546-0476</a></p>
           <p>Call to book your appointment.</p>

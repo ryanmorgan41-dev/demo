@@ -1,79 +1,91 @@
 /* ============================================================
-   Full House Pre-Owned Furniture — bespoke SHOWROOM / CATALOG layout.
-   Layered over shared/styles.css. Split hero + room tiles + financing
-   band = a furniture store, not the universal template. fh-* classes.
+   Allied Furnishings — bespoke PREMIUM SHOWROOM layout.
+   Layered over shared/styles.css (foundation: tokens, buttons,
+   header/nav, footer, demo-notice, reveal, a11y). Quiet-luxury
+   register: offset magazine hero, a heritage strip, three large
+   editorial category tiles and a navy consultation band. aw-*
+   classes only — this reads as a Hunter Douglas showroom, not the
+   used-furniture template it was cloned from.
    ============================================================ */
 
-/* ---------- Split hero (text + image, light — reads "retail") ---------- */
-.fh-hero { padding-block: clamp(2.5rem, 6vw, 5rem); }
-.fh-hero__grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(1.5rem, 4vw, 3.5rem);
+/* ---------- Magazine hero: offset frame + hairline rule ---------- */
+.aw-hero { padding-block: clamp(3rem, 6vw, 6rem); border-bottom: 1px solid var(--line); }
+.aw-hero__grid { position: relative; display: grid; grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.aw-hero__grid::after { content: ""; position: absolute; top: 0; bottom: 0; left: 50%;
+  width: 1px; background: var(--line); }
+.aw-hero__kicker { display: flex; align-items: center; gap: 0.7rem; font-family: var(--font-body);
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.72rem;
+  color: var(--accent-deep); margin: 0 0 1.3rem; }
+.aw-hero__kicker::before { content: ""; width: 2.2rem; height: 1px; background: var(--accent); }
+.aw-hero h1 { font-weight: 500; }
+.aw-hero__lead { color: var(--muted); font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem); max-width: 42ch; }
+.aw-hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.7rem; }
+.aw-hero__figure { position: relative; isolation: isolate; margin: 0; }
+.aw-hero__figure::before { content: ""; position: absolute; inset: auto -0.9rem -0.9rem auto;
+  width: 65%; height: 65%; border: 1px solid var(--accent); z-index: -1; }
+.aw-hero__figure img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border: 1px solid var(--line); }
+
+/* ---------- Heritage strip ---------- */
+.aw-heritage { background: var(--surface); border-block: 1px solid var(--line); padding-block: 1.3rem; }
+.aw-heritage__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 0.8rem 1.1rem; text-align: center; }
+.aw-heritage__item { font-family: var(--font-body); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.12em; font-size: 0.76rem; color: var(--accent-deep); }
+.aw-heritage__div { width: 1px; height: 0.85rem; background: var(--line); display: inline-block; }
+
+/* ---------- Category gallery (signature module) ---------- */
+.aw-gallery { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.aw-gallery__head { max-width: 56ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.aw-gallery__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.4rem, 3vw, 2.2rem); }
+.aw-tile { display: flex; flex-direction: column; }
+.aw-tile img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border: 1px solid var(--line);
+  margin-bottom: 1.1rem; transition: transform 0.35s ease; }
+.aw-tile:hover img { transform: scale(1.02); }
+.aw-tile h3 { font-weight: 500; margin: 0 0 0.3rem; }
+.aw-tile p { color: var(--muted); margin: 0; font-size: 0.95rem; }
+@media (prefers-reduced-motion: reduce) { .aw-tile:hover img { transform: none; } }
+
+/* ---------- Consultation band ---------- */
+.aw-consult { background: var(--accent-deep); padding-block: clamp(3rem, 6vw, 4.5rem); }
+.aw-consult__inner { display: grid; grid-template-columns: 1.3fr auto; gap: 2rem; align-items: center; }
+.aw-consult__kicker { font-family: var(--font-body); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.14em; font-size: 0.76rem; color: var(--accent); margin: 0 0 0.6rem; }
+.aw-consult h2 { color: oklch(0.99 0 0); margin: 0 0 0.5rem; }
+.aw-consult p { color: oklch(0.97 0.005 90 / 0.85); max-width: 46ch; margin: 0; }
+.aw-consult__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.aw-consult .btn-primary { background: var(--accent); color: var(--on-accent); }
+.aw-consult .btn-primary:hover { background: oklch(0.8 0.1 85); }
+.aw-consult .btn-ghost { color: oklch(0.99 0 0); border-color: oklch(1 0 0 / 0.4); background: oklch(1 0 0 / 0.05); }
+.aw-consult .btn-ghost:hover { border-color: oklch(1 0 0 / 0.8); background: oklch(1 0 0 / 0.12); }
+
+/* ---------- Story (mirrored offset frame for variety) ---------- */
+.aw-story { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.aw-story__grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 4rem);
   align-items: center; }
-.fh-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--surface);
-  border: 1px solid var(--line); color: var(--accent-deep); font-weight: 700; font-size: 0.82rem;
-  padding: 0.4rem 0.85rem; border-radius: 999px; margin-bottom: 1.1rem; }
-.fh-hero h1 { margin: 0 0 0.6rem; }
-.fh-hero__lead { color: var(--muted); font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem); max-width: 46ch; }
-.fh-hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.6rem; }
-.fh-hero__img { border-radius: calc(var(--radius) + 6px); overflow: hidden; box-shadow: var(--shadow); }
-.fh-hero__img img { width: 100%; aspect-ratio: 4 / 3.2; object-fit: cover; }
-
-/* ---------- Value strip (dark band: financing / delivery / solid wood) ---------- */
-.fh-values { background: var(--ink); color: oklch(0.97 0 0 / 0.9); }
-.fh-values__inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding-block: 1.5rem;
-  text-align: center; }
-.fh-values b { color: oklch(0.99 0 0); font-family: var(--font-display); font-size: 1.15rem; }
-.fh-values span { display: block; font-size: 0.85rem; color: oklch(0.97 0 0 / 0.7); }
-
-/* ---------- Room tiles (signature module) ---------- */
-.fh-rooms { padding-block: clamp(3.5rem, 7vw, 6rem); }
-.fh-rooms__head { max-width: 52ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
-.fh-rooms__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.5vw, 1.5rem); }
-.fh-tile { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm);
-  isolation: isolate; min-height: 340px; display: flex; align-items: flex-end;
-  transition: transform 0.2s ease, box-shadow 0.2s ease; }
-.fh-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-.fh-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
-.fh-tile::after { content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, transparent 35%, oklch(0.2 0.03 60 / 0.8)); }
-.fh-tile__label { color: oklch(0.99 0 0); padding: 1.3rem 1.4rem; }
-.fh-tile__label h3 { color: oklch(0.99 0 0); margin: 0 0 0.2rem; }
-.fh-tile__label p { color: oklch(0.98 0 0 / 0.85); margin: 0; font-size: 0.92rem; }
-
-/* ---------- Financing band ---------- */
-.fh-fin { background: var(--accent); color: var(--on-accent); padding-block: clamp(3rem, 6vw, 4.5rem); }
-.fh-fin__inner { display: grid; grid-template-columns: 1.4fr auto; gap: 2rem; align-items: center; }
-.fh-fin h2 { color: var(--on-accent); margin: 0 0 0.5rem; }
-.fh-fin p { color: oklch(1 0 0 / 0.92); max-width: 46ch; margin: 0; }
-.fh-fin__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-.fh-fin .btn-primary { background: var(--ink); color: oklch(0.99 0 0); }
-.fh-fin .btn-primary:hover { background: oklch(0.18 0.02 60); }
-.fh-fin .btn-ghost { color: var(--on-accent); border-color: oklch(1 0 0 / 0.6); background: oklch(1 0 0 / 0.05); }
-.fh-fin .btn-ghost:hover { border-color: var(--on-accent); background: oklch(1 0 0 / 0.14); }
-
-/* ---------- Story ---------- */
-.fh-story { padding-block: clamp(3.5rem, 7vw, 6rem); }
-.fh-story__grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(1.5rem, 4vw, 3.5rem);
-  align-items: center; }
-.fh-story__img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
-.fh-story__img img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.aw-story__figure { position: relative; isolation: isolate; margin: 0; }
+.aw-story__figure::before { content: ""; position: absolute; inset: -0.9rem auto auto -0.9rem;
+  width: 65%; height: 65%; border: 1px solid var(--accent); z-index: -1; }
+.aw-story__figure img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid var(--line); }
 
 /* ---------- Visit ---------- */
-.fh-visit { background: var(--surface); padding-block: clamp(3rem, 6vw, 5rem); }
-.fh-visit__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
-.fh-visit__col h3 { font-family: var(--font-body); font-weight: 700; font-size: 0.82rem; text-transform: uppercase;
+.aw-visit { background: var(--surface); padding-block: clamp(3rem, 6vw, 5rem); }
+.aw-visit__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
+.aw-visit__col h3 { font-family: var(--font-body); font-weight: 700; font-size: 0.82rem; text-transform: uppercase;
   letter-spacing: 0.12em; color: var(--accent-deep); margin-bottom: 0.6rem; }
-.fh-visit__col p { color: var(--muted); margin: 0 0 0.3rem; }
-.fh-visit__col a { color: var(--ink); font-weight: 600; border-bottom: 1.5px solid var(--accent); text-decoration: none; }
-.fh-visit .tag { display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--accent-deep);
-  background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 0.15rem 0.6rem; margin-left: 0.3rem; }
+.aw-visit__col p { color: var(--muted); margin: 0 0 0.3rem; }
+.aw-visit__col a { color: var(--ink); font-weight: 600; border-bottom: 1.5px solid var(--accent); text-decoration: none; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 820px) {
-  .fh-hero__grid, .fh-story__grid, .fh-fin__inner { grid-template-columns: 1fr; }
-  .fh-rooms__grid { grid-template-columns: 1fr 1fr; }
-  .fh-visit__grid { grid-template-columns: 1fr; }
+  .aw-hero__grid { grid-template-columns: 1fr; }
+  .aw-hero__grid::after { display: none; }
+  .aw-story__grid { grid-template-columns: 1fr; }
+  .aw-consult__inner { grid-template-columns: 1fr; }
+  .aw-gallery__grid { grid-template-columns: 1fr 1fr; }
+  .aw-visit__grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
-  .fh-rooms__grid { grid-template-columns: 1fr; }
-  .fh-values__inner { grid-template-columns: 1fr; gap: 0.6rem; }
+  .aw-gallery__grid { grid-template-columns: 1fr; }
+  .aw-heritage__div { display: none; }
 }
