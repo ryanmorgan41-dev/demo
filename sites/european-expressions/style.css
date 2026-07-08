@@ -1,0 +1,436 @@
+/* ============================================================
+   European Expressions Furniture Repair — BESPOKE stylesheet.
+   Loads AFTER shared/foundation.css. Every bit of visible chrome,
+   hero, sections, buttons and footer is designed from scratch here.
+
+   Direction: "heritage restoration atelier" — warm and old-world.
+   A parchment/cream page against deep loden-green panels and an
+   espresso ink, with aged brass as the metal accent. Playfair
+   Display (an antiquarian serif) sets every heading and the
+   wordmark; Source Sans 3 carries body, eyebrows, buttons and
+   captions. Signature module: a paired BEFORE/AFTER restoration
+   gallery. Section break: an espresso card that breaks out over
+   the light/green boundary. Grid: an asymmetric photo masonry.
+
+   ONLY :root states raw oklch. Everything downstream derives its
+   color from these tokens via color-mix(in oklch, …).
+   ============================================================ */
+
+:root {
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body:    "Source Sans 3", system-ui, -apple-system, sans-serif;
+
+  /* --- palette (OKLCH) — raw hues live here and NOWHERE else --- */
+  --parchment:   oklch(0.955 0.016 84);   /* warm cream — page base */
+  --parchment-2: oklch(0.930 0.022 82);   /* secondary warm surface */
+  --parchment-3: oklch(0.902 0.028 80);   /* deeper warm surface */
+  --ink:         oklch(0.255 0.026 52);   /* espresso — warm near-black */
+  --loden:       oklch(0.420 0.060 135);  /* deep loden/olive green — primary accent */
+  --loden-deep:  oklch(0.335 0.050 136);  /* darker green — hover / deep panel */
+  --loden-bright:oklch(0.520 0.070 134);  /* brighter green — small accents */
+  --brass:       oklch(0.700 0.090 80);   /* aged brass — secondary accent */
+  --brass-deep:  oklch(0.585 0.085 74);   /* darker brass */
+  --gold:        oklch(0.840 0.095 84);   /* bright brass — accent text on dark */
+  --muted:       oklch(0.455 0.022 58);   /* body-muted on light */
+  --muted-d:     oklch(0.808 0.020 84);   /* muted on dark */
+  --line:        oklch(0.862 0.020 82);   /* hairline on light */
+  --on-loden:    oklch(0.972 0.012 88);   /* near-white on green/ink */
+
+  --bg: var(--parchment);
+  --maxw: 1180px;
+  --radius: 10px;
+  --sp: clamp(3.5rem, 7.5vw, 6.75rem);    /* section rhythm */
+  --edge-d: color-mix(in oklch, var(--on-loden) 20%, transparent); /* hairline on dark */
+}
+
+/* ---- base type ------------------------------------------- */
+body { background: var(--parchment); color: var(--ink); }
+h1, h2, h3, h4 { font-family: var(--font-display); }
+h1, h2 { font-weight: 700; letter-spacing: -0.01em; }
+p { margin: 0 0 1rem; }
+a { text-decoration: none; }
+::selection { background: color-mix(in oklch, var(--loden) 26%, var(--parchment)); }
+.container { max-width: var(--maxw); }
+
+/* ---- reveal (overrides foundation with a softer transition) --- */
+.js .reveal-init { opacity: 0; transform: translateY(20px);
+  animation: none; transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+.js .is-revealed { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-init { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- eyebrow --------------------------------------------- */
+.ee-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  font-size: 0.74rem; color: var(--brass-deep); margin: 0 0 1rem;
+}
+.ee-eyebrow::before { content: ""; width: 26px; height: 2px; background: currentColor; }
+.ee-eyebrow--brass { color: var(--gold); }
+.ee-eyebrow--onhero { color: var(--gold); }
+
+.ee-lead { font-size: clamp(1.06rem, 1rem + 0.55vw, 1.28rem); line-height: 1.6;
+  color: var(--muted); max-width: 48ch; }
+
+/* ---- buttons --------------------------------------------- */
+.ee-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.55ch;
+  font-family: var(--font-body); font-weight: 700; letter-spacing: 0.04em;
+  font-size: 0.9rem; line-height: 1; padding: 0.9rem 1.5rem;
+  border-radius: var(--radius); border: 2px solid transparent; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ee-btn--primary { background: var(--loden); color: var(--on-loden);
+  box-shadow: 0 10px 24px -14px color-mix(in oklch, var(--loden) 80%, transparent); }
+.ee-btn--primary:hover { background: var(--loden-deep); transform: translateY(-2px);
+  box-shadow: 0 16px 32px -16px color-mix(in oklch, var(--loden) 85%, transparent); }
+.ee-btn--lg { padding: 1.05rem 1.9rem; font-size: 0.98rem; }
+
+.ee-btn--ghost { background: transparent; color: var(--ink);
+  border-color: color-mix(in oklch, var(--ink) 40%, transparent); }
+.ee-btn--ghost:hover { background: var(--ink); color: var(--parchment);
+  border-color: var(--ink); }
+.ee-btn--ghost.is-onhero { color: var(--on-loden);
+  border-color: color-mix(in oklch, var(--on-loden) 55%, transparent); }
+.ee-btn--ghost.is-onhero:hover { background: var(--on-loden); color: var(--ink);
+  border-color: var(--on-loden); }
+
+/* pending "coming soon" gap (foundation appends the label) */
+.ee-btn.is-pending { opacity: 0.6; }
+.ee-btn.is-pending::after { letter-spacing: 0.03em; font-size: 0.82rem; font-weight: 600; }
+
+/* ============================================================
+   HEADER — transparent over the hero, flips to espresso on scroll.
+   Brass monogram tile + Playfair wordmark, growing-underline nav.
+   ============================================================ */
+.ee-head {
+  position: sticky; top: 0; z-index: 60;
+  background: linear-gradient(color-mix(in oklch, var(--ink) 42%, transparent), transparent);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+.ee-head.is-scrolled {
+  background: var(--ink);
+  border-bottom-color: color-mix(in oklch, var(--brass) 55%, transparent);
+  box-shadow: 0 12px 34px -22px color-mix(in oklch, var(--ink) 92%, transparent);
+}
+.ee-head__in { display: flex; align-items: center; justify-content: space-between;
+  gap: 1.25rem; padding-block: clamp(0.8rem, 1.5vw, 1.1rem); position: relative; }
+
+.ee-brand { display: inline-flex; align-items: center; gap: 0.7rem; color: var(--on-loden);
+  text-shadow: 0 1px 8px color-mix(in oklch, var(--ink) 55%, transparent); }
+.is-scrolled .ee-brand { text-shadow: none; }
+.ee-brand__mark { flex: none; width: 38px; height: 38px; display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; letter-spacing: 0.02em;
+  color: var(--gold);
+  background: color-mix(in oklch, var(--loden-deep) 62%, transparent);
+  border: 1.5px solid color-mix(in oklch, var(--brass) 70%, transparent);
+  border-radius: 8px; }
+.is-scrolled .ee-brand__mark { background: color-mix(in oklch, var(--loden) 55%, var(--ink)); }
+.ee-brand__txt { display: grid; line-height: 1.05; }
+.ee-brand__txt b { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem;
+  letter-spacing: 0.005em; }
+.ee-brand__txt span { font-family: var(--font-body); font-weight: 600; font-size: 0.62rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: color-mix(in oklch, var(--gold) 92%, var(--on-loden)); }
+
+.ee-nav { display: flex; align-items: center; gap: clamp(1.1rem, 2.2vw, 2rem); }
+.ee-nav a { font-family: var(--font-body); font-weight: 600; font-size: 0.92rem;
+  color: var(--on-loden);
+  text-shadow: 0 1px 6px color-mix(in oklch, var(--ink) 50%, transparent);
+  position: relative; padding: 0.35rem 0; }
+.is-scrolled .ee-nav a { text-shadow: none; }
+.ee-nav a:not(.ee-btn)::after { content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 2px; background: var(--brass);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+.ee-nav a:not(.ee-btn):hover::after, .ee-nav a:not(.ee-btn):focus-visible::after { transform: scaleX(1); }
+.ee-nav .ee-btn { padding: 0.65rem 1.15rem; font-size: 0.85rem; }
+.ee-navtoggle { display: none; }
+
+/* ============================================================
+   HERO — full-bleed dark gradient over a restored antique piece.
+   ============================================================ */
+.ee-hero { position: relative; isolation: isolate;
+  min-height: min(92svh, 820px); display: flex; align-items: flex-end;
+  margin-top: calc(-1 * (clamp(0.8rem,1.5vw,1.1rem) * 2 + 38px)); /* pull under sticky header */
+  padding-top: clamp(6rem, 14vh, 9rem); }
+.ee-hero__img { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 50%; z-index: -2; }
+.ee-hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(74deg, color-mix(in oklch, var(--ink) 88%, transparent) 0%,
+      color-mix(in oklch, var(--ink) 52%, transparent) 44%, color-mix(in oklch, var(--loden-deep) 30%, transparent) 78%),
+    linear-gradient(to top, color-mix(in oklch, var(--ink) 82%, transparent) 0%, transparent 46%); }
+.ee-hero__in { padding-bottom: clamp(2.5rem, 5vw, 4rem); padding-top: clamp(2.5rem, 8vw, 5rem); }
+.ee-hero h1 { color: var(--on-loden); font-size: clamp(2.6rem, 7.2vw, 5.4rem);
+  line-height: 1.02; margin: 0 0 1.1rem; max-width: 17ch;
+  text-shadow: 0 2px 20px color-mix(in oklch, var(--ink) 55%, transparent); }
+.ee-hero h1 em { font-style: italic; color: var(--gold); font-weight: 600; }
+.ee-hero__lead { color: color-mix(in oklch, var(--on-loden) 92%, var(--ink));
+  font-size: clamp(1.05rem, 0.98rem + 0.55vw, 1.28rem); line-height: 1.6;
+  max-width: 52ch; margin: 0 0 1.9rem;
+  text-shadow: 0 1px 12px color-mix(in oklch, var(--ink) 55%, transparent); }
+.ee-hero__cta { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-bottom: 2.3rem; }
+
+.ee-cred { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.4rem;
+  padding-top: 1.5rem; border-top: 1px solid var(--edge-d); list-style: none; margin: 0; }
+.ee-cred li { display: flex; align-items: center; gap: 0.55rem;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.03em;
+  color: color-mix(in oklch, var(--on-loden) 90%, var(--ink)); }
+.ee-cred li::before { content: ""; width: 7px; height: 7px; flex: none;
+  background: var(--brass); transform: rotate(45deg); }
+
+/* ============================================================
+   CRAFT STATEMENT — editorial spread. Overlapping brass "seal".
+   ============================================================ */
+.ee-craft { padding-block: var(--sp) calc(var(--sp) + clamp(3rem, 7vw, 5.5rem));
+  overflow-x: clip; }
+.ee-craft__grid { display: grid; grid-template-columns: 0.85fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.ee-craft__media { position: relative; }
+.ee-craft__media img { width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: 0 30px 60px -34px color-mix(in oklch, var(--ink) 60%, transparent); }
+.ee-craft__media::before { content: ""; position: absolute; z-index: -1;
+  left: -18px; top: -18px; width: 55%; height: 42%;
+  background: color-mix(in oklch, var(--loden) 22%, var(--parchment));
+  border-radius: 8px; }
+.ee-craft__seal { position: absolute; right: -14px; bottom: 22px; z-index: 2;
+  width: 92px; height: 92px; display: grid; place-content: center; text-align: center;
+  border-radius: 50%; background: var(--ink); color: var(--gold);
+  border: 2px solid color-mix(in oklch, var(--brass) 75%, transparent);
+  font-family: var(--font-body); font-weight: 600; font-size: 0.62rem;
+  letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.5; }
+.ee-craft__seal b { font-family: var(--font-display); font-weight: 700; font-size: 0.98rem;
+  letter-spacing: 0.02em; color: var(--on-loden); }
+.ee-craft__body h2 { font-size: clamp(1.9rem, 4.2vw, 3.1rem); line-height: 1.08;
+  margin: 0 0 1.1rem; max-width: 20ch; }
+.ee-craft__body p { color: var(--muted); max-width: 52ch; line-height: 1.68; }
+.ee-craft__notes { display: grid; gap: 0.55rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+.ee-craft__notes li { display: flex; align-items: baseline; gap: 0.65rem;
+  font-family: var(--font-body); font-weight: 600; color: var(--ink); font-size: 0.98rem; }
+.ee-craft__notes li::before { content: ""; width: 9px; height: 9px; flex: none;
+  align-self: center; background: var(--brass); transform: rotate(45deg); }
+
+/* ============================================================
+   BEFORE / AFTER (signature) — green stage with a breakout card
+   that straddles the boundary with the light section above.
+   ============================================================ */
+.ee-ba { display: flow-root;                 /* contain margins so the card overflows UP */
+  position: relative; background: var(--loden); color: var(--on-loden);
+  padding-bottom: var(--sp); }
+
+.ee-breakout { position: relative; z-index: 3;
+  margin-top: clamp(-150px, -13vw, -104px);   /* pull up to straddle the section seam */
+  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(1.25rem, 3vw, 2.75rem);
+  align-items: center;
+  background: var(--ink); color: var(--on-loden);
+  border: 1px solid color-mix(in oklch, var(--brass) 45%, transparent);
+  border-radius: 14px; padding: clamp(1.6rem, 3.5vw, 2.6rem) clamp(1.5rem, 4vw, 3rem);
+  box-shadow: 0 34px 70px -34px color-mix(in oklch, var(--ink) 92%, transparent); }
+.ee-breakout__h { font-size: clamp(1.5rem, 3.2vw, 2.35rem); line-height: 1.12; margin: 0;
+  color: var(--on-loden); }
+.ee-breakout__p { color: var(--muted-d); margin: 0; line-height: 1.62; max-width: 42ch;
+  font-size: 0.99rem; }
+
+.ee-ba__in { padding-top: clamp(2.5rem, 5vw, 3.75rem); }
+
+/* the paired frames */
+.ee-pair { margin: 0; }
+.ee-pair__frames { display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+  padding: 8px; border-radius: 14px;
+  background: color-mix(in oklch, var(--loden-deep) 60%, transparent);
+  border: 1px solid var(--edge-d); }
+.ee-pair__frame { position: relative; overflow: hidden; border-radius: 8px; isolation: isolate; }
+.ee-pair__frame img { width: 100%; height: 100%; object-fit: cover; display: block;
+  aspect-ratio: 4/3; transition: transform 0.8s cubic-bezier(0.2,0.6,0.2,1); }
+.ee-pair:hover .ee-pair__frame img { transform: scale(1.04); }
+.ee-pair__tag { position: absolute; top: 10px; left: 10px; z-index: 2;
+  font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; font-size: 0.66rem; padding: 0.32rem 0.7rem; border-radius: 6px; }
+.ee-pair__tag--before { background: color-mix(in oklch, var(--ink) 82%, transparent);
+  color: var(--muted-d); border: 1px solid color-mix(in oklch, var(--on-loden) 22%, transparent); }
+.ee-pair__tag--after { background: var(--brass); color: var(--ink); }
+.ee-pair__cap { margin-top: 1rem; color: color-mix(in oklch, var(--on-loden) 88%, var(--loden));
+  font-size: 0.98rem; line-height: 1.55; max-width: 60ch; }
+.ee-pair__cap b { display: block; font-family: var(--font-display); font-weight: 700;
+  font-size: 1.18rem; color: var(--on-loden); margin-bottom: 0.15rem;
+  letter-spacing: 0.005em; }
+
+.ee-pair--feature .ee-pair__cap { display: grid; grid-template-columns: auto 1fr;
+  align-items: baseline; gap: 0.2rem 1.1rem; }
+.ee-pair--feature .ee-pair__cap b { margin-bottom: 0; }
+
+.ee-ba__row { display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(1.25rem, 3vw, 2.25rem); margin-top: clamp(1.5rem, 3.5vw, 2.75rem); }
+
+/* ============================================================
+   SERVICES + asymmetric masonry gallery
+   ============================================================ */
+.ee-services { padding-block: var(--sp); background: var(--parchment); overflow-x: clip; }
+.ee-services__head { max-width: 60ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.ee-services__head h2 { font-size: clamp(1.9rem, 4.4vw, 3.1rem); margin: 0 0 0.8rem; }
+.ee-services__grid { display: grid; grid-template-columns: 0.82fr 1.18fr;
+  gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+
+.ee-svc { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.ee-svc li { padding: 1.4rem 0; border-top: 1px solid var(--line); }
+.ee-svc li:first-child { border-top: 0; padding-top: 0; }
+.ee-svc h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.45rem;
+  margin: 0 0 0.45rem; color: var(--ink); }
+.ee-svc p { color: var(--muted); margin: 0; line-height: 1.62; max-width: 46ch; }
+
+.ee-masonry { display: grid; grid-template-columns: 1.15fr 1fr;
+  grid-template-rows: repeat(2, minmax(150px, 20vw)) minmax(150px, 18vw);
+  gap: clamp(0.6rem, 1.4vw, 1rem); }
+.ee-masonry > :nth-child(1) { grid-column: 1; grid-row: 1 / 3; }
+.ee-masonry > :nth-child(2) { grid-column: 2; grid-row: 1; }
+.ee-masonry > :nth-child(3) { grid-column: 2; grid-row: 2; }
+.ee-masonry > :nth-child(4) { grid-column: 1 / 3; grid-row: 3; }
+.ee-tile { position: relative; overflow: hidden; border-radius: var(--radius); margin: 0;
+  isolation: isolate; }
+.ee-tile img { width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.8s cubic-bezier(0.2,0.6,0.2,1); }
+.ee-tile:hover img { transform: scale(1.05); }
+.ee-tile figcaption { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+  font-family: var(--font-body); font-weight: 700; font-size: 0.8rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-loden);
+  padding: 1.4rem 1rem 0.85rem;
+  background: linear-gradient(to top, color-mix(in oklch, var(--ink) 78%, transparent), transparent); }
+
+/* ============================================================
+   PHOTO-TO-QUOTE FLOW — three ordered steps (genuinely sequential)
+   ============================================================ */
+.ee-how { padding-block: var(--sp); background: var(--parchment-2);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.ee-how__head { max-width: 56ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.ee-how__head h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); margin: 0 0 0.8rem; }
+.ee-steps { list-style: none; margin: 0; padding: 0; counter-reset: none;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.25rem, 3vw, 2.5rem); }
+.ee-steps li { position: relative; padding-top: 0.5rem; }
+.ee-steps__n { display: inline-grid; place-items: center; width: 46px; height: 46px;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.35rem;
+  color: var(--on-loden); background: var(--loden); border-radius: 50%;
+  margin-bottom: 1rem; }
+.ee-steps h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem;
+  margin: 0 0 0.4rem; color: var(--ink); }
+.ee-steps p { color: var(--muted); margin: 0; line-height: 1.6; max-width: 34ch; }
+
+/* ============================================================
+   QUOTE CTA BAND
+   ============================================================ */
+.ee-quote { padding-block: var(--sp); }
+.ee-quote__panel { position: relative; overflow: hidden;
+  background: var(--loden-deep); color: var(--on-loden);
+  border-radius: 18px; padding: clamp(2rem, 5vw, 3.75rem);
+  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: center; }
+.ee-quote__panel::before { content: ""; position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(120% 150% at 100% 0%,
+    color-mix(in oklch, var(--brass) 26%, transparent), transparent 55%); }
+.ee-quote__text, .ee-quote__cta { position: relative; z-index: 1; }
+.ee-quote h2 { color: var(--on-loden); font-size: clamp(1.9rem, 4.2vw, 3rem);
+  margin: 0 0 0.9rem; max-width: 16ch; }
+.ee-quote p { color: color-mix(in oklch, var(--on-loden) 86%, var(--loden)); max-width: 44ch; }
+.ee-quote__cta { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+.ee-quote__cta .ee-btn { align-self: stretch; }
+.ee-quote__mail { font-family: var(--font-body); font-size: 0.95rem;
+  color: var(--muted-d); margin: 0; }
+.ee-quote__mail a { color: var(--gold); font-weight: 700;
+  border-bottom: 1px solid color-mix(in oklch, var(--gold) 45%, transparent);
+  padding-bottom: 1px; transition: border-color 0.2s ease; }
+.ee-quote__mail a:hover { border-color: var(--gold); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.ee-foot { background: var(--ink); color: var(--on-loden);
+  border-top: 3px solid var(--brass); padding-block: clamp(3rem, 6vw, 4.5rem) 2rem; }
+.ee-foot__grid { display: grid; grid-template-columns: 1.5fr 1fr 1.3fr;
+  gap: clamp(2rem, 5vw, 4rem); padding-bottom: 2.5rem; border-bottom: 1px solid var(--edge-d); }
+.ee-brand--foot { margin-bottom: 1rem; }
+.ee-foot__tag { color: var(--muted-d); max-width: 34ch; font-size: 0.96rem; }
+.ee-foot h4 { font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.16em; font-size: 0.74rem; color: var(--gold); margin: 0 0 1.1rem; }
+.ee-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.ee-foot a { color: color-mix(in oklch, var(--on-loden) 88%, var(--ink)); }
+.ee-foot ul a:hover, .ee-foot__contact a:hover { color: var(--gold); }
+.ee-foot__contact p { color: var(--muted-d); font-size: 0.94rem; }
+.ee-foot__mail { color: var(--on-loden); font-weight: 700; }
+.ee-foot__area { font-family: var(--font-body); font-weight: 600; font-size: 0.78rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 1rem; }
+.ee-foot__bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
+  gap: 0.75rem; padding-top: 1.75rem; font-size: 0.82rem; color: var(--muted-d); }
+.ee-foot__bottom b { color: var(--on-loden); font-weight: 600; }
+
+/* required concept-demo notice — restyled to fit, text unchanged */
+.demo-notice { background: var(--ink);
+  color: color-mix(in oklch, var(--muted-d) 92%, var(--on-loden));
+  border-top: 1px solid var(--edge-d);
+  font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.01em;
+  padding: 1rem 1.25rem; text-align: center; }
+.demo-notice b { color: var(--gold); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .ee-navtoggle { display: inline-flex; flex-direction: column; justify-content: center;
+    gap: 5px; width: 46px; height: 42px; padding: 0 10px; background: transparent;
+    border: 0; cursor: pointer; }
+  .ee-navtoggle span { display: block; height: 2px; width: 100%; background: var(--on-loden);
+    box-shadow: 0 1px 4px color-mix(in oklch, var(--ink) 55%, transparent);
+    transition: transform 0.25s ease, opacity 0.2s ease; }
+  .is-scrolled .ee-navtoggle span { box-shadow: none; }
+  .ee-navtoggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .ee-navtoggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .ee-navtoggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .ee-nav { position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--ink); border-top: 1px solid var(--edge-d);
+    padding: 0.5rem clamp(1.1rem, 4vw, 2rem) 1.25rem;
+    box-shadow: 0 26px 40px -24px color-mix(in oklch, var(--ink) 90%, transparent);
+    clip-path: inset(0 0 100% 0); pointer-events: none; transition: clip-path 0.3s ease; }
+  .ee-nav.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; }
+  .ee-nav a { padding: 0.95rem 0; border-bottom: 1px solid var(--edge-d);
+    text-shadow: none; font-size: 1rem; }
+  .ee-nav a:not(.ee-btn)::after { display: none; }
+  .ee-nav .ee-btn { margin-top: 1rem; padding: 0.9rem 1.05rem; }
+  /* header always solid once the nav can open, for legibility */
+  .ee-head { background: var(--ink); border-bottom-color: color-mix(in oklch, var(--brass) 55%, transparent); }
+  .ee-hero { margin-top: 0; padding-top: clamp(4.5rem, 12vh, 7rem); }
+}
+
+@media (max-width: 820px) {
+  .ee-craft__grid { grid-template-columns: 1fr; gap: clamp(2rem, 8vw, 3rem); }
+  .ee-craft__media { max-width: 380px; }
+  .ee-breakout { grid-template-columns: 1fr; gap: 1rem;
+    margin-top: clamp(-92px, -18vw, -70px); }
+  .ee-services__grid { grid-template-columns: 1fr; gap: clamp(2rem, 6vw, 3rem); }
+  .ee-ba__row { grid-template-columns: 1fr; }
+  .ee-steps { grid-template-columns: 1fr; gap: 1.5rem; }
+  .ee-steps li { display: grid; grid-template-columns: 46px 1fr; column-gap: 1rem; align-items: center; }
+  .ee-steps__n { margin-bottom: 0; grid-row: 1 / 3; }
+  .ee-steps h3 { margin: 0; }
+  .ee-steps p { grid-column: 2; }
+  .ee-quote__panel { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .ee-masonry { grid-template-columns: 1fr; grid-template-rows: none; }
+  .ee-masonry > :nth-child(1),
+  .ee-masonry > :nth-child(2),
+  .ee-masonry > :nth-child(3),
+  .ee-masonry > :nth-child(4) { grid-column: 1; grid-row: auto; aspect-ratio: 4/3; }
+  .ee-pair--feature .ee-pair__cap { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 430px) {
+  .ee-hero__cta { flex-direction: column; align-items: stretch; }
+  .ee-pair__frames { grid-template-columns: 1fr; }
+  .ee-pair__frame img { aspect-ratio: 3/2; }
+}

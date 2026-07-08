@@ -1,0 +1,383 @@
+/* ============================================================
+   Absolute Comfort Spa & Pool — BESPOKE stylesheet (one-of-a-kind).
+   Loads AFTER shared/foundation.css. Every bit of visible design —
+   chrome, hero, sections, buttons, footer — is built from scratch here.
+
+   Direction: "warm desert evening, premium." A high-ticket spa/pool
+   dealer with 20 years behind it. Deep aubergine-plum and warm copper
+   over soft desert sand and a plum-black ink. A high-contrast display
+   serif (Prata) over a clean grotesque (Barlow). Signature motif: an
+   angled clip-path hero divider, a uniform three-line product grid,
+   and one hard flat plum color-block band. Prefix: acs-.
+   ============================================================ */
+
+:root {
+  --font-display: "Prata", Georgia, "Times New Roman", serif;
+  --font-body:    "Barlow", system-ui, -apple-system, sans-serif;
+
+  /* --- palette (OKLCH — the ONLY place raw oklch() appears) --- */
+  --sand:      oklch(0.966 0.012 78);   /* warm desert sand — page base */
+  --sand-2:    oklch(0.940 0.018 74);   /* secondary warm surface */
+  --cream:     oklch(0.988 0.008 82);   /* card surface, warm near-white */
+  --ink:       oklch(0.205 0.030 340);  /* plum-black — ink / dark chrome */
+  --muted:     oklch(0.442 0.026 342);  /* muted body text on light */
+  --line:      oklch(0.884 0.018 76);   /* warm hairline */
+
+  --plum:      oklch(0.420 0.100 340);  /* PRIMARY accent — deep aubergine */
+  --plum-deep: oklch(0.318 0.086 342);  /* darker plum — hovers */
+  --plum-hi:   oklch(0.560 0.110 338);  /* brighter plum — accent on dark */
+
+  --copper:    oklch(0.660 0.120 56);   /* warm copper — SECONDARY accent (non-text glints) */
+  --copper-ink:oklch(0.470 0.108 52);   /* deeper copper — copper *text* on light */
+
+  --on-plum:   oklch(0.984 0.010 82);   /* warm near-white on plum/ink */
+  --muted-d:   oklch(0.808 0.030 66);   /* muted warm text on plum/ink */
+
+  --bg: var(--sand);
+  --maxw: 1180px;
+  --radius: 12px;
+  --radius-sm: 7px;
+  --sp: clamp(3.5rem, 7.5vw, 6.75rem);
+  --edge: color-mix(in oklch, var(--on-plum) 16%, transparent);   /* hairline on dark */
+  --shadow: 0 30px 60px -38px color-mix(in oklch, var(--ink) 70%, transparent);
+  --shadow-sm: 0 14px 32px -22px color-mix(in oklch, var(--ink) 60%, transparent);
+}
+
+/* ---- base type ------------------------------------------- */
+body { background: var(--sand); color: var(--ink); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400;
+  letter-spacing: -0.005em; line-height: 1.12; }
+p { margin: 0 0 1rem; }
+a { text-decoration: none; }
+.container { max-width: var(--maxw); }
+::selection { background: color-mix(in oklch, var(--plum) 24%, var(--sand)); color: var(--ink); }
+
+/* ---- reveal (overrides foundation with a softer ease + delays) --- */
+.js .reveal-init { opacity: 0; transform: translateY(20px);
+  animation: none; transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+.js .is-revealed { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-init { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- eyebrow (Barlow, tracked caps, copper) -------------- */
+.acs-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-body); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.19em; font-size: 0.74rem;
+  color: var(--copper-ink); margin: 0 0 1.05rem;
+}
+.acs-eyebrow::before { content: ""; width: 26px; height: 2px; flex: none;
+  background: var(--copper); }
+.acs-eyebrow--onhero { color: color-mix(in oklch, var(--copper) 55%, var(--on-plum)); }
+.acs-eyebrow--onhero::before { background: color-mix(in oklch, var(--copper) 70%, var(--on-plum)); }
+.acs-eyebrow--onband { color: color-mix(in oklch, var(--copper) 46%, var(--on-plum)); }
+.acs-eyebrow--onband::before { background: color-mix(in oklch, var(--copper) 60%, var(--on-plum)); }
+
+/* ---- buttons (premium rectangles, small radius — not pills) --- */
+.acs-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; line-height: 1;
+  letter-spacing: 0.015em; white-space: nowrap; cursor: pointer;
+  padding: 0.9rem 1.5rem; border-radius: var(--radius-sm); border: 1.5px solid transparent;
+  transition: transform 0.2s ease, background 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease, color 0.25s ease;
+}
+.acs-btn:hover { transform: translateY(-2px); }
+.acs-btn:active { transform: translateY(0); }
+.acs-btn--sm { padding: 0.62rem 1.05rem; font-size: 0.86rem; }
+.acs-btn--lg { padding: 1.02rem 1.85rem; font-size: 1rem; }
+
+/* primary = plum fill, warm-white text (8:1) */
+.acs-btn--primary { background: var(--plum); color: var(--on-plum);
+  box-shadow: 0 14px 30px -18px color-mix(in oklch, var(--plum) 85%, transparent); }
+.acs-btn--primary:hover { background: var(--plum-deep);
+  box-shadow: 0 20px 40px -20px color-mix(in oklch, var(--plum) 90%, transparent); }
+
+/* line = outlined on light */
+.acs-btn--line { background: transparent; color: var(--ink);
+  border-color: color-mix(in oklch, var(--ink) 30%, transparent); }
+.acs-btn--line:hover { background: var(--ink); color: var(--sand); border-color: var(--ink); }
+
+/* onhero = outlined over the hero photo */
+.acs-btn--onhero { color: var(--on-plum);
+  border-color: color-mix(in oklch, var(--on-plum) 58%, transparent);
+  background: color-mix(in oklch, var(--on-plum) 8%, transparent);
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+.acs-btn--onhero:hover { background: color-mix(in oklch, var(--on-plum) 18%, transparent);
+  border-color: var(--on-plum); transform: translateY(-2px); }
+
+/* onband = light button on the plum band */
+.acs-btn--onband { background: var(--on-plum); color: var(--plum);
+  box-shadow: 0 16px 34px -20px color-mix(in oklch, var(--plum-deep) 85%, transparent); }
+.acs-btn--onband:hover { background: color-mix(in oklch, var(--on-plum) 90%, var(--copper)); }
+.acs-btn--bandline { background: color-mix(in oklch, var(--on-plum) 8%, transparent);
+  color: var(--on-plum); border-color: color-mix(in oklch, var(--on-plum) 45%, transparent); }
+.acs-btn--bandline:hover { background: color-mix(in oklch, var(--on-plum) 16%, transparent);
+  border-color: var(--on-plum); }
+
+/* pending "coming soon" gap (foundation appends the label) */
+.acs-btn.is-pending { opacity: 0.6; }
+.acs-btn.is-pending::after { letter-spacing: 0.02em; font-size: 0.82rem; }
+
+/* text link — copper, growing underline */
+.acs-textlink {
+  display: inline-flex; align-items: center; gap: 0.42rem;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; color: var(--copper-ink);
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%;
+  padding-bottom: 3px; transition: background-size 0.3s ease, color 0.25s ease; }
+.acs-textlink:hover { background-size: 100% 1.5px; color: var(--plum); }
+.acs-textlink span { transition: transform 0.25s ease; }
+.acs-textlink:hover span { transform: translateX(4px); }
+
+/* confirm tag (unknown facts) — reuses foundation's .tag class name */
+.tag { display: inline-block; vertical-align: middle; margin-left: 0.3rem;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.66rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--copper-ink);
+  background: color-mix(in oklch, var(--copper) 14%, var(--cream));
+  border: 1px solid color-mix(in oklch, var(--copper) 34%, transparent);
+  border-radius: 999px; padding: 0.14rem 0.55rem; }
+
+/* ============================================================
+   HEADER — solid plum-black bar, sticky. Copper growing underline.
+   (Full-bleed transparent hero header is HIGH COUNTRY's move; ours
+   is a solid premium bar the hero sits beneath.)
+   ============================================================ */
+.acs-head { position: sticky; top: 0; z-index: 60; background: var(--ink);
+  border-bottom: 1px solid color-mix(in oklch, var(--on-plum) 8%, transparent);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease; }
+.acs-head.is-scrolled {
+  border-bottom-color: color-mix(in oklch, var(--copper) 50%, transparent);
+  box-shadow: 0 14px 36px -24px color-mix(in oklch, var(--ink) 92%, transparent); }
+.acs-head__in { display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; min-height: 72px; }
+
+.acs-brand { display: inline-flex; align-items: center; gap: 0.7rem; color: var(--on-plum); }
+.acs-brand__mark { width: 32px; height: 32px; flex: none; border-radius: 40% 40% 42% 42% / 46%;
+  background:
+    radial-gradient(circle at 32% 28%, color-mix(in oklch, var(--on-plum) 68%, transparent), transparent 46%),
+    linear-gradient(150deg, var(--copper), var(--plum) 78%);
+  box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--on-plum) 26%, transparent); }
+.acs-brand__txt { display: flex; flex-direction: column; font-family: var(--font-display);
+  font-weight: 400; font-size: 1.06rem; line-height: 1.02; letter-spacing: 0.005em; }
+.acs-brand__txt span { font-family: var(--font-body); font-weight: 500; font-size: 0.63rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: color-mix(in oklch, var(--copper) 52%, var(--on-plum)); margin-top: 4px; }
+
+.acs-nav { display: flex; align-items: center; gap: clamp(1rem, 2vw, 1.85rem); }
+.acs-nav a:not(.acs-btn) { position: relative; font-family: var(--font-body); font-weight: 500;
+  font-size: 0.92rem; letter-spacing: 0.01em; padding: 0.35rem 0;
+  color: color-mix(in oklch, var(--on-plum) 90%, transparent); }
+.acs-nav a:not(.acs-btn)::after { content: ""; position: absolute; left: 0; bottom: -1px;
+  width: 100%; height: 2px; background: var(--copper); transform: scaleX(0);
+  transform-origin: left; transition: transform 0.28s ease; }
+.acs-nav a:not(.acs-btn):hover::after, .acs-nav a:not(.acs-btn):focus-visible::after { transform: scaleX(1); }
+.acs-tel { font-variant-numeric: tabular-nums;
+  color: color-mix(in oklch, var(--copper) 50%, var(--on-plum)) !important; font-weight: 600 !important; }
+
+.acs-navtoggle { display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 44px; height: 44px; padding: 10px; margin-right: -10px; background: none; border: 0; cursor: pointer; }
+.acs-navtoggle span { display: block; width: 24px; height: 2px; border-radius: 2px;
+  background: var(--on-plum); transition: transform 0.3s ease, opacity 0.25s ease; }
+.acs-navtoggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.acs-navtoggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.acs-navtoggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============================================================
+   HERO — warm spa-water photo, plum-ink scrim, angled clip-path
+   divider along the bottom edge (the signature cut).
+   ============================================================ */
+.acs-hero { position: relative; isolation: isolate; overflow: hidden;
+  display: flex; align-items: flex-end; min-height: clamp(560px, 90svh, 840px);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 4.5vw)); }
+.acs-hero__img { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 54%; z-index: -2; }
+.acs-hero::after { content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(76deg, color-mix(in oklch, var(--ink) 84%, transparent) 0%,
+      color-mix(in oklch, var(--ink) 46%, transparent) 44%, transparent 74%),
+    linear-gradient(to top, color-mix(in oklch, var(--ink) 78%, transparent) 0%,
+      transparent 46%); }
+.acs-hero__in { padding-block: clamp(6.5rem, 14vh, 9rem) clamp(4rem, 9vw, 6.5rem); }
+.acs-hero__title { font-family: var(--font-display); color: var(--on-plum);
+  font-size: clamp(2.5rem, 1.5rem + 4.9vw, 4.7rem); line-height: 1.05; letter-spacing: -0.01em;
+  max-width: 17ch; margin: 0 0 1.1rem;
+  text-shadow: 0 2px 30px color-mix(in oklch, var(--ink) 60%, transparent); }
+.acs-hero__lead { color: color-mix(in oklch, var(--on-plum) 92%, transparent);
+  font-size: clamp(1.05rem, 1rem + 0.55vw, 1.28rem); line-height: 1.62; max-width: 52ch;
+  margin: 0 0 1.9rem; text-shadow: 0 1px 16px color-mix(in oklch, var(--ink) 55%, transparent); }
+.acs-hero__cta { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-bottom: 2.3rem; }
+.acs-hero__marks { list-style: none; margin: 0; padding: 1.35rem 0 0; display: flex;
+  flex-wrap: wrap; gap: 0.55rem 1.6rem; border-top: 1px solid var(--edge); }
+.acs-hero__marks li { display: flex; align-items: center; gap: 0.55rem; font-family: var(--font-body);
+  font-weight: 500; font-size: 0.84rem; letter-spacing: 0.02em;
+  color: color-mix(in oklch, var(--on-plum) 88%, transparent); }
+.acs-hero__marks li::before { content: ""; width: 7px; height: 7px; flex: none;
+  border-radius: 50%; background: var(--copper);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--copper) 30%, transparent); }
+
+/* ============================================================
+   LINES — the signature: three product cards, uniform 3-col.
+   ============================================================ */
+.acs-lines { padding-block: var(--sp); }
+.acs-lines__head { max-width: 62ch; margin-bottom: clamp(2.2rem, 5vw, 3.4rem); }
+.acs-lines__head h2 { font-size: clamp(1.95rem, 1.35rem + 2.5vw, 3.05rem); color: var(--ink);
+  margin: 0 0 0.85rem; max-width: 20ch; }
+.acs-lines__intro { color: var(--muted); font-size: clamp(1.02rem, 1rem + 0.3vw, 1.16rem);
+  line-height: 1.66; margin: 0 0 1.4rem; }
+.acs-badges { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.acs-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-body);
+  font-weight: 600; font-size: 0.82rem; letter-spacing: 0.02em;
+  color: var(--copper-ink); background: var(--cream);
+  border: 1px solid color-mix(in oklch, var(--copper) 32%, transparent);
+  border-radius: 999px; padding: 0.42rem 0.95rem; }
+.acs-badge--years { color: var(--on-plum); background: var(--plum);
+  border-color: transparent; }
+.acs-badge--years b { font-family: var(--font-display); font-size: 1.02rem; line-height: 1;
+  color: color-mix(in oklch, var(--copper) 62%, var(--on-plum)); }
+
+.acs-lines__grid { display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.3rem, 2.6vw, 2rem); }
+.acs-line { display: flex; flex-direction: column; background: var(--cream);
+  border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.acs-line:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.acs-line__media { position: relative; overflow: hidden; }
+.acs-line__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  transition: transform 0.85s cubic-bezier(0.2,0.6,0.2,1); }
+.acs-line:hover .acs-line__media img { transform: scale(1.05); }
+.acs-line__media::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, color-mix(in oklch, var(--ink) 34%, transparent), transparent 46%); }
+.acs-line__body { padding: clamp(1.3rem, 2.4vw, 1.75rem); display: flex; flex-direction: column; flex: 1; }
+.acs-line__body h3 { font-size: 1.5rem; color: var(--ink); margin: 0 0 0.6rem; }
+.acs-line__body > p { color: var(--muted); line-height: 1.62; margin: 0 0 1.15rem; }
+.acs-line__pts { list-style: none; margin: auto 0 0; padding: 1rem 0 0;
+  border-top: 1px solid var(--line); display: grid; gap: 0.5rem; }
+.acs-line__pts li { position: relative; padding-left: 1.35rem; font-family: var(--font-body);
+  font-size: 0.9rem; color: var(--ink); }
+.acs-line__pts li::before { content: ""; position: absolute; left: 0; top: 0.5em;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: color-mix(in oklch, var(--copper) 85%, var(--plum)); }
+
+/* ============================================================
+   BAND — one hard, flat plum color block (the section break).
+   Flat fill, no gradient (that's HIGH COUNTRY's radial move).
+   ============================================================ */
+.acs-band { background: var(--plum); color: var(--on-plum);
+  border-top: 3px solid var(--copper);
+  border-bottom: 1px solid color-mix(in oklch, var(--ink) 22%, transparent);
+  padding-block: clamp(3rem, 6.5vw, 5rem); }
+.acs-band__in { display: grid; grid-template-columns: 1.35fr 0.9fr;
+  gap: clamp(1.8rem, 4vw, 3.5rem); align-items: center; }
+.acs-band__lead h2 { color: var(--on-plum); font-size: clamp(1.9rem, 1.4rem + 2.2vw, 2.9rem);
+  margin: 0 0 0.85rem; max-width: 20ch; }
+.acs-band__lead p { color: color-mix(in oklch, var(--on-plum) 86%, transparent);
+  line-height: 1.68; margin: 0; max-width: 52ch; }
+.acs-band__cta { display: flex; flex-direction: column; gap: 0.8rem; align-items: stretch; }
+
+/* ============================================================
+   STORY — 20-year editorial spread. Portrait image + stamp.
+   ============================================================ */
+.acs-story { padding-block: var(--sp); overflow-x: clip; }
+.acs-story__grid { display: grid; grid-template-columns: 0.88fr 1.12fr;
+  gap: clamp(1.8rem, 5vw, 4rem); align-items: center; }
+.acs-story__media { position: relative; }
+.acs-story__media img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
+  border-radius: var(--radius); box-shadow: var(--shadow); }
+.acs-story__stamp { position: absolute; z-index: 2; top: 1.1rem; left: -0.7rem;
+  background: var(--plum); color: var(--on-plum); border-top: 2px solid var(--copper);
+  padding: 0.85rem 1.15rem; text-align: center; line-height: 0.9; border-radius: 2px;
+  box-shadow: var(--shadow-sm); }
+.acs-story__stamp b { display: block; font-family: var(--font-display); font-size: 2.1rem;
+  color: var(--on-plum); }
+.acs-story__stamp span { font-family: var(--font-body); font-weight: 600; font-size: 0.6rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-d); }
+.acs-story__body h2 { font-size: clamp(1.95rem, 1.4rem + 2.3vw, 3rem); color: var(--ink); margin: 0 0 0.9rem; max-width: 18ch; }
+.acs-story__body p { color: var(--muted); line-height: 1.72; margin: 0 0 1rem; max-width: 52ch; }
+.acs-story__marks { list-style: none; margin: 1.4rem 0 0; padding: 0; display: flex;
+  flex-wrap: wrap; gap: 0.6rem 1.5rem; }
+.acs-story__marks li { display: flex; align-items: center; gap: 0.55rem; font-family: var(--font-body);
+  font-weight: 600; font-size: 0.86rem; color: var(--ink); }
+.acs-story__marks li::before { content: ""; width: 7px; height: 7px; flex: none;
+  border-radius: 50%; background: var(--copper); }
+
+/* ============================================================
+   VISIT — uniform 3-col contact grid.
+   ============================================================ */
+.acs-visit { background: var(--sand-2); border-top: 1px solid var(--line);
+  padding-block: clamp(3rem, 6vw, 5rem); }
+.acs-visit__head { margin-bottom: clamp(1.8rem, 4vw, 2.7rem); }
+.acs-visit__head h2 { font-size: clamp(1.8rem, 1.4rem + 1.8vw, 2.6rem); color: var(--ink); margin: 0; }
+.acs-visit__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 4vw, 3rem); }
+.acs-visit__col h3 { font-family: var(--font-body); font-weight: 700; font-size: 0.78rem;
+  letter-spacing: 0.13em; text-transform: uppercase; color: var(--copper-ink); margin: 0 0 0.9rem;
+  padding-bottom: 0.7rem; border-bottom: 1px solid color-mix(in oklch, var(--ink) 12%, transparent); }
+.acs-visit__col p { color: var(--ink); margin: 0 0 0.5rem; font-size: 0.98rem; }
+.acs-visit__soft { color: var(--muted) !important; font-size: 0.9rem !important; line-height: 1.6; }
+.acs-visit__col .acs-btn { margin-top: 0.75rem; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.acs-foot { background: var(--ink); color: color-mix(in oklch, var(--on-plum) 82%, transparent);
+  border-top: 3px solid var(--copper); padding-block: clamp(3rem, 6vw, 4.5rem) 1.4rem; }
+.acs-foot__grid { display: grid; grid-template-columns: 1.6fr 1fr 1.2fr; gap: clamp(1.8rem, 4vw, 3.5rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem); border-bottom: 1px solid var(--edge); }
+.acs-brand--foot { color: var(--on-plum); margin-bottom: 1rem; }
+.acs-foot__tag { color: color-mix(in oklch, var(--on-plum) 68%, transparent); line-height: 1.65;
+  max-width: 42ch; font-size: 0.96rem; }
+.acs-foot__col h4 { font-family: var(--font-body); font-weight: 700; font-size: 0.76rem;
+  letter-spacing: 0.13em; text-transform: uppercase;
+  color: color-mix(in oklch, var(--copper) 52%, var(--on-plum)); margin: 0 0 1rem; }
+.acs-foot__col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+.acs-foot__col a, .acs-foot__col p { color: color-mix(in oklch, var(--on-plum) 80%, transparent);
+  margin: 0 0 0.55rem; font-size: 0.96rem; line-height: 1.5; }
+.acs-foot__col a:hover { color: var(--on-plum); text-decoration: underline; text-underline-offset: 3px; }
+.acs-foot__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.6rem;
+  padding-top: 1.4rem; font-size: 0.82rem; color: color-mix(in oklch, var(--on-plum) 56%, transparent); }
+
+/* ---- concept-demo notice (restyled; text kept verbatim) --- */
+.demo-notice { background: var(--ink); color: color-mix(in oklch, var(--on-plum) 60%, transparent);
+  border-top: 1px solid var(--edge); font-family: var(--font-body); font-size: 0.8rem;
+  letter-spacing: 0.01em; text-align: center; padding: 0.85rem 1.2rem; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .acs-navtoggle { display: inline-flex; }
+  .acs-nav { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column;
+    align-items: stretch; gap: 0; background: var(--ink);
+    border-bottom: 1px solid var(--edge); padding: 0.4rem clamp(1.1rem, 4vw, 2rem) 1.15rem;
+    box-shadow: 0 26px 40px -24px color-mix(in oklch, var(--ink) 92%, transparent);
+    clip-path: inset(0 0 100% 0); pointer-events: none; transition: clip-path 0.3s ease; }
+  .acs-nav.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; }
+  .acs-nav a:not(.acs-btn) { padding: 0.9rem 0; border-bottom: 1px solid var(--edge); font-size: 1rem; }
+  .acs-nav a:not(.acs-btn)::after { display: none; }
+  .acs-nav .acs-btn { margin-top: 0.9rem; justify-content: center; }
+  .acs-lines__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  .acs-lines__grid { grid-template-columns: 1fr; max-width: 460px; }
+  .acs-band__in { grid-template-columns: 1fr; }
+  .acs-story__grid { grid-template-columns: 1fr; gap: clamp(2rem, 8vw, 3rem); }
+  .acs-story__media { max-width: 420px; }
+  .acs-visit__grid { grid-template-columns: 1fr; }
+  .acs-foot__grid { grid-template-columns: 1fr 1fr; }
+  .acs-foot__brand { grid-column: 1 / -1; }
+}
+@media (max-width: 430px) {
+  .acs-hero { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 24px)); }
+  .acs-hero__cta { flex-direction: column; align-items: stretch; }
+  .acs-hero__cta .acs-btn { width: 100%; }
+  .acs-foot__grid { grid-template-columns: 1fr; }
+  .acs-story__stamp { left: 0; }
+}
+
+/* ---- reduced motion -------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .acs-btn, .acs-line, .acs-line__media img, .acs-textlink, .acs-textlink span,
+  .acs-nav a:not(.acs-btn)::after { transition: none !important; }
+  .acs-btn:hover, .acs-line:hover, .acs-line:hover .acs-line__media img { transform: none !important; }
+}

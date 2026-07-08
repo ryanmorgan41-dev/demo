@@ -1,0 +1,427 @@
+/* ============================================================
+   Panadería Alicia's — BESPOKE stylesheet (one-of-a-kind).
+   Loads AFTER shared/foundation.css. Every bit of visible chrome,
+   hero, sections, buttons and footer is designed from scratch here.
+
+   Direction: "warm neighborhood panadería." Golden-masa cream paper,
+   deep cocoa ink and a festive rosa-mexicana pink, with a marigold
+   and soft verde for papel-picado warmth. A high-contrast Fraunces
+   display over a friendly Mulish body.
+   Signature motifs: a framed photo-CARD hero on a pastel panel (no
+   dark full-bleed), a horizontal scroll-snap "de la vitrina" filmstrip,
+   and a pure-CSS papel-picado bunting as the section break. No card
+   grid, no numbered steps, no stat bar.
+   ============================================================ */
+
+:root {
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body:    "Mulish", system-ui, -apple-system, sans-serif;
+
+  /* --- palette (OKLCH) — only place raw oklch() is allowed --- */
+  --masa:     oklch(0.966 0.028 84);   /* golden-masa cream — page base */
+  --masa-2:   oklch(0.945 0.038 80);   /* secondary warm surface */
+  --masa-3:   oklch(0.912 0.050 76);   /* deeper warm pastel panel */
+  --cocoa:    oklch(0.270 0.035 52);   /* deep cocoa ink — text + dark panels */
+  --cocoa-2:  oklch(0.360 0.045 48);   /* softer brown */
+  --muted:    oklch(0.470 0.030 55);   /* body-muted on light */
+  --muted-d:  oklch(0.820 0.030 82);   /* muted on dark */
+  --line:     oklch(0.860 0.030 76);   /* hairline on light */
+
+  --rosa:     oklch(0.620 0.170 5);    /* rosa mexicana — bright accent (LARGE text only) */
+  --rosa-deep:oklch(0.500 0.160 8);    /* deep rosa — button fill + small accent text */
+  --rosa-br:  oklch(0.720 0.150 8);    /* bright rosa — papel picado / glow */
+  --marigold: oklch(0.800 0.135 72);   /* cempasúchil marigold — secondary accent */
+  --verde:    oklch(0.680 0.100 195);  /* soft festive teal — papel picado */
+  --on-rosa:  oklch(0.990 0.010 85);   /* near-white on rosa */
+
+  /* align foundation plumbing (focus ring, skip-link) to this palette */
+  --bg: var(--masa);
+  --ink: var(--cocoa);
+  --accent: var(--rosa-deep);
+  --on-accent: var(--on-rosa);
+  --maxw: 1180px;
+  --radius: 16px;
+  --sp: clamp(3.5rem, 7.5vw, 6.75rem);   /* section rhythm */
+  --edge: color-mix(in oklch, var(--masa) 16%, transparent);  /* hairline on dark */
+}
+
+/* ---- base type ------------------------------------------- */
+body { background: var(--masa); color: var(--cocoa); }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600;
+  letter-spacing: -0.01em; line-height: 1.04; }
+h1 em, h2 em { font-style: italic; font-weight: 500; color: var(--rosa); }
+p { margin: 0 0 1rem; }
+a { text-decoration: none; }
+::selection { background: color-mix(in oklch, var(--rosa) 26%, var(--masa)); color: var(--cocoa); }
+
+.pa-lead { font-size: clamp(1.06rem, 0.98rem + 0.55vw, 1.28rem); line-height: 1.6;
+  color: var(--muted); max-width: 48ch; }
+.container { max-width: var(--maxw); }
+
+/* ---- reveal: scroll-triggered fade-up (overrides foundation) --- */
+.js .reveal-init { opacity: 0; transform: translateY(20px);
+  animation: none; transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+.js .is-revealed { opacity: 1; transform: none; }
+.js [data-reveal].d1 { transition-delay: 0.09s; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-init { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- eyebrow --------------------------------------------- */
+.pa-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-body); font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  font-size: 0.74rem; color: var(--rosa-deep); margin: 0 0 1rem;
+}
+.pa-eyebrow::before { content: ""; width: 22px; height: 3px; border-radius: 2px;
+  background: currentColor; }
+.pa-eyebrow--onrosa { color: color-mix(in oklch, var(--on-rosa) 90%, var(--marigold)); }
+
+/* ---- buttons --------------------------------------------- */
+.pa-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.55ch;
+  font-family: var(--font-body); font-weight: 800; font-size: 0.9rem;
+  letter-spacing: 0.01em; line-height: 1; padding: 0.9rem 1.5rem;
+  border-radius: 999px; border: 2px solid transparent; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease, box-shadow 0.2s ease;
+}
+.pa-btn--primary { background: var(--rosa-deep); color: var(--on-rosa);
+  box-shadow: 0 10px 24px -14px color-mix(in oklch, var(--rosa-deep) 85%, transparent); }
+.pa-btn--primary:hover { background: color-mix(in oklch, var(--rosa-deep) 88%, black);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -14px color-mix(in oklch, var(--rosa-deep) 90%, transparent); }
+
+.pa-btn--line { background: transparent; color: var(--cocoa);
+  border-color: color-mix(in oklch, var(--cocoa) 30%, transparent); }
+.pa-btn--line:hover { background: var(--cocoa); color: var(--masa); border-color: var(--cocoa); }
+
+.pa-btn--cream { background: var(--masa); color: var(--rosa-deep); }
+.pa-btn--cream:hover { background: color-mix(in oklch, var(--masa) 90%, white);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -16px color-mix(in oklch, var(--cocoa) 60%, transparent); }
+
+.pa-btn--ghost { background: transparent; color: var(--on-rosa);
+  border-color: color-mix(in oklch, var(--on-rosa) 55%, transparent); }
+.pa-btn--ghost:hover { background: color-mix(in oklch, var(--on-rosa) 16%, transparent);
+  border-color: var(--on-rosa); }
+
+/* pending "coming soon" gap (foundation appends the label) */
+.pa-btn.is-pending { opacity: 0.6; }
+.pa-btn.is-pending::after { letter-spacing: 0; font-size: 0.8rem; }
+
+/* text-link CTA */
+.pa-textcta { display: inline-flex; align-items: center; gap: 0.45ch;
+  font-family: var(--font-body); font-weight: 800; font-size: 0.86rem;
+  color: var(--rosa-deep); padding-bottom: 2px;
+  border-bottom: 2px solid color-mix(in oklch, var(--rosa-deep) 40%, transparent);
+  transition: border-color 0.2s ease, gap 0.2s ease; }
+.pa-textcta:hover { border-color: var(--rosa-deep); gap: 0.8ch; }
+.pa-link { color: var(--rosa-deep); font-weight: 700;
+  border-bottom: 1px solid color-mix(in oklch, var(--rosa-deep) 35%, transparent); }
+.pa-link:hover { border-bottom-color: var(--rosa-deep); }
+
+/* confirm tag (hours not verified) */
+.tag { display: inline-block; vertical-align: middle;
+  font-family: var(--font-body); font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.12em; font-size: 0.6rem; line-height: 1;
+  padding: 0.32em 0.6em; border-radius: 999px; margin-left: 0.35rem;
+  background: color-mix(in oklch, var(--marigold) 30%, var(--masa));
+  color: var(--cocoa-2); }
+
+/* ============================================================
+   HEADER — warm cream bar, flips to a slightly deeper tint + shadow
+   on scroll. Rounded concha glyph, growing-underline nav.
+   ============================================================ */
+.pa-head { position: sticky; top: 0; z-index: 60;
+  background: color-mix(in oklch, var(--masa) 88%, transparent);
+  backdrop-filter: saturate(1.1) blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+.pa-head.is-scrolled { background: var(--masa);
+  border-bottom-color: var(--line);
+  box-shadow: 0 12px 30px -24px color-mix(in oklch, var(--cocoa) 80%, transparent); }
+.pa-head__in { display: flex; align-items: center; justify-content: space-between;
+  gap: 1.25rem; padding-block: clamp(0.7rem, 1.4vw, 1rem); position: relative; }
+
+.pa-brand { display: inline-flex; align-items: center; gap: 0.65rem; color: var(--cocoa); }
+.pa-brand__glyph { width: 30px; height: 30px; flex: none; border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, var(--marigold) 0 30%, transparent 31%),
+    conic-gradient(from 0deg, var(--rosa) 0 25%, var(--rosa-br) 0 50%,
+      var(--rosa) 0 75%, var(--rosa-br) 0 100%);
+  box-shadow: inset 0 0 0 2px color-mix(in oklch, var(--cocoa) 22%, transparent); }
+.pa-brand__txt { display: grid; line-height: 1; }
+.pa-brand__txt b { font-family: var(--font-display); font-weight: 600;
+  font-size: 1.22rem; letter-spacing: -0.01em; }
+.pa-brand__txt span { font-family: var(--font-body); font-weight: 700;
+  font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--rosa-deep); margin-top: 0.2rem; }
+
+.pa-nav { display: flex; align-items: center; gap: clamp(1.1rem, 2.2vw, 2rem); }
+.pa-nav a { font-family: var(--font-body); font-weight: 700; font-size: 0.92rem;
+  color: var(--cocoa); position: relative; padding: 0.3rem 0; }
+.pa-nav a:not(.pa-btn)::after { content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 2px; border-radius: 2px; background: var(--rosa);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+.pa-nav a:not(.pa-btn):hover::after, .pa-nav a:not(.pa-btn):focus-visible::after { transform: scaleX(1); }
+.pa-nav .pa-btn { padding: 0.6rem 1.1rem; font-size: 0.82rem; }
+.pa-navtoggle { display: none; }
+
+/* ============================================================
+   HERO — split: warm pastel panel with copy + a framed photo-CARD.
+   Deliberately NOT a dark full-bleed gradient.
+   ============================================================ */
+.pa-hero { position: relative; overflow-x: clip;
+  padding-block: clamp(2.5rem, 6vw, 5rem) var(--sp);
+  background:
+    radial-gradient(120% 90% at 88% -10%, color-mix(in oklch, var(--rosa) 12%, transparent), transparent 55%),
+    radial-gradient(90% 70% at -8% 6%, color-mix(in oklch, var(--marigold) 16%, transparent), transparent 55%),
+    var(--masa); }
+.pa-hero__grid { display: grid; grid-template-columns: 1.02fr 0.98fr;
+  gap: clamp(2rem, 5vw, 4.25rem); align-items: center; }
+.pa-hero h1 { font-size: clamp(2.5rem, 6vw, 4.4rem); margin: 0 0 1.1rem;
+  max-width: 15ch; }
+.pa-hero__lead { color: var(--muted); font-size: clamp(1.06rem, 0.98rem + 0.6vw, 1.3rem);
+  line-height: 1.6; max-width: 46ch; margin: 0 0 1.9rem; }
+.pa-hero__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2.4rem; }
+
+.pa-cred { display: flex; flex-wrap: wrap; gap: 0.9rem 1.4rem; list-style: none;
+  margin: 0; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+.pa-cred li { display: grid; }
+.pa-cred b { font-family: var(--font-display); font-weight: 600; font-size: 1.55rem;
+  color: var(--rosa-deep); line-height: 1; }
+.pa-cred span { font-family: var(--font-body); font-weight: 600; font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin-top: 0.25rem; }
+
+/* framed photo card on a pastel panel */
+.pa-hero__card { position: relative; justify-self: center; width: 100%; max-width: 520px; }
+.pa-photocard { position: relative; margin: 0; padding: 0.8rem 0.8rem 3.4rem;
+  background: var(--masa-3); border-radius: calc(var(--radius) + 8px);
+  box-shadow: 0 34px 60px -34px color-mix(in oklch, var(--cocoa) 65%, transparent);
+  border: 1px solid color-mix(in oklch, var(--cocoa) 8%, transparent); }
+.pa-photocard::before { /* scalloped pan-dulce top edge of the mat */
+  content: ""; position: absolute; top: 0.8rem; left: 0.8rem; right: 0.8rem; height: 14px;
+  background: repeating-radial-gradient(circle 8px at 8px 0,
+    color-mix(in oklch, var(--rosa) 30%, var(--masa-3)) 0 96%, transparent 97%);
+  background-size: 16px 14px; background-repeat: repeat-x; opacity: 0.55; }
+.pa-photocard img { width: 100%; aspect-ratio: 16/11; object-fit: cover;
+  border-radius: var(--radius); }
+.pa-photocard figcaption { position: absolute; left: 1.4rem; right: 1.4rem; bottom: 1.25rem;
+  font-family: var(--font-body); font-weight: 700; font-size: 0.82rem;
+  letter-spacing: 0.02em; color: var(--cocoa-2); text-align: center; }
+.pa-photocard--tall img { aspect-ratio: 3/4; }
+.pa-photocard__tab { position: absolute; top: -0.9rem; right: 1.1rem; z-index: 2;
+  font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 1.05rem;
+  color: var(--on-rosa); background: var(--rosa-deep);
+  padding: 0.4rem 1.05rem; border-radius: 999px; transform: rotate(-4deg);
+  box-shadow: 0 10px 22px -12px color-mix(in oklch, var(--rosa-deep) 80%, transparent); }
+
+/* ============================================================
+   VITRINA — signature horizontal scroll-snap filmstrip.
+   ============================================================ */
+.pa-vitrina { padding-block: var(--sp) clamp(2.5rem, 5vw, 4rem);
+  background: var(--masa-2); }
+.pa-vitrina__head { margin-bottom: clamp(1.75rem, 4vw, 2.75rem); }
+.pa-vitrina__head h2 { font-size: clamp(2.1rem, 5vw, 3.4rem); margin: 0 0 0.75rem; }
+
+.pa-strip { list-style: none; margin: 0; padding: 0.5rem clamp(1.1rem, 4vw, 2rem) 1.5rem;
+  display: flex; gap: clamp(1rem, 2vw, 1.5rem);
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--rosa) 55%, var(--masa-2)) transparent; }
+.pa-strip::-webkit-scrollbar { height: 8px; }
+.pa-strip::-webkit-scrollbar-thumb { background: color-mix(in oklch, var(--rosa) 45%, var(--masa-2));
+  border-radius: 999px; }
+.pa-strip__item { scroll-snap-align: start; flex: 0 0 clamp(240px, 74vw, 320px);
+  background: var(--masa); border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 36px -28px color-mix(in oklch, var(--cocoa) 60%, transparent);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.pa-strip__item:hover { transform: translateY(-4px);
+  box-shadow: 0 26px 44px -26px color-mix(in oklch, var(--cocoa) 62%, transparent); }
+.pa-strip__media { aspect-ratio: 5/4; overflow: hidden; }
+.pa-strip__media img { width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.2,0.6,0.2,1); }
+.pa-strip__item:hover .pa-strip__media img { transform: scale(1.05); }
+.pa-strip__cap { padding: 1.05rem 1.15rem 1.3rem; }
+.pa-strip__cap h3 { font-size: 1.3rem; margin: 0 0 0.35rem; color: var(--cocoa); }
+.pa-strip__cap p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+.pa-strip__hint { text-align: right; margin: 0;
+  padding: 0 clamp(1.1rem, 4vw, 2rem); max-width: var(--maxw);
+  margin-inline: auto; font-family: var(--font-body); font-weight: 700;
+  font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--rosa-deep); }
+
+/* ============================================================
+   PAPEL PICADO — pure-CSS bunting section break. Cocoa "sky",
+   a hanging string, colored flags with cut-out dots + scalloped
+   pennant bottoms. No image, no text.
+   ============================================================ */
+.pa-papel { position: relative; overflow: hidden;
+  height: clamp(66px, 10vw, 108px); background: var(--cocoa); }
+.pa-papel__string { position: absolute; top: 14px; left: 0; right: 0; height: 2px;
+  background: color-mix(in oklch, var(--masa) 45%, transparent); }
+.pa-papel__flags { position: absolute; top: 15px; left: 0; right: 0; bottom: 0;
+  background:
+    /* cut-out holes: cocoa dots read as punched paper */
+    radial-gradient(circle 3px, var(--cocoa) 97%, transparent) 11px 12px / 22px 22px,
+    radial-gradient(circle 3px, var(--cocoa) 97%, transparent) 0 0 / 22px 22px,
+    /* flag colors with thin cocoa gaps between pennants */
+    repeating-linear-gradient(90deg,
+      var(--rosa)     0 48px,  var(--cocoa) 48px 56px,
+      var(--marigold) 56px 104px, var(--cocoa) 104px 112px,
+      var(--verde)    112px 160px, var(--cocoa) 160px 168px,
+      var(--rosa-br)  168px 216px, var(--cocoa) 216px 224px);
+  /* scalloped pennant bottom (rounded points hanging down) */
+  -webkit-mask:
+    linear-gradient(#000 0 0) top / 100% calc(100% - 18px) no-repeat,
+    radial-gradient(circle 11px at 50% 0, #000 96%, transparent) bottom / 28px 18px repeat-x;
+          mask:
+    linear-gradient(#000 0 0) top / 100% calc(100% - 18px) no-repeat,
+    radial-gradient(circle 11px at 50% 0, #000 96%, transparent) bottom / 28px 18px repeat-x; }
+
+/* ============================================================
+   HISTORIA — editorial spread: framed tall photo + statement.
+   ============================================================ */
+.pa-historia { padding-block: var(--sp); overflow-x: clip; }
+.pa-historia__grid { display: grid; grid-template-columns: 0.85fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.pa-historia__media { position: relative; max-width: 420px; }
+.pa-historia__media .pa-photocard { padding: 0.7rem; }
+.pa-stamp { position: absolute; z-index: 2; right: -0.6rem; bottom: -0.8rem;
+  background: var(--rosa-deep); color: var(--on-rosa);
+  width: clamp(92px, 22vw, 118px); height: clamp(92px, 22vw, 118px);
+  border-radius: 50%; display: grid; place-content: center; text-align: center;
+  box-shadow: 0 18px 34px -18px color-mix(in oklch, var(--rosa-deep) 80%, transparent);
+  border: 3px solid var(--masa); }
+.pa-stamp b { font-family: var(--font-display); font-weight: 600; font-size: 1.9rem; line-height: 0.9; }
+.pa-stamp span { font-family: var(--font-body); font-weight: 700; font-size: 0.58rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: color-mix(in oklch, var(--on-rosa) 85%, var(--marigold)); margin-top: 0.2rem; }
+.pa-historia__body h2 { font-size: clamp(2rem, 4.6vw, 3.3rem); margin: 0 0 1.15rem; max-width: 16ch; }
+.pa-historia__body p { color: var(--muted); max-width: 52ch; line-height: 1.7; font-size: 1.05rem; }
+.pa-notes { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; margin-top: 1.6rem;
+  padding: 0; list-style: none; }
+.pa-notes li { display: flex; align-items: center; gap: 0.55rem;
+  font-family: var(--font-body); font-weight: 700; color: var(--cocoa); font-size: 0.92rem; }
+.pa-notes li::before { content: ""; width: 9px; height: 9px; flex: none; border-radius: 50%;
+  background: var(--rosa); }
+
+/* ============================================================
+   CAKE — custom-cake order callout with the primary CTA. Rosa panel.
+   ============================================================ */
+.pa-cake { padding-block: var(--sp); }
+.pa-cake__panel { position: relative; overflow: hidden;
+  display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: stretch;
+  background: var(--rosa-deep); color: var(--on-rosa);
+  border-radius: calc(var(--radius) + 10px);
+  box-shadow: 0 40px 70px -40px color-mix(in oklch, var(--rosa-deep) 85%, transparent); }
+.pa-cake__panel::before { content: ""; position: absolute; z-index: 0; inset: 0;
+  background: radial-gradient(90% 120% at 100% 0%,
+    color-mix(in oklch, var(--marigold) 34%, transparent), transparent 55%); }
+.pa-cake__media { position: relative; min-height: clamp(240px, 34vw, 380px); }
+.pa-cake__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pa-cake__media::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 55%, var(--rosa-deep) 100%),
+    linear-gradient(to top, color-mix(in oklch, var(--rosa-deep) 45%, transparent), transparent 40%); }
+.pa-cake__body { position: relative; z-index: 1;
+  padding: clamp(2rem, 4.5vw, 3.75rem); display: flex; flex-direction: column; justify-content: center; }
+.pa-cake__body h2 { color: var(--on-rosa); font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+  margin: 0 0 1rem; max-width: 15ch; }
+.pa-cake__body h2 em { color: color-mix(in oklch, var(--on-rosa) 80%, var(--marigold)); }
+.pa-cake__body > p { color: color-mix(in oklch, var(--on-rosa) 88%, var(--rosa-deep));
+  max-width: 46ch; }
+.pa-cake__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.4rem 0 0.9rem; }
+.pa-cake__note { font-size: 0.86rem; color: color-mix(in oklch, var(--on-rosa) 78%, var(--rosa-deep)); margin: 0; }
+
+/* ============================================================
+   VISIT — location / contact / hours.
+   ============================================================ */
+.pa-visit { padding-block: 0 var(--sp); }
+.pa-visit__grid { display: grid; grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(1.75rem, 4vw, 3.5rem); align-items: start; }
+.pa-visit__intro h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); margin: 0 0 0.75rem; }
+.pa-visit__cards { list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.9rem, 2vw, 1.25rem); }
+.pa-visit__card { background: var(--masa-2); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1.4rem 1.35rem; }
+.pa-visit__card h3 { font-size: 1.15rem; margin: 0 0 0.7rem; color: var(--cocoa); }
+.pa-visit__card p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; margin: 0 0 0.6rem; }
+.pa-visit__card p:last-child { margin-bottom: 0; }
+.pa-visit__fine { font-size: 0.82rem; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.pa-foot { background: var(--cocoa); color: var(--masa);
+  border-top: 4px solid var(--rosa); padding-block: clamp(3rem, 6vw, 4.5rem) 2rem; }
+.pa-foot__grid { display: grid; grid-template-columns: 1.5fr 1fr 1.2fr;
+  gap: clamp(2rem, 5vw, 4rem); padding-bottom: 2.5rem; border-bottom: 1px solid var(--edge); }
+.pa-brand--foot { color: var(--masa); margin-bottom: 1rem; }
+.pa-brand--foot .pa-brand__txt span { color: var(--marigold); }
+.pa-foot__tag { color: var(--muted-d); max-width: 34ch; font-size: 0.96rem; }
+.pa-foot h4 { font-family: var(--font-body); font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.14em; font-size: 0.74rem; color: var(--marigold); margin: 0 0 1.05rem; }
+.pa-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.pa-foot a { color: color-mix(in oklch, var(--masa) 88%, var(--cocoa)); }
+.pa-foot ul a:hover, .pa-foot__contact a:hover { color: var(--marigold); }
+.pa-foot__contact p { color: var(--muted-d); font-size: 0.95rem; margin: 0 0 0.55rem; }
+.pa-foot__contact a { color: var(--masa); font-weight: 700; }
+.pa-foot__bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
+  gap: 0.6rem; padding-top: 1.75rem; font-size: 0.82rem; color: var(--muted-d); }
+.pa-foot__bottom b { color: var(--masa); font-weight: 700; }
+
+/* required concept-demo notice — restyled to fit, text unchanged */
+.pa-demo.demo-notice { background: var(--cocoa);
+  color: color-mix(in oklch, var(--muted-d) 92%, var(--masa));
+  border-top: 1px solid var(--edge);
+  font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.01em;
+  padding: 1rem 1.25rem; text-align: center; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .pa-navtoggle { display: inline-flex; flex-direction: column; justify-content: center;
+    gap: 5px; width: 46px; height: 42px; padding: 0 10px; background: transparent;
+    border: 0; cursor: pointer; }
+  .pa-navtoggle span { display: block; height: 2px; width: 100%; border-radius: 2px;
+    background: var(--cocoa); transition: transform 0.25s ease, opacity 0.2s ease; }
+  .pa-navtoggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .pa-navtoggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .pa-navtoggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .pa-nav { position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--masa); border-top: 1px solid var(--line);
+    padding: 0.5rem clamp(1.1rem, 4vw, 2rem) 1.25rem;
+    box-shadow: 0 26px 40px -24px color-mix(in oklch, var(--cocoa) 55%, transparent);
+    clip-path: inset(0 0 100% 0); pointer-events: none; transition: clip-path 0.3s ease; }
+  .pa-nav.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; }
+  .pa-nav a { padding: 0.9rem 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
+  .pa-nav a:not(.pa-btn)::after { display: none; }
+  .pa-nav .pa-btn { margin-top: 1rem; }
+
+  .pa-hero__grid { grid-template-columns: 1fr; }
+  .pa-hero__card { order: -1; max-width: 460px; }
+  .pa-cake__panel { grid-template-columns: 1fr; }
+  .pa-cake__media { min-height: clamp(200px, 48vw, 300px); }
+  .pa-cake__media::after { background: linear-gradient(to top,
+    color-mix(in oklch, var(--rosa-deep) 55%, transparent), transparent 55%); }
+  .pa-visit__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .pa-historia__grid { grid-template-columns: 1fr; gap: clamp(2.5rem, 8vw, 3.25rem); }
+  .pa-historia__media { max-width: 380px; }
+  .pa-visit__cards { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 460px) {
+  .pa-hero__cta, .pa-cake__cta { flex-direction: column; align-items: stretch; }
+  .pa-hero__cta .pa-btn, .pa-cake__cta .pa-btn { width: 100%; }
+  .pa-cred { gap: 0.9rem 1.1rem; }
+  .pa-cred b { font-size: 1.35rem; }
+}

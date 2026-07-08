@@ -1,0 +1,401 @@
+/* ============================================================
+   Daynes Music — BESPOKE stylesheet (one-of-a-kind).
+   Loads AFTER shared/foundation.css. All chrome, hero, sections,
+   buttons and footer are designed from scratch here.
+
+   Direction: "heritage prestige editorial" — a 164-year family
+   music house. Deep indigo/violet ink against warm cream paper,
+   an aged-brass accent for the gilt of an old nameplate. A high-
+   contrast serif display (DM Serif Display) carries an OVERSIZED
+   "Since 1862" typographic statement; a quiet geometric sans
+   (Jost) does the labels and body. Signature: a DUAL-TRACK
+   Shop/Studio pairing (light card beside a dark card). Section
+   breaks are pure-CSS piano-key and staff-line bands, not images.
+   ============================================================ */
+
+:root {
+  --font-display: "DM Serif Display", Georgia, "Times New Roman", serif;
+  --font-body:    "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* --- palette (OKLCH) — the ONLY place raw oklch() appears --- */
+  --cream:    oklch(0.968 0.012 85);   /* warm cream — page base */
+  --cream-2:  oklch(0.945 0.017 82);   /* secondary warm surface */
+  --cream-3:  oklch(0.914 0.023 80);   /* deeper warm surface */
+  --ink:      oklch(0.270 0.062 285);  /* deep indigo — darkest, dark sections */
+  --indigo:   oklch(0.400 0.090 285);  /* violet-indigo — primary */
+  --indigo-2: oklch(0.330 0.078 285);  /* mid indigo — panels */
+  --muted:    oklch(0.455 0.035 285);  /* body-muted on cream */
+  --muted-d:  oklch(0.815 0.028 80);   /* muted (warm) on dark */
+  --line:     oklch(0.885 0.018 82);   /* hairline on light */
+  --accent:      oklch(0.720 0.110 78);/* aged brass / gold */
+  --accent-deep: oklch(0.560 0.098 72);/* deep brass — hover */
+  --accent-br:   oklch(0.815 0.115 82);/* bright brass — text/glow on dark */
+  --on-accent:   oklch(0.235 0.050 285);/* deep indigo text ON brass */
+  --on-ink:      oklch(0.966 0.013 85);/* cream text ON ink */
+
+  --bg: var(--cream);
+  --maxw: 1180px;
+  --radius: 6px;
+  --sp: clamp(3.5rem, 7.5vw, 6.75rem);      /* section rhythm */
+  --edge: color-mix(in oklch, var(--cream) 16%, transparent); /* hairline on dark */
+}
+
+/* ---- base type ------------------------------------------- */
+body { background: var(--cream); color: var(--ink); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.02;
+  letter-spacing: -0.005em; }
+p { margin: 0 0 1rem; }
+a { text-decoration: none; }
+::selection { background: color-mix(in oklch, var(--accent) 34%, var(--cream)); color: var(--ink); }
+
+.container { max-width: var(--maxw); }
+.dy-lead { font-family: var(--font-body); font-weight: 300;
+  font-size: clamp(1.08rem, 1rem + 0.6vw, 1.34rem); line-height: 1.55;
+  color: var(--muted); max-width: 52ch; }
+
+/* ---- reveal: scroll-triggered fade-up (overrides foundation) --- */
+.js .reveal-init { opacity: 0; transform: translateY(22px);
+  animation: none; transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+.js .is-revealed { opacity: 1; transform: none; }
+.js [data-reveal].d1 { transition-delay: 0.09s; }
+.js [data-reveal].d2 { transition-delay: 0.18s; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-init { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- eyebrow: gilt rule + label ---------------------------
+   On LIGHT the label text is deep indigo (contrast-safe); brass is
+   the decorative rule only. On DARK the label goes bright brass. */
+.dy-eyebrow { display: inline-flex; align-items: center; gap: 0.7rem;
+  font-family: var(--font-body); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.24em; font-size: 0.72rem; color: var(--indigo); margin: 0 0 1.15rem; }
+.dy-eyebrow::before { content: ""; width: 26px; height: 2px; flex: none;
+  background: var(--accent); }
+.dy-eyebrow--gold { color: var(--accent-br); }
+.dy-eyebrow--gold::before { background: var(--accent-br); }
+
+/* ---- buttons --------------------------------------------- */
+.dy-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.55ch;
+  font-family: var(--font-body); font-weight: 500; letter-spacing: 0.05em;
+  font-size: 0.92rem; line-height: 1; padding: 0.95rem 1.6rem; border-radius: var(--radius);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease,
+    transform 0.22s ease, box-shadow 0.22s ease; }
+
+.dy-btn--primary { background: var(--accent); color: var(--on-accent);
+  box-shadow: 0 10px 26px -14px color-mix(in oklch, var(--accent) 80%, transparent); }
+.dy-btn--primary:hover { background: var(--accent-deep); color: var(--on-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px -16px color-mix(in oklch, var(--accent) 85%, transparent); }
+
+.dy-btn--ghost { background: transparent; color: var(--ink);
+  border-color: color-mix(in oklch, var(--ink) 32%, transparent); }
+.dy-btn--ghost:hover { background: var(--ink); color: var(--on-ink);
+  border-color: var(--ink); }
+/* ghost over a dark ground */
+.dy-btn--ghost.is-ondark { color: var(--on-ink);
+  border-color: color-mix(in oklch, var(--cream) 45%, transparent); }
+.dy-btn--ghost.is-ondark:hover { background: var(--cream); color: var(--ink);
+  border-color: var(--cream); }
+
+/* pending "coming soon" gap (foundation appends the label) */
+.dy-btn.is-pending, .dy-textcta.is-pending { opacity: 0.62; }
+.dy-btn.is-pending::after { font-weight: 500; font-size: 0.82rem; letter-spacing: 0.03em; }
+
+/* text-link CTA (brass underline) */
+.dy-textcta { display: inline-flex; align-items: center; gap: 0.5ch;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.9rem;
+  letter-spacing: 0.03em; color: var(--indigo); padding-bottom: 3px;
+  border-bottom: 2px solid color-mix(in oklch, var(--accent) 65%, transparent);
+  transition: border-color 0.2s ease, gap 0.2s ease, color 0.2s ease; }
+.dy-textcta .ar { transition: transform 0.25s ease; }
+.dy-textcta:hover { color: var(--accent-deep); border-color: var(--accent); }
+.dy-textcta:hover .ar { transform: translateX(4px); }
+
+/* ============================================================
+   PIANO-KEY & STAFF-LINE MOTIFS — pure CSS, no image, no text.
+   ============================================================ */
+.dy-keys { height: 16px; width: 100%;
+  background-color: color-mix(in oklch, var(--cream) 88%, var(--ink));
+  background-image:
+    repeating-linear-gradient(90deg,
+      color-mix(in oklch, var(--ink) 90%, transparent) 0 10px,
+      transparent 10px 34px),
+    repeating-linear-gradient(90deg,
+      transparent 0 33px,
+      color-mix(in oklch, var(--ink) 34%, transparent) 33px 34px);
+  background-size: 100% 62%, 100% 100%;
+  background-repeat: no-repeat, repeat;
+  background-position: top left, top left;
+  border-top: 2px solid color-mix(in oklch, var(--accent) 62%, transparent); }
+
+.dy-staff { height: 44px; width: 100%;
+  background-image: repeating-linear-gradient(to bottom,
+    transparent 0 9px,
+    color-mix(in oklch, var(--indigo) 26%, transparent) 9px 10px);
+  background-repeat: no-repeat; background-position: center;
+  opacity: 0.6; }
+
+/* ============================================================
+   HEADER — sits over the dark hero, flips to solid indigo on scroll.
+   Serif monogram lockup + growing-underline nav.
+   ============================================================ */
+.dy-head { position: sticky; top: 0; z-index: 60;
+  background: linear-gradient(color-mix(in oklch, var(--ink) 55%, transparent), transparent);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border-bottom: 1px solid transparent; }
+.dy-head.is-scrolled { background: var(--ink);
+  border-bottom-color: color-mix(in oklch, var(--accent) 45%, transparent);
+  box-shadow: 0 12px 34px -22px color-mix(in oklch, var(--ink) 92%, transparent); }
+.dy-head__in { display: flex; align-items: center; justify-content: space-between;
+  gap: 1.25rem; padding-block: clamp(0.8rem, 1.5vw, 1.1rem); position: relative; }
+
+.dy-brand { display: inline-flex; align-items: center; gap: 0.75rem; color: var(--on-ink); }
+.dy-brand__mark { width: 40px; height: 40px; flex: none; display: grid; place-items: center;
+  font-family: var(--font-display); font-size: 1.4rem; line-height: 1;
+  color: var(--accent-br); border: 1.5px solid color-mix(in oklch, var(--accent) 70%, transparent);
+  border-radius: 4px; background: color-mix(in oklch, var(--ink) 55%, transparent); }
+.dy-brand__txt { display: grid; line-height: 1.05; }
+.dy-brand__txt b { font-family: var(--font-display); font-weight: 400; font-size: 1.28rem;
+  letter-spacing: 0.005em; }
+.dy-brand__txt span { font-family: var(--font-body); font-weight: 500; font-size: 0.62rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: color-mix(in oklch, var(--accent-br) 92%, var(--cream)); margin-top: 2px; }
+
+.dy-nav { display: flex; align-items: center; gap: clamp(1.1rem, 2.4vw, 2.1rem); }
+.dy-nav a { font-family: var(--font-body); font-weight: 500; font-size: 0.92rem;
+  letter-spacing: 0.02em; color: var(--on-ink); position: relative; padding: 0.35rem 0; }
+.dy-nav a:not(.dy-btn)::after { content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 2px; background: var(--accent-br);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+.dy-nav a:not(.dy-btn):hover::after, .dy-nav a:not(.dy-btn):focus-visible::after { transform: scaleX(1); }
+.dy-nav__cta { padding: 0.62rem 1.15rem; font-size: 0.86rem; }
+.dy-navtoggle { display: none; }
+
+/* ============================================================
+   HERO — editorial split. Oversized "Since 1862" statement beside
+   a grand-piano plate. Dark indigo ground, brass numerals.
+   ============================================================ */
+.dy-hero { position: relative; background:
+    radial-gradient(120% 130% at 12% 0%, var(--indigo-2), transparent 58%),
+    linear-gradient(160deg, var(--ink), color-mix(in oklch, var(--ink) 82%, black));
+  color: var(--on-ink);
+  margin-top: calc(-1 * (clamp(0.8rem,1.5vw,1.1rem) * 2 + 40px));
+  padding-top: calc(clamp(0.8rem,1.5vw,1.1rem) * 2 + 40px); }
+.dy-hero__grid { display: grid; grid-template-columns: 1.02fr 0.98fr;
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: center;
+  padding-block: clamp(3rem, 7vw, 6rem) clamp(3.5rem, 8vw, 6.5rem); }
+
+.dy-hero__title { margin: 0 0 0.4rem; display: flex; flex-direction: column;
+  line-height: 0.82; }
+.dy-hero__kicker { font-family: var(--font-display); font-style: italic;
+  font-size: clamp(1.6rem, 4.2vw, 2.9rem); color: var(--on-ink);
+  letter-spacing: 0.01em; margin-left: 0.15em; }
+.dy-hero__year { font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(5rem, 21vw, 13.5rem); line-height: 0.78; color: var(--accent-br);
+  letter-spacing: 0.01em;
+  text-shadow: 0 6px 40px color-mix(in oklch, var(--accent) 30%, transparent); }
+.dy-hero__legacy { font-family: var(--font-display); font-style: italic;
+  font-size: clamp(1.35rem, 2.6vw, 2rem); color: var(--on-ink);
+  margin: 0.6rem 0 1.4rem; max-width: 22ch; }
+.dy-hero__lead { font-family: var(--font-body); font-weight: 300;
+  font-size: clamp(1.02rem, 0.96rem + 0.5vw, 1.2rem); line-height: 1.6;
+  color: color-mix(in oklch, var(--on-ink) 82%, var(--indigo)); max-width: 46ch;
+  margin: 0 0 2rem; }
+.dy-hero__cta { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+
+.dy-hero__media { position: relative; }
+.dy-hero__img { width: 100%; aspect-ratio: 4/3.4; object-fit: cover;
+  border-radius: 8px; border: 1px solid color-mix(in oklch, var(--accent) 40%, transparent);
+  box-shadow: 0 40px 70px -34px color-mix(in oklch, black 70%, transparent); }
+.dy-hero__badge { position: absolute; left: -0.75rem; bottom: -1.1rem;
+  background: var(--accent); color: var(--on-accent);
+  font-family: var(--font-display); text-align: center; line-height: 0.85;
+  padding: 0.85rem 1.1rem 0.75rem; border-radius: 4px;
+  box-shadow: 0 18px 34px -18px color-mix(in oklch, var(--accent) 80%, transparent); }
+.dy-hero__badge b { display: block; font-size: 2rem; }
+.dy-hero__badge span { font-family: var(--font-body); font-weight: 600; font-size: 0.58rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: color-mix(in oklch, var(--on-accent) 82%, var(--accent)); }
+
+.dy-hero .dy-keys { position: absolute; bottom: 0; left: 0; }
+
+/* ============================================================
+   TRACKS — signature dual-track. The Shop (light) beside The
+   Studio (dark), two clear columns.
+   ============================================================ */
+.dy-tracks { padding-block: var(--sp); }
+.dy-tracks__head { max-width: 62ch; margin: 0 auto clamp(2.25rem, 4.5vw, 3.5rem); text-align: center; }
+.dy-tracks__head .dy-eyebrow { justify-content: center; }
+.dy-tracks__head h2 { font-size: clamp(2.3rem, 5.2vw, 3.9rem); margin: 0 0 1rem; }
+.dy-tracks__head .dy-lead { margin-inline: auto; }
+
+.dy-tracks__grid { display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(1.25rem, 2.5vw, 2rem); }
+.dy-track { display: flex; flex-direction: column; border-radius: 12px;
+  padding: clamp(1.9rem, 3.6vw, 3rem); }
+.dy-track__label { font-family: var(--font-body); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.22em; font-size: 0.72rem; margin: 0 0 0.7rem; }
+.dy-track h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); margin: 0 0 0.9rem; }
+.dy-track p { line-height: 1.65; }
+.dy-track__list { list-style: none; margin: 1.4rem 0 1.9rem; padding: 0;
+  display: grid; gap: 0.7rem; }
+.dy-track__list li { display: flex; align-items: baseline; gap: 0.7rem;
+  font-family: var(--font-body); font-size: 0.97rem; }
+.dy-track__list li::before { content: ""; width: 8px; height: 8px; flex: none;
+  align-self: center; transform: rotate(45deg); background: var(--accent); }
+.dy-track__cta { margin-top: auto; align-self: flex-start; }
+
+/* The Shop — light card */
+.dy-track--shop { background: var(--cream-2);
+  border: 1px solid var(--line); color: var(--ink); }
+.dy-track--shop .dy-track__label { color: var(--indigo); }
+.dy-track--shop p { color: var(--muted); }
+
+/* The Studio — dark indigo card */
+.dy-track--studio { position: relative; overflow: hidden;
+  background:
+    radial-gradient(120% 120% at 100% 0%, var(--indigo-2), transparent 60%),
+    var(--ink);
+  color: var(--on-ink);
+  border: 1px solid color-mix(in oklch, var(--accent) 34%, transparent); }
+.dy-track--studio .dy-track__label { color: var(--accent-br); }
+.dy-track--studio h3 { color: var(--on-ink); }
+.dy-track--studio p { color: var(--muted-d); }
+.dy-track--studio .dy-track__list li::before { background: var(--accent-br); }
+.dy-track--studio .dy-track__list li { color: color-mix(in oklch, var(--on-ink) 90%, var(--indigo)); }
+
+/* ============================================================
+   HERITAGE — staff-break band + alternating image/text rows.
+   ============================================================ */
+.dy-heritage { padding-bottom: var(--sp); background: var(--cream); }
+.dy-heritage .dy-staff { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.dy-heritage__head { max-width: 60ch; margin: 0 auto clamp(2.5rem, 5vw, 4rem); text-align: center; }
+.dy-heritage__head .dy-eyebrow { justify-content: center; }
+.dy-heritage__head h2 { font-size: clamp(2rem, 4.4vw, 3.3rem); margin: 0 0 1.1rem; max-width: 20ch;
+  margin-inline: auto; }
+.dy-heritage__head .dy-lead { margin-inline: auto; }
+
+.dy-rows { display: grid; gap: clamp(2.75rem, 6vw, 5rem); }
+.dy-row { display: grid; grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(1.75rem, 4.5vw, 4rem); align-items: center; }
+.dy-row--flip .dy-row__media { order: 2; }
+.dy-row--flip .dy-row__text { order: 1; }
+.dy-row__media { margin: 0; position: relative; }
+.dy-row__media img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 10px;
+  box-shadow: 0 30px 55px -34px color-mix(in oklch, var(--ink) 60%, transparent); }
+.dy-row__media::after { content: ""; position: absolute; inset: 0; border-radius: 10px;
+  box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--ink) 10%, transparent); pointer-events: none; }
+.dy-row__num { font-family: var(--font-body); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.22em; font-size: 0.72rem; color: var(--accent-deep); margin: 0 0 0.7rem; }
+.dy-row__text h3 { font-size: clamp(1.6rem, 3.2vw, 2.5rem); margin: 0 0 0.9rem; max-width: 16ch; }
+.dy-row__text p { color: var(--muted); line-height: 1.7; max-width: 46ch; }
+
+/* ============================================================
+   VISIT — closing dark panel with the key motif + CTA.
+   ============================================================ */
+.dy-visit { padding-block: 0 var(--sp); }
+.dy-visit__panel { position: relative; overflow: hidden; border-radius: 16px;
+  background:
+    radial-gradient(130% 130% at 88% 6%, color-mix(in oklch, var(--accent) 26%, transparent), transparent 52%),
+    linear-gradient(155deg, var(--indigo-2), var(--ink));
+  color: var(--on-ink); padding: clamp(2.25rem, 5vw, 4.25rem);
+  border: 1px solid color-mix(in oklch, var(--accent) 32%, transparent); }
+.dy-visit__panel::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 14px; opacity: 0.85;
+  background-image: repeating-linear-gradient(90deg,
+    color-mix(in oklch, var(--on-ink) 70%, transparent) 0 8px,
+    transparent 8px 26px);
+  background-size: 100% 55%; background-repeat: no-repeat; background-position: bottom; }
+.dy-visit__inner { position: relative; z-index: 1; display: grid;
+  grid-template-columns: 1.25fr 0.75fr; gap: clamp(1.75rem, 4vw, 3.5rem); align-items: center; }
+.dy-visit h2 { color: var(--on-ink); font-size: clamp(2rem, 4.2vw, 3.1rem);
+  margin: 0 0 1rem; max-width: 16ch; }
+.dy-visit__copy p { color: var(--muted-d); max-width: 48ch; line-height: 1.65; }
+.dy-visit__notes { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin: 1.6rem 0 0;
+  padding: 0; list-style: none; }
+.dy-visit__notes li { display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-body); font-weight: 500; font-size: 0.9rem;
+  color: color-mix(in oklch, var(--on-ink) 88%, var(--indigo)); }
+.dy-visit__notes li::before { content: ""; width: 8px; height: 8px; flex: none;
+  transform: rotate(45deg); background: var(--accent-br); }
+.dy-visit__cta { display: flex; flex-direction: column; gap: 0.85rem; align-items: stretch; }
+.dy-visit__fine { font-family: var(--font-body); font-size: 0.8rem; color: var(--muted-d);
+  text-align: center; letter-spacing: 0.02em; margin: 0.25rem 0 0; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.dy-foot { background: var(--ink); color: var(--on-ink);
+  border-top: 3px solid var(--accent); padding-block: clamp(3rem, 6vw, 4.5rem) 2rem; }
+.dy-foot__grid { display: grid; grid-template-columns: 1.5fr 1fr 1.3fr;
+  gap: clamp(2rem, 5vw, 4rem); padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--edge); }
+.dy-foot .dy-brand { margin-bottom: 1rem; }
+.dy-foot__tag { color: var(--muted-d); max-width: 36ch; font-size: 0.96rem; line-height: 1.6; }
+.dy-foot h4 { font-family: var(--font-body); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.18em; font-size: 0.74rem; color: var(--accent-br); margin: 0 0 1.1rem; }
+.dy-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.dy-foot a { color: color-mix(in oklch, var(--on-ink) 88%, var(--indigo)); }
+.dy-foot ul a:hover, .dy-foot__contact a:hover { color: var(--accent-br); }
+.dy-foot__contact p { color: var(--muted-d); font-size: 0.94rem; line-height: 1.55; }
+.dy-foot__contact a { color: var(--on-ink); font-weight: 500; }
+.dy-foot__bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
+  gap: 0.75rem; padding-top: 1.75rem; font-size: 0.82rem; color: var(--muted-d); }
+.dy-foot__bottom b { color: var(--on-ink); font-weight: 500; }
+
+/* required concept-demo notice — restyled to fit, text unchanged */
+.demo-notice { background: color-mix(in oklch, var(--ink) 92%, black);
+  color: color-mix(in oklch, var(--muted-d) 90%, var(--cream));
+  border-top: 1px solid var(--edge);
+  font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.01em;
+  padding: 1rem 1.25rem; text-align: center; }
+.demo-notice b { color: var(--accent-br); font-weight: 600; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .dy-navtoggle { display: inline-flex; flex-direction: column; justify-content: center;
+    gap: 5px; width: 46px; height: 42px; padding: 0 10px; background: transparent;
+    border: 0; cursor: pointer; }
+  .dy-navtoggle span { display: block; height: 2px; width: 100%; background: var(--on-ink);
+    transition: transform 0.25s ease, opacity 0.2s ease; }
+  .dy-navtoggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .dy-navtoggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .dy-navtoggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .dy-nav { position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--ink); border-top: 1px solid var(--edge);
+    padding: 0.5rem clamp(1.1rem, 4vw, 2rem) 1.25rem;
+    box-shadow: 0 26px 40px -24px color-mix(in oklch, var(--ink) 92%, transparent);
+    clip-path: inset(0 0 100% 0); pointer-events: none; transition: clip-path 0.3s ease; }
+  .dy-nav.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; }
+  .dy-nav a { padding: 0.95rem 0; border-bottom: 1px solid var(--edge); font-size: 1rem; }
+  .dy-nav a:not(.dy-btn)::after { display: none; }
+  .dy-nav__cta { margin-top: 1rem; padding: 0.9rem 1.15rem; }
+  /* header solid once the nav can open, for legibility */
+  .dy-head { background: var(--ink);
+    border-bottom-color: color-mix(in oklch, var(--accent) 45%, transparent); }
+  .dy-hero { margin-top: 0; padding-top: clamp(1.5rem, 5vw, 2.5rem); }
+}
+
+@media (max-width: 820px) {
+  .dy-hero__grid { grid-template-columns: 1fr; gap: clamp(2rem, 7vw, 3rem);
+    padding-block: clamp(2rem, 7vw, 3.5rem) clamp(3rem, 8vw, 4.5rem); }
+  .dy-hero__media { max-width: 460px; }
+  .dy-tracks__grid { grid-template-columns: 1fr; }
+  .dy-row, .dy-row--flip .dy-row__media, .dy-row--flip .dy-row__text {
+    grid-template-columns: 1fr; }
+  .dy-row__media { order: 1 !important; max-width: 520px; }
+  .dy-row__text { order: 2 !important; }
+  .dy-visit__inner { grid-template-columns: 1fr; }
+  .dy-foot__grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+@media (max-width: 430px) {
+  .dy-hero__cta { flex-direction: column; align-items: stretch; }
+  .dy-hero__badge { left: 0; }
+  .dy-track { padding: 1.6rem 1.35rem; }
+}

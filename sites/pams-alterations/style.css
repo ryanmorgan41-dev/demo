@@ -1,0 +1,434 @@
+/* ============================================================
+   Pam's Alterations and Sewing — BESPOKE stylesheet (one-of-a-kind).
+   Loads AFTER shared/foundation.css. All chrome, hero, sections,
+   buttons and footer are designed from scratch here.
+
+   Direction: "St. George atelier" — a refined, tactile tailoring
+   shop. Ivory paper, deep pine-teal ink, warm brass hairlines and
+   glyphs. A high-contrast display serif (Cormorant Garamond) over a
+   clean grotesque (Karla). Signature motif: a dashed brass "stitch"
+   rule that ticks every eyebrow, connects the process steps and
+   frames the hero still-life. Split hero, a menu-style pricing
+   GUIDE (dotted leaders, not cards), a genuine 3-step sequence,
+   alternating image/text rows, and one angled clip-path booking cut.
+   ============================================================ */
+
+:root {
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body:    "Karla", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* --- palette (OKLCH — raw triples live ONLY here) --- */
+  --ivory:     oklch(0.976 0.010 92);   /* page base — warm ivory */
+  --ivory-2:   oklch(0.956 0.015 88);   /* secondary warm surface */
+  --ivory-3:   oklch(0.928 0.018 85);   /* deeper warm surface */
+  --ink:       oklch(0.255 0.020 205);  /* charcoal with a whisper of teal */
+  --pine:      oklch(0.450 0.070 195);  /* PRIMARY accent — deep pine/teal */
+  --pine-2:    oklch(0.400 0.065 196);  /* mid pine */
+  --pine-deep: oklch(0.330 0.052 198);  /* darkest pine — dark bands */
+  --brass:     oklch(0.740 0.100 78);   /* SECONDARY accent — warm brass/gold */
+  --brass-deep:oklch(0.615 0.098 74);   /* deeper brass — text-safe on ivory-ish surfaces used decoratively */
+  --muted:     oklch(0.448 0.022 205);  /* body-muted on light */
+  --muted-d:   oklch(0.820 0.020 88);   /* muted on dark */
+  --line:      oklch(0.878 0.014 88);   /* hairline on light */
+  --on-pine:   oklch(0.980 0.008 90);   /* near-white on pine */
+
+  --bg: var(--ivory);
+  --maxw: 1180px;
+  --radius: 3px;
+  --sp: clamp(3.5rem, 7.5vw, 6.75rem);  /* section rhythm */
+  --edge: color-mix(in oklch, var(--on-pine) 16%, transparent);   /* hairline on dark */
+  --stitch: color-mix(in oklch, var(--brass-deep) 92%, transparent);
+  --shadow: 0 30px 60px -34px color-mix(in oklch, var(--ink) 60%, transparent);
+}
+
+/* ---- base type ------------------------------------------- */
+body { background: var(--ivory); color: var(--ink); }
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.02;
+}
+p { margin: 0 0 1rem; }
+a { text-decoration: none; }
+::selection { background: color-mix(in oklch, var(--pine) 24%, var(--ivory)); }
+
+.pm-lead { font-family: var(--font-body);
+  font-size: clamp(1.06rem, 1rem + 0.55vw, 1.28rem); line-height: 1.6;
+  color: var(--muted); max-width: 52ch; }
+
+.container { max-width: var(--maxw); }
+
+/* ---- reveal: scroll-triggered fade-up (overrides foundation) --- */
+.js .reveal-init { opacity: 0; transform: translateY(20px);
+  animation: none; transition: opacity 0.7s ease, transform 0.75s cubic-bezier(0.22,0.61,0.36,1); }
+.js .is-revealed { opacity: 1; transform: none; }
+.js [data-reveal].d1 { transition-delay: 0.09s; }
+.js [data-reveal].d2 { transition-delay: 0.18s; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-init { opacity: 1; transform: none; transition: none; }
+}
+
+/* ============================================================
+   SHARED — eyebrow (dashed stitch tick), kicker, buttons, tags
+   ============================================================ */
+.pm-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.22em;
+  font-size: 0.74rem; color: var(--pine-deep); margin: 0 0 1.1rem;
+}
+.pm-eyebrow::before { content: ""; width: 34px; height: 0; flex: none;
+  border-top: 2px dashed var(--stitch); }
+.pm-eyebrow--brass { color: var(--brass); }
+.pm-eyebrow--brass::before { border-top-color: color-mix(in oklch, var(--brass) 75%, transparent); }
+
+.pm-kicker { font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.72rem;
+  color: var(--pine-deep); margin: 0 0 0.65rem; }
+
+/* buttons — Karla caps, plain rectangles so focus ring never clips */
+.pm-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5ch;
+  font-family: var(--font-body); font-weight: 700;
+  letter-spacing: 0.04em; font-size: 0.9rem; line-height: 1;
+  padding: 0.9rem 1.5rem; border-radius: var(--radius);
+  border: 1.5px solid transparent; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease, box-shadow 0.2s ease; }
+.pm-btn--lg { padding: 1.05rem 1.9rem; font-size: 0.96rem; }
+
+.pm-btn--primary { background: var(--pine); color: var(--on-pine);
+  box-shadow: 0 12px 26px -16px color-mix(in oklch, var(--pine) 88%, transparent); }
+.pm-btn--primary:hover { background: color-mix(in oklch, var(--pine) 88%, black);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px -16px color-mix(in oklch, var(--pine) 90%, transparent); }
+
+.pm-btn--line { background: transparent; color: var(--ink);
+  border-color: color-mix(in oklch, var(--ink) 32%, transparent); }
+.pm-btn--line:hover { background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+
+.pm-btn--ghost { background: transparent; color: var(--pine-deep);
+  border-color: color-mix(in oklch, var(--pine) 34%, transparent);
+  font-size: 0.82rem; padding: 0.7rem 1.05rem; letter-spacing: 0.03em; }
+.pm-btn--ghost:hover { background: color-mix(in oklch, var(--pine) 12%, var(--ivory));
+  border-color: color-mix(in oklch, var(--pine) 55%, transparent); }
+
+/* buttons sitting on the dark pine booking band */
+.pm-btn--line.is-onpine { color: var(--on-pine);
+  border-color: color-mix(in oklch, var(--on-pine) 50%, transparent); }
+.pm-btn--line.is-onpine:hover { background: var(--on-pine); color: var(--pine-deep);
+  border-color: var(--on-pine); }
+
+/* pending "coming soon" gap (foundation appends the label) */
+.pm-btn.is-pending { opacity: 0.6; }
+.pm-btn.is-pending::after { letter-spacing: 0.03em; font-size: 0.8rem; }
+
+/* confirm / specialty tags */
+.pm-tag {
+  display: inline-block; font-family: var(--font-body); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.11em; font-size: 0.62rem;
+  padding: 0.2rem 0.55rem; border-radius: 999px; vertical-align: 0.12em;
+  background: color-mix(in oklch, var(--brass) 22%, var(--ivory));
+  color: color-mix(in oklch, var(--ink) 78%, var(--pine));
+  border: 1px solid color-mix(in oklch, var(--brass-deep) 45%, transparent); }
+.is-onpine ~ .pm-book__note .pm-tag,
+.pm-book__note .pm-tag, .pm-book__addr .pm-tag {
+  background: color-mix(in oklch, var(--on-pine) 14%, transparent);
+  color: var(--on-pine);
+  border-color: color-mix(in oklch, var(--on-pine) 34%, transparent); }
+
+/* ============================================================
+   HEADER — translucent ivory, flips to a brass-hairline solid on
+   scroll. Cormorant wordmark + brass needle-eye glyph, Karla nav.
+   ============================================================ */
+.pm-head {
+  position: sticky; top: 0; z-index: 60;
+  background: color-mix(in oklch, var(--ivory) 82%, transparent);
+  backdrop-filter: blur(9px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+.pm-head.is-scrolled {
+  background: color-mix(in oklch, var(--ivory) 94%, transparent);
+  border-bottom-color: color-mix(in oklch, var(--brass) 55%, transparent);
+  box-shadow: 0 14px 30px -24px color-mix(in oklch, var(--ink) 60%, transparent); }
+.pm-head__in { display: flex; align-items: center; justify-content: space-between;
+  gap: 1.25rem; padding-block: clamp(0.7rem, 1.5vw, 1rem); position: relative; }
+
+.pm-brand { display: inline-flex; align-items: center; gap: 0.7rem; color: var(--ink); }
+.pm-brand__glyph { /* brass needle-eye: ring with a slim vertical slot */
+  width: 26px; height: 26px; flex: none; position: relative; border-radius: 50%;
+  border: 2px solid var(--brass); }
+.pm-brand__glyph::after { content: ""; position: absolute; top: 3px; bottom: 3px;
+  left: 50%; width: 2px; transform: translateX(-50%);
+  background: var(--pine); border-radius: 2px; }
+.pm-brand__txt { display: grid; line-height: 1; }
+.pm-brand__txt b { font-family: var(--font-display); font-weight: 700;
+  font-size: 1.42rem; letter-spacing: 0; color: var(--ink); }
+.pm-brand__txt span { font-family: var(--font-body); font-weight: 600;
+  font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--pine-deep); margin-top: 0.18rem; }
+
+.pm-nav { display: flex; align-items: center; gap: clamp(1rem, 2vw, 1.8rem); }
+.pm-nav > a:not(.pm-btn) { font-family: var(--font-body); font-weight: 600;
+  font-size: 0.86rem; letter-spacing: 0.04em; color: var(--ink);
+  position: relative; padding: 0.35rem 0; }
+.pm-nav > a:not(.pm-btn)::after { content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 2px; background: var(--brass);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+.pm-nav > a:not(.pm-btn):hover::after,
+.pm-nav > a:not(.pm-btn):focus-visible::after { transform: scaleX(1); }
+.pm-navtoggle { display: none; }
+
+/* ============================================================
+   HERO — split: set copy on the left, framed still-life on the right.
+   ============================================================ */
+.pm-hero { padding-block: clamp(2.5rem, 6vw, 5rem) var(--sp); overflow-x: clip; }
+.pm-hero__grid { display: grid; grid-template-columns: 1.02fr 0.85fr;
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.pm-hero__copy { min-width: 0; }
+.pm-hero h1 { font-size: clamp(2.6rem, 1.9rem + 4vw, 4.7rem); margin: 0 0 1.2rem;
+  max-width: 15ch; }
+.pm-hero h1 em { font-style: italic; color: var(--pine); font-weight: 600; }
+.pm-hero__lead { font-size: clamp(1.06rem, 1rem + 0.6vw, 1.28rem); line-height: 1.6;
+  color: var(--muted); max-width: 48ch; margin: 0 0 1.9rem; }
+.pm-hero__cta { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-bottom: 2.2rem; }
+.pm-cred { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.5rem;
+  padding-top: 1.5rem; border-top: 1px dashed color-mix(in oklch, var(--brass-deep) 50%, transparent);
+  list-style: none; margin: 0; }
+.pm-cred li { display: flex; align-items: center; gap: 0.55rem;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.82rem;
+  letter-spacing: 0.02em; color: var(--ink); }
+.pm-cred li::before { content: ""; width: 7px; height: 7px; flex: none;
+  background: var(--brass); transform: rotate(45deg); }
+
+/* framed still-life + "25 years" stamp */
+.pm-hero__media { min-width: 0; }
+.pm-frame { position: relative; margin: 0; isolation: isolate; }
+.pm-frame::before { content: ""; position: absolute; z-index: 0;
+  inset: 14px -14px -14px 14px;
+  border: 1.5px solid color-mix(in oklch, var(--brass) 65%, transparent); }
+.pm-frame img { position: relative; z-index: 1; width: 100%;
+  aspect-ratio: 4 / 3.4; object-fit: cover; border-radius: var(--radius);
+  box-shadow: var(--shadow); }
+.pm-frame__stamp { position: absolute; z-index: 2; right: -14px; bottom: -14px;
+  margin: 0; background: var(--pine-deep); color: var(--on-pine);
+  padding: 0.75rem 1rem; text-align: center; line-height: 0.9;
+  border-radius: var(--radius);
+  box-shadow: 0 16px 30px -18px color-mix(in oklch, var(--ink) 70%, transparent); }
+.pm-frame__stamp b { display: block; font-family: var(--font-display); font-weight: 700;
+  font-size: 2rem; color: var(--brass); }
+.pm-frame__stamp span { font-family: var(--font-body); font-weight: 600;
+  font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted-d); }
+
+/* ============================================================
+   ROW — reusable alternating image/text list (ethos + craft)
+   ============================================================ */
+.pm-ethos { padding-block: 0 var(--sp); overflow-x: clip; }
+.pm-row { display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(1.75rem, 5vw, 4rem); align-items: center; }
+.pm-row__media { position: relative; min-width: 0; }
+.pm-row__media::before { content: ""; position: absolute; z-index: 0;
+  right: -16px; bottom: -16px; width: 55%; height: 60%;
+  background: color-mix(in oklch, var(--pine) 14%, var(--ivory)); border-radius: var(--radius); }
+.pm-row--rev .pm-row__media::before { right: auto; left: -16px;
+  background: color-mix(in oklch, var(--brass) 20%, var(--ivory)); }
+.pm-row__media img { position: relative; z-index: 1; width: 100%; object-fit: cover;
+  border-radius: var(--radius); box-shadow: var(--shadow); }
+.pm-ethos .pm-row__media img { aspect-ratio: 3 / 3.6; }
+.pm-row--tight .pm-row__media img { aspect-ratio: 4 / 3; }
+.pm-row__text { min-width: 0; }
+.pm-ethos .pm-row { grid-template-columns: 0.82fr 1fr; }
+.pm-row--rev .pm-row__media { order: 2; }
+.pm-row--rev .pm-row__text { order: 1; }
+
+.pm-row__text h2 { font-size: clamp(1.9rem, 1.5rem + 2vw, 3.1rem); margin: 0 0 1.1rem;
+  max-width: 18ch; }
+.pm-row__text h3 { font-size: clamp(1.5rem, 1.3rem + 1vw, 2.1rem); margin: 0 0 0.7rem; }
+.pm-row__text p { color: var(--muted); max-width: 46ch; line-height: 1.65; }
+.pm-notes { display: flex; flex-wrap: wrap; gap: 0.55rem 1.4rem;
+  margin-top: 1.5rem; padding: 0; list-style: none; }
+.pm-notes li { display: flex; align-items: center; gap: 0.55rem;
+  font-family: var(--font-body); font-weight: 600; color: var(--ink); font-size: 0.9rem; }
+.pm-notes li::before { content: ""; width: 8px; height: 8px; flex: none;
+  background: var(--pine); transform: rotate(45deg); }
+
+/* ============================================================
+   GUIDE — services & pricing, a menu-style line-item list with
+   dotted brass leaders (NOT cards).
+   ============================================================ */
+.pm-guide { padding-block: var(--sp); background: var(--ivory-2);
+  border-block: 1px solid var(--line); }
+.pm-guide__head { max-width: 60ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.pm-guide__head h2 { font-size: clamp(2rem, 1.6rem + 2.2vw, 3.3rem); margin: 0 0 0.9rem; }
+
+.pm-price { list-style: none; margin: 0; padding: 0; }
+.pm-price__row { display: grid; grid-template-columns: 1fr auto; column-gap: 1.25rem;
+  align-items: baseline; padding: clamp(1.25rem, 3vw, 1.9rem) 0;
+  border-top: 1px solid var(--line); }
+.pm-price__row:last-child { border-bottom: 1px solid var(--line); }
+.pm-price__lead { min-width: 0; }
+.pm-price__lead h3 { font-size: clamp(1.4rem, 1.2rem + 1vw, 1.95rem); margin: 0 0 0.4rem;
+  display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; position: relative; }
+.pm-price__lead p { color: var(--muted); max-width: 54ch; margin: 0; line-height: 1.6;
+  font-size: 0.98rem; }
+.pm-price__flag { font-family: var(--font-body); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.6rem;
+  padding: 0.22rem 0.6rem; border-radius: 999px;
+  background: var(--pine-deep); color: var(--brass); }
+.pm-price__fig { display: flex; flex-direction: column; align-items: flex-end; gap: 0.35rem;
+  text-align: right; white-space: nowrap; }
+.pm-price__amt { font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.4rem, 1.2rem + 0.9vw, 1.9rem); color: var(--pine-deep); line-height: 1; }
+.pm-price__row--feature { background:
+  linear-gradient(90deg, color-mix(in oklch, var(--brass) 12%, var(--ivory-2)), transparent 70%);
+  margin-inline: calc(-1 * clamp(1rem, 3vw, 1.75rem));
+  padding-inline: clamp(1rem, 3vw, 1.75rem); border-radius: var(--radius); }
+
+/* ============================================================
+   STEPS — a genuine 3-step sequence (drop off → fitting → ready).
+   Numbered because it is truly ordered; a dashed brass stitch line
+   connects the numbers.
+   ============================================================ */
+.pm-steps { padding-block: var(--sp); }
+.pm-steps__head { margin-bottom: clamp(2rem, 4vw, 3.25rem); }
+.pm-steps__head h2 { font-size: clamp(2rem, 1.6rem + 2.2vw, 3.3rem); margin: 0; }
+.pm-steps__list { list-style: none; margin: 0; padding: 0; position: relative;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.75rem, 4vw, 3rem); }
+.pm-steps__list::before { content: ""; position: absolute; z-index: 0;
+  top: 27px; left: 14%; right: 14%; height: 0;
+  border-top: 2px dashed var(--stitch); }
+.pm-step { position: relative; z-index: 1; }
+.pm-step__no { display: grid; place-items: center; width: 54px; height: 54px;
+  border-radius: 50%; border: 2px solid var(--brass); background: var(--ivory);
+  font-family: var(--font-display); font-weight: 700; font-size: 1.5rem;
+  color: var(--pine-deep); margin-bottom: 1.1rem; }
+.pm-step h3 { font-size: clamp(1.4rem, 1.2rem + 1vw, 1.9rem); margin: 0 0 0.55rem; }
+.pm-step p { color: var(--muted); max-width: 34ch; line-height: 1.6; margin: 0; }
+
+/* ============================================================
+   CRAFT — heading + three alternating image/text rows (reuses .pm-row)
+   ============================================================ */
+.pm-craft { padding-block: var(--sp); background: var(--ivory-2);
+  border-top: 1px solid var(--line); overflow-x: clip; }
+.pm-craft__head { margin-bottom: clamp(2rem, 4vw, 3rem); }
+.pm-craft__head h2 { font-size: clamp(2rem, 1.6rem + 2.2vw, 3.3rem); margin: 0; }
+.pm-craft .pm-row { margin-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+.pm-craft .pm-row:last-child { margin-bottom: 0; }
+.pm-craft .pm-row__media::before { background: color-mix(in oklch, var(--pine) 12%, var(--ivory-2)); }
+.pm-craft .pm-row--rev .pm-row__media::before { background: color-mix(in oklch, var(--brass) 18%, var(--ivory-2)); }
+
+/* ============================================================
+   BOOK — dark pine band cut in with a single angled clip-path.
+   ============================================================ */
+.pm-book { background: var(--pine-deep); color: var(--on-pine);
+  clip-path: polygon(0 clamp(28px, 6vw, 74px), 100% 0, 100% 100%, 0 100%);
+  margin-top: calc(-1 * clamp(28px, 6vw, 74px));
+  padding-block: calc(var(--sp) + clamp(28px, 6vw, 74px)) var(--sp);
+  position: relative; overflow: hidden; }
+.pm-book::before { content: ""; position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(120% 130% at 100% 0%,
+    color-mix(in oklch, var(--pine) 55%, transparent), transparent 58%); }
+.pm-book__panel { position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(1.75rem, 5vw, 4rem);
+  align-items: center; }
+.pm-book__copy { min-width: 0; }
+.pm-book h2 { color: var(--on-pine); font-size: clamp(2rem, 1.6rem + 2.4vw, 3.4rem);
+  margin: 0 0 1rem; max-width: 15ch; }
+.pm-book h2 em { font-style: italic; color: var(--brass); font-weight: 600; }
+.pm-book p { color: color-mix(in oklch, var(--on-pine) 84%, var(--pine)); max-width: 46ch; }
+.pm-book__addr { font-family: var(--font-body); font-weight: 600; font-size: 0.95rem;
+  margin-top: 1.3rem; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.pm-book__cta { display: flex; flex-direction: column; gap: 0.85rem; align-items: stretch; }
+.pm-book__cta .pm-btn { width: 100%; }
+.pm-book__note { font-family: var(--font-body); font-size: 0.82rem;
+  color: var(--muted-d); text-align: center; display: flex; align-items: center;
+  justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin: 0.2rem 0 0; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.pm-foot { background: var(--pine-deep); color: var(--on-pine);
+  border-top: 1px solid var(--edge); padding-block: clamp(2.75rem, 6vw, 4rem) 1.75rem; }
+.pm-foot__grid { display: grid; grid-template-columns: 1.5fr 1fr 1.2fr;
+  gap: clamp(2rem, 5vw, 4rem); padding-bottom: 2.25rem;
+  border-bottom: 1px solid var(--edge); }
+.pm-brand--foot { color: var(--on-pine); margin-bottom: 1rem; }
+.pm-brand--foot .pm-brand__txt b { color: var(--on-pine); }
+.pm-brand--foot .pm-brand__txt span { color: var(--brass); }
+.pm-foot__tag { color: var(--muted-d); max-width: 34ch; font-size: 0.94rem; }
+.pm-foot h4 { font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.16em; font-size: 0.72rem; color: var(--brass); margin: 0 0 1.1rem; }
+.pm-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.pm-foot a { color: color-mix(in oklch, var(--on-pine) 88%, var(--pine)); }
+.pm-foot ul a:hover, .pm-foot__contact a:hover { color: var(--brass); }
+.pm-foot__contact p { color: var(--muted-d); font-size: 0.92rem; margin: 0 0 0.55rem;
+  display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.pm-foot__contact a { color: var(--on-pine); font-weight: 600; }
+.pm-foot__bottom { display: flex; flex-wrap: wrap; justify-content: space-between;
+  gap: 0.75rem; padding-top: 1.6rem; font-size: 0.8rem; color: var(--muted-d);
+  font-family: var(--font-body); }
+.pm-foot__bottom b { color: var(--on-pine); font-weight: 600; }
+
+/* required concept-demo notice — restyled to fit, text unchanged */
+.demo-notice { background: color-mix(in oklch, var(--pine-deep) 92%, black);
+  color: color-mix(in oklch, var(--muted-d) 92%, var(--on-pine));
+  border-top: 1px solid var(--edge);
+  font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.01em;
+  padding: 0.95rem 1.25rem; text-align: center; }
+.demo-notice b { color: var(--brass); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .pm-navtoggle { display: inline-flex; flex-direction: column; justify-content: center;
+    gap: 5px; width: 46px; height: 42px; padding: 0 10px; background: transparent;
+    border: 0; cursor: pointer; }
+  .pm-navtoggle span { display: block; height: 2px; width: 100%; background: var(--ink);
+    transition: transform 0.25s ease, opacity 0.2s ease; }
+  .pm-navtoggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .pm-navtoggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .pm-navtoggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .pm-nav { position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: color-mix(in oklch, var(--ivory) 97%, var(--pine));
+    border-top: 1px solid var(--line);
+    padding: 0.5rem clamp(1.1rem, 4vw, 2rem) 1.25rem;
+    box-shadow: 0 26px 40px -24px color-mix(in oklch, var(--ink) 55%, transparent);
+    clip-path: inset(0 0 100% 0); pointer-events: none;
+    transition: clip-path 0.3s ease; }
+  .pm-nav.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; }
+  .pm-nav > a { padding: 0.9rem 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
+  .pm-nav > a:not(.pm-btn)::after { display: none; }
+  .pm-nav .pm-btn { margin-top: 0.9rem; justify-content: center; }
+  .pm-head { background: color-mix(in oklch, var(--ivory) 95%, transparent); }
+}
+
+@media (max-width: 780px) {
+  .pm-hero__grid { grid-template-columns: 1fr; }
+  .pm-hero__media { max-width: 460px; margin-inline: auto; }
+
+  .pm-row, .pm-ethos .pm-row { grid-template-columns: 1fr; gap: clamp(1.75rem, 7vw, 2.5rem); }
+  .pm-row__media { max-width: 480px; }
+  .pm-ethos .pm-row__media { max-width: 380px; }
+  .pm-row--rev .pm-row__media { order: 1; }
+  .pm-row--rev .pm-row__text { order: 2; }
+
+  .pm-steps__list { grid-template-columns: 1fr; gap: 1.75rem; }
+  .pm-steps__list::before { display: none; }
+
+  .pm-book__panel { grid-template-columns: 1fr; }
+  .pm-foot__grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+@media (max-width: 430px) {
+  .pm-hero__cta { flex-direction: column; align-items: stretch; }
+  .pm-price__row { grid-template-columns: 1fr; row-gap: 0.6rem; }
+  .pm-price__fig { flex-direction: row; align-items: baseline; justify-content: flex-start; gap: 0.7rem; }
+  .pm-frame::before { inset: 10px -10px -10px 10px; }
+  .pm-frame__stamp { right: -8px; bottom: -8px; padding: 0.6rem 0.8rem; }
+  .pm-frame__stamp b { font-size: 1.7rem; }
+}
