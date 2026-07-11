@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "title": "Now booking custom orders for wedding season",
+      "date": "2026-07-10",
+      "image": "images/gallery-apparel-1.jpg",
+      "body": "Wedding season is here and the calendar is filling up fast. Bridesmaid robes, monogrammed hankies for the mothers, ring-bearer pillows — if it can hold a stitch, we can make it yours.\n\nCustom orders take two to three weeks this time of year, so if you have a date in mind, reach out soon and we'll save you a spot.",
+      "show": true
+    },
+    {
+      "title": "Welcome to our new website",
+      "date": "2026-07-01",
+      "image": "",
+      "body": "We finally have a home on the web! Browse the gallery for past work, shop ready-to-ship pieces, and request custom orders — all in one place.\n\nWe'll post shop updates, market dates, and new designs right here. Check back soon.",
+      "show": true
+    },
+    {
+      "show": true,
+      "title": "Saturday market haul: new tea towels",
+      "date": "2026-07-11",
+      "body": "Fresh off the hoop: a set of embroidered tea towels in six botanical designs. They come wrapped in twine, ready for gifting.\n\nFind them at the Saturday market this weekend, or grab a set in the shop before they sell through."
+    }
+  ]
+}

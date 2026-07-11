@@ -75,11 +75,76 @@ collections:
                 fields:
                   - { label: "What the choice is called", name: name, widget: string, hint: "e.g. Size, or Thread color." }
                   - { label: "The choices", name: values, widget: list, hint: "Separated by commas — e.g. S, M, L, XL[+2.00]" }
+              - label: "Download code"
+                name: fileGuid
+                widget: string
+                required: false
+                hint: "Only for digital items (like PDF patterns) — paste the file code from your store dashboard. Leave empty for physical items."
               - label: "Show in shop"
                 name: active
                 widget: boolean
                 default: true
                 hint: "Turn this off to hide a piece without deleting it."
+  - name: settings
+    label: "My Site Settings"
+    description: "Site-wide touches: the announcement bar across the top, and your hours and phone in the footer."
+    files:
+      - name: site
+        label: "Site settings"
+        file: "sites/rose-honey-store/data/site.json"
+        fields:
+          - label: "Announcement bar"
+            name: announcement
+            widget: object
+            hint: "A one-line banner across the top of every page — market dates, holiday closures, sales."
+            fields:
+              - { label: "Show the announcement", name: show, widget: boolean, default: false }
+              - { label: "What it says", name: text, widget: string, required: false, hint: "e.g. Find us at the farmers market Saturdays!" }
+              - { label: "Where it links", name: link, widget: string, required: false, hint: "Paste a web address to make the banner clickable — or leave this empty." }
+          - { label: "Phone number", name: phone, widget: string, required: false, hint: "Shows in the site footer — e.g. (801) 555-0142." }
+          - { label: "Hours", name: hours, widget: string, required: false, hint: "Shows in the site footer — e.g. Tue–Sat 10–6." }
+          - { label: "Business email", name: email, widget: string, required: false, hint: "Shown to customers if the order form is ever unavailable." }
+          - { label: "Form key", name: formKey, widget: hidden, required: false }
+          - { label: "Booking link", name: bookingUrl, widget: hidden, required: false }
+          - { label: "Analytics code", name: analyticsCode, widget: hidden, required: false }
+  - name: news
+    label: "My News & Updates"
+    description: "Short posts for the News page — market dates, new designs, shop updates. The newest date shows first."
+    files:
+      - name: posts
+        label: "News posts"
+        file: "sites/rose-honey-store/data/posts.json"
+        fields:
+          - label: "Posts"
+            name: posts
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - label: "Title"
+                name: title
+                widget: string
+                hint: "A short headline — e.g. Now booking for wedding season."
+              - label: "Date"
+                name: date
+                widget: datetime
+                format: "YYYY-MM-DD"
+                date_format: "MMM D, YYYY"
+                time_format: false
+                hint: "The newest date shows first on the page."
+              - label: "Photo"
+                name: image
+                widget: image
+                required: false
+                hint: "Optional — shows at the top of the post."
+              - label: "The post"
+                name: body
+                widget: text
+                hint: "A few sentences. Leave an empty line between paragraphs."
+              - label: "Show on the site"
+                name: show
+                widget: boolean
+                default: true
+                hint: "Turn this off to hide a post without deleting it."
   - name: gallery
     label: "My Photo Gallery"
     description: "The photos on your Gallery page — past work you're proud of. Newest photos go at the top of the list."

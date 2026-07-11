@@ -1,0 +1,13 @@
+{
+  "announcement": {
+    "show": true,
+    "text": "Fall preview: new designs land next week — watch the News page!",
+    "link": ""
+  },
+  "phone": "",
+  "hours": "",
+  "email": "",
+  "formKey": "REPLACE_WITH_WEB3FORMS_KEY",
+  "bookingUrl": "REPLACE_WITH_CALCOM_LINK",
+  "analyticsCode": "REPLACE_WITH_GOATCOUNTER_CODE"
+}

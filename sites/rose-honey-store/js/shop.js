@@ -10,6 +10,7 @@
            "price": 42.0, "image": "images/x.webp",
            "category": "apparel"|"mono"|"baby",
            "tags": ["baby gift", "monogram"],
+           "fileGuid": "..." (optional — Snipcart digital download),
            "options": [ { "name": "Size", "values": ["S","M","L[+2.00]"] } ],
            "active": true } ] }
 
@@ -59,6 +60,7 @@
       'data-item-url="shop.html"',
       'data-item-description="' + esc(p.description) + '"'
     ];
+    if (p.fileGuid) attrs.push('data-item-file-guid="' + esc(p.fileGuid) + '"');
     var selects = '';
     (p.options || []).forEach(function (opt, i) {
       var n = i + 1;

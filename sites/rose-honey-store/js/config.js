@@ -15,7 +15,7 @@ window.SITE_LINKS = {
   // PRIMARY: where someone requests a bespoke / personalized order.
   // A form works best (Tally, Google Form, Typeform) so you capture
   // the details + their artwork. A mailto: also works — see "email".
-  customOrder: "REPLACE_WITH_CUSTOM_ORDER_FORM_URL",
+  customOrder: "order.html",
 
   // Buy ready-made pieces directly (Stripe Payment Link or store page).
   shop:        "REPLACE_WITH_STRIPE_OR_SHOP_URL",
