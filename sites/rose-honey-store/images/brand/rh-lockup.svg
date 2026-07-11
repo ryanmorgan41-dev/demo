@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 190" role="img" aria-label="Rose and Honey Stitch Co.">
+  <!-- Horizontal lockup: compact seal (ring + thread rose) + wordmark. -->
+  <defs>
+    <style>
+      .serif { font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif; }
+      .sans  { font-family: "Hanken Grotesk", system-ui, "Segoe UI", sans-serif; }
+    </style>
+  </defs>
+
+  <!-- compact seal -->
+  <g transform="translate(10,10)">
+    <circle cx="85" cy="85" r="80" fill="none" stroke="#B15561" stroke-width="2.2"
+            stroke-dasharray="7 6" stroke-linecap="round" transform="rotate(-8 85 85)"/>
+    <circle cx="85" cy="85" r="71" fill="none" stroke="#C9973B" stroke-width="1" opacity="0.55"/>
+    <!-- needle -->
+    <g stroke-linecap="round">
+      <line x1="127" y1="22" x2="103" y2="46" stroke="#7A6C63" stroke-width="2.8"/>
+      <line x1="103" y1="46" x2="99.5" y2="49.5" stroke="#7A6C63" stroke-width="1.5"/>
+      <circle cx="124.5" cy="24.5" r="2.8" fill="none" stroke="#7A6C63" stroke-width="1.5"/>
+    </g>
+    <!-- thread → rose (centered in the seal) -->
+    <g transform="translate(0,13)">
+      <g fill="none" stroke="#B15561" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 126 9
+                 C 148 19 154 53 140 67
+                 C 130 77 112 73 97 65"/>
+        <path d="M 97 65
+                 C 87 60 80 61 83 54
+                 a 4.5 3.6 -18 1 0 -8 3.6
+                 a 9 7.2 -14 1 0 15.3 -4.5
+                 a 14.4 11.7 -10 1 0 -25.2 8.1
+                 a 20.7 16.2 -6 1 0 36 -10.8" stroke="#954351"/>
+      </g>
+      <g fill="none" stroke="#C9973B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 62 74 Q 46 74 37 86 Q 53 88 65 79"/>
+        <path d="M 104 76 Q 119 82 123 94 Q 108 92 101 81"/>
+      </g>
+      <!-- small stitch at seal base -->
+      <line x1="61" y1="102" x2="109" y2="102" stroke="#C9973B" stroke-width="1.8"
+            stroke-dasharray="5 5" stroke-linecap="round" opacity="0.85"/>
+    </g>
+  </g>
+
+  <!-- wordmark -->
+  <text class="serif" x="212" y="102" font-size="78" font-weight="500" fill="#3B2E29"
+        letter-spacing="0.5">Rose <tspan fill="#C9973B" font-style="italic" font-weight="500">&amp;</tspan> Honey</text>
+  <!-- stitch rule -->
+  <line x1="216" y1="126" x2="438" y2="126" stroke="#C9973B" stroke-width="2"
+        stroke-dasharray="7 6" stroke-linecap="round" opacity="0.8"/>
+  <text class="sans" x="216" y="158" font-size="21" font-weight="600" fill="#7A6C63"
+        letter-spacing="7.5">STITCH CO.</text>
+</svg>

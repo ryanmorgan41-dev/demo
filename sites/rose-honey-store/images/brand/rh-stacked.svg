@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 470" role="img" aria-label="Rose and Honey Stitch Co. — custom embroidery">
+  <!-- Stacked lockup for square canvases (profile images, packaging). -->
+  <defs>
+    <style>
+      .serif { font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif; }
+      .sans  { font-family: "Hanken Grotesk", system-ui, "Segoe UI", sans-serif; }
+    </style>
+  </defs>
+
+  <!-- seal mark (no monogram — the wordmark below carries the name) -->
+  <g transform="translate(80,18) scale(1.0)">
+    <circle cx="120" cy="120" r="110" fill="none" stroke="#B15561" stroke-width="2.6"
+            stroke-dasharray="8 7" stroke-linecap="round" transform="rotate(-8 120 120)"/>
+    <circle cx="120" cy="120" r="99" fill="none" stroke="#C9973B" stroke-width="1.1" opacity="0.55"/>
+    <g stroke-linecap="round">
+      <line x1="178" y1="30" x2="146" y2="62" stroke="#7A6C63" stroke-width="3.4"/>
+      <line x1="146" y1="62" x2="141.5" y2="66.5" stroke="#7A6C63" stroke-width="1.8"/>
+      <circle cx="174.5" cy="33.5" r="3.4" fill="none" stroke="#7A6C63" stroke-width="1.8"/>
+    </g>
+    <g transform="translate(120,124) scale(1.18) translate(-120,-104)">
+      <g fill="none" stroke="#B15561" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 177 31
+                 C 204 42 212 84 193 102
+                 C 180 114 158 118 138 112"/>
+        <path d="M 138 112
+                 C 126 106 118 107 121 99
+                 a 5 4 -18 1 0 -9 4
+                 a 10 8 -14 1 0 17 -5
+                 a 16 13 -10 1 0 -28 9
+                 a 23 18 -6 1 0 40 -12" stroke="#954351"/>
+      </g>
+      <g fill="none" stroke="#C9973B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 100 119 Q 80 119 69 134 Q 89 136 102 125"/>
+        <path d="M 150 121 Q 168 128 172 143 Q 155 141 146 127"/>
+      </g>
+      <line x1="90" y1="152" x2="150" y2="152" stroke="#C9973B" stroke-width="2"
+            stroke-dasharray="6 6" stroke-linecap="round" opacity="0.85"/>
+    </g>
+  </g>
+
+  <!-- wordmark -->
+  <text class="serif" x="200" y="335" text-anchor="middle" font-size="64" font-weight="500"
+        fill="#3B2E29">Rose <tspan fill="#C9973B" font-style="italic">&amp;</tspan> Honey</text>
+  <line x1="130" y1="362" x2="270" y2="362" stroke="#C9973B" stroke-width="2"
+        stroke-dasharray="7 6" stroke-linecap="round" opacity="0.8"/>
+  <text class="sans" x="200" y="396" text-anchor="middle" font-size="19" font-weight="600"
+        fill="#7A6C63" letter-spacing="7">STITCH CO.</text>
+  <text class="sans" x="200" y="432" text-anchor="middle" font-size="14" font-weight="600"
+        fill="#B15561" letter-spacing="4.5">CUSTOM EMBROIDERY</text>
+</svg>

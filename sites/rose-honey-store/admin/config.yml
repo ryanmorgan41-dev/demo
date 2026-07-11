@@ -1,0 +1,74 @@
+# Decap CMS — Rose & Honey staging (storefront-kit wiring).
+# Local dev: `npx decap-server` in the repo root, then open this admin — no login needed.
+local_backend: true
+
+# Staging backend (editing from the live URL needs GitHub access to the repo).
+# For CLIENT email logins, replace this block with the DecapBridge snippet — storefront-kit/SETUP.md step 2.
+backend:
+  name: github
+  repo: ryanmorgan41-dev/demo
+  branch: main
+
+publish_mode: simple
+media_folder: "sites/rose-honey-store/images"
+public_folder: "images"
+
+collections:
+  - name: shop
+    label: "Shop"
+    files:
+      - name: products
+        label: "Products"
+        file: "sites/rose-honey-store/data/products.json"
+        fields:
+          - { label: "Currency", name: currency, widget: hidden, default: "USD" }
+          - { label: "Snipcart key (Ryan sets this — see SETUP.md)", name: snipcartKey, widget: string }
+          - label: "Products"
+            name: products
+            widget: list
+            summary: "{{fields.title}} — ${{fields.price}}"
+            fields:
+              - { label: "Product ID (lowercase-with-dashes, never reuse)", name: id, widget: string, pattern: ["^[a-z0-9-]+$", "lowercase letters, numbers, dashes"] }
+              - { label: "Title", name: title, widget: string }
+              - { label: "Description", name: description, widget: text }
+              - { label: "Price", name: price, widget: number, value_type: float, min: 0 }
+              - { label: "Photo", name: image, widget: image }
+              - label: "Category"
+                name: category
+                widget: select
+                options:
+                  - { label: "Apparel", value: apparel }
+                  - { label: "Monograms & Home", value: mono }
+                  - { label: "Baby & Gifts", value: baby }
+              - label: "Options (e.g. Size — add [+2.00] to a choice for an upcharge)"
+                name: options
+                widget: list
+                required: false
+                fields:
+                  - { label: "Option name", name: name, widget: string }
+                  - { label: "Choices", name: values, widget: list }
+              - { label: "For sale", name: active, widget: boolean, default: true }
+  - name: gallery
+    label: "Gallery"
+    files:
+      - name: gallery
+        label: "Gallery photos"
+        file: "sites/rose-honey-store/data/gallery.json"
+        fields:
+          - label: "Photos (newest first)"
+            name: items
+            widget: list
+            summary: "{{fields.caption}}"
+            fields:
+              - { label: "ID (unique, lowercase-with-dashes)", name: id, widget: string }
+              - { label: "Photo", name: src, widget: image }
+              - { label: "JPG fallback (leave blank)", name: fallback, widget: string, required: false }
+              - { label: "Alt text (describe the photo for screen readers)", name: alt, widget: string }
+              - { label: "Caption", name: caption, widget: string }
+              - label: "Category"
+                name: cat
+                widget: select
+                options:
+                  - { label: "Apparel", value: apparel }
+                  - { label: "Monograms & Home", value: mono }
+                  - { label: "Baby & Gifts", value: baby }

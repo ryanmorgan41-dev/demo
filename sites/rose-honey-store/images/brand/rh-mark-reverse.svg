@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Rose and Honey Stitch Co. seal">
+  <!-- Reverse (dark-background) seal: for the espresso panel, packaging, dark contexts.
+       Ivory monogram, brightened rose, same honey. -->
+  <defs>
+    <style>
+      .serif { font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif; }
+    </style>
+  </defs>
+
+  <circle cx="120" cy="120" r="110" fill="none" stroke="#C97B85" stroke-width="2.6"
+          stroke-dasharray="8 7" stroke-linecap="round" transform="rotate(-8 120 120)"/>
+  <circle cx="120" cy="120" r="99" fill="none" stroke="#E3B44C" stroke-width="1.1" opacity="0.6"/>
+
+  <g stroke-linecap="round">
+    <line x1="178" y1="30" x2="146" y2="62" stroke="#B7A79C" stroke-width="3.4"/>
+    <line x1="146" y1="62" x2="141.5" y2="66.5" stroke="#B7A79C" stroke-width="1.8"/>
+    <circle cx="174.5" cy="33.5" r="3.4" fill="none" stroke="#B7A79C" stroke-width="1.8"/>
+  </g>
+
+  <g fill="none" stroke="#C97B85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 177 31
+             C 204 42 212 84 193 102
+             C 180 114 158 108 138 97"/>
+    <path d="M 138 97
+             C 126 91 118 92 121 84
+             a 5 4 -18 1 0 -9 4
+             a 10 8 -14 1 0 17 -5
+             a 16 13 -10 1 0 -28 9
+             a 23 18 -6 1 0 40 -12" stroke="#D98E98"/>
+  </g>
+  <g fill="none" stroke="#E3B44C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 100 104 Q 82 104 72 118 Q 90 120 102 110"/>
+    <path d="M 150 106 Q 166 112 170 126 Q 154 124 146 112"/>
+  </g>
+
+  <text class="serif" x="120" y="185" text-anchor="middle" font-size="76" font-weight="600"
+        fill="#F5EFE6" letter-spacing="-1">R<tspan fill="#E3B44C" font-weight="500" font-size="62" dy="-2">&amp;</tspan><tspan fill="#F5EFE6" font-weight="600" font-size="76" dy="2">H</tspan></text>
+
+  <line x1="86" y1="200" x2="154" y2="200" stroke="#E3B44C" stroke-width="2"
+        stroke-dasharray="6 6" stroke-linecap="round" opacity="0.85"/>
+</svg>

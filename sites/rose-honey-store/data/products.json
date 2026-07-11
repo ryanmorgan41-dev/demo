@@ -1,0 +1,93 @@
+{
+  "currency": "USD",
+  "snipcartKey": "REPLACE_WITH_SNIPCART_PUBLIC_API_KEY",
+  "products": [
+    {
+      "id": "script-name-crewneck",
+      "title": "Script name crewneck",
+      "description": "Cozy crewneck with a first name hand-embroidered in rose script.",
+      "price": 45,
+      "image": "images/g-1.webp",
+      "category": "apparel",
+      "options": [
+        {
+          "name": "Size",
+          "values": [
+            "S",
+            "M",
+            "L[+2.00]",
+            "XL[+2.00]"
+          ]
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": "floral-crest-cap",
+      "title": "Floral crest cap",
+      "description": "Classic cap with a small embroidered floral crest.",
+      "price": 28,
+      "image": "images/gp-ap2.webp",
+      "category": "apparel",
+      "options": [],
+      "active": true
+    },
+    {
+      "id": "monogram-linen-napkins",
+      "title": "Monogrammed linen napkins",
+      "description": "Linen napkins with a single-letter monogram in honey-gold satin stitch.",
+      "price": 36,
+      "image": "images/g-2.webp",
+      "category": "mono",
+      "options": [
+        {
+          "name": "Set",
+          "values": [
+            "Set of 4",
+            "Set of 6[+12.00]"
+          ]
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": "monogram-medallion-pillow",
+      "title": "Monogram medallion pillow",
+      "description": "Linen throw pillow with an embroidered monogram medallion.",
+      "price": 48,
+      "image": "images/gp-mo3.webp",
+      "category": "mono",
+      "options": [],
+      "active": true
+    },
+    {
+      "id": "name-keepsake-blanket",
+      "title": "Name keepsake blanket",
+      "description": "Soft baby blanket embroidered with a name and heart in the corner.",
+      "price": 54,
+      "image": "images/g-3.webp",
+      "category": "baby",
+      "options": [
+        {
+          "name": "Thread color",
+          "values": [
+            "Rose",
+            "Honey",
+            "Sage"
+          ]
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": "woodland-bib-gift-set",
+      "title": "Woodland bib gift set",
+      "description": "Embroidered baby bib and burp cloth gift set, ready to gift.",
+      "price": 34,
+      "image": "images/gp-ba3.webp",
+      "category": "baby",
+      "options": [],
+      "active": true
+    }
+  ]
+}

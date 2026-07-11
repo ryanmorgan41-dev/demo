@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="R and H monogram">
+  <!-- Simplified monogram-only seal for tiny sizes (favicon, avatars at <96px).
+       No needle/rose — they turn to noise below ~64px. -->
+  <defs>
+    <style>
+      .serif { font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif; }
+    </style>
+  </defs>
+  <circle cx="120" cy="120" r="108" fill="#FBF9F4"/>
+  <circle cx="120" cy="120" r="104" fill="none" stroke="#B15561" stroke-width="7"
+          stroke-dasharray="14 12" stroke-linecap="round" transform="rotate(-8 120 120)"/>
+  <text class="serif" x="120" y="158" text-anchor="middle" font-size="110" font-weight="600"
+        fill="#3B2E29" letter-spacing="-3">R<tspan fill="#C9973B" font-weight="500" font-size="88" dy="-3">&amp;</tspan><tspan fill="#3B2E29" font-weight="600" font-size="110" dy="3">H</tspan></text>
+</svg>

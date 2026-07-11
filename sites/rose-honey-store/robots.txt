@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /legal/
+
+# Update the host below to your live domain once it's set.
+Sitemap: https://roseandhoneystitch.co/sitemap.xml

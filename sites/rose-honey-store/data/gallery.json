@@ -1,0 +1,13 @@
+{
+  "items": [
+    { "id": "1", "src": "images/g-1.webp", "fallback": null, "alt": "Custom embroidered crewneck with a name in rose script.", "caption": "Script name crewneck", "cat": "apparel" },
+    { "id": "2", "src": "images/g-2.webp", "fallback": null, "alt": "Monogrammed linen napkin in honey-gold satin stitch.", "caption": "Monogrammed linen napkins", "cat": "mono" },
+    { "id": "3", "src": "images/g-3.webp", "fallback": null, "alt": "Baby blanket corner with an embroidered name and heart.", "caption": "Name keepsake blanket", "cat": "baby" },
+    { "id": "4", "src": "images/gp-ap2.webp", "fallback": null, "alt": "Embroidered cap with a small floral crest.", "caption": "Floral crest cap", "cat": "apparel" },
+    { "id": "5", "src": "images/gp-mo2.webp", "fallback": null, "alt": "Plush robe with an embroidered script monogram.", "caption": "Script monogram robe", "cat": "mono" },
+    { "id": "6", "src": "images/gp-ba2.webp", "fallback": null, "alt": "Name onesie with an embroidered first name and star.", "caption": "Name & star onesie", "cat": "baby" },
+    { "id": "7", "src": "images/gp-ap3.webp", "fallback": null, "alt": "Denim jacket back with a large embroidered botanical design.", "caption": "Botanical denim jacket", "cat": "apparel" },
+    { "id": "8", "src": "images/gp-mo3.webp", "fallback": null, "alt": "Linen throw pillow with an embroidered monogram medallion.", "caption": "Monogram medallion pillow", "cat": "mono" },
+    { "id": "9", "src": "images/gp-ba3.webp", "fallback": null, "alt": "Embroidered baby bib and burp cloth gift set.", "caption": "Woodland bib gift set", "cat": "baby" }
+  ]
+}

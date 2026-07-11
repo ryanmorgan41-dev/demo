@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop — Rose &amp; Honey Stitch Co. Custom Embroidery</title>
+  <meta name="description" content="Shop ready-to-ship embroidered pieces from Rose & Honey Stitch Co.: personalized apparel, monogrammed home goods, and keepsake baby gifts.">
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="Shop — Rose &amp; Honey Stitch Co.">
+  <meta property="og:description" content="Ready-to-ship embroidered pieces: apparel, monograms & home, baby & gifts.">
+  <meta property="og:image" content="images/og-image.jpg">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/reinvented.css">
+  <style>
+    /* shop-only chrome, tokens from styles.css */
+    .shop-grid { align-items: start; }
+    .shop-card { display: flex; flex-direction: column; gap: 0.35rem; }
+    .shop-card .shot { margin-bottom: 0.55rem; }
+    .shop-price { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; color: var(--ink); margin: 0.15rem 0 0.35rem; }
+    .shop-opt { display: block; font-size: 0.85rem; font-weight: 600; color: var(--muted); margin-bottom: 0.55rem; }
+    .shop-opt select { display: block; width: 100%; margin-top: 0.25rem; padding: 0.55rem 0.7rem; font: inherit; color: var(--ink); background: var(--surface); border: 1.5px solid var(--line); border-radius: var(--radius-sm); }
+    .shop-opt select:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; }
+    .shop-card .btn { margin-top: auto; }
+    @media (max-width: 900px) { .shop-grid.grid--3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .shop-grid.grid--3 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body class="rh">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="container nav-bar">
+      <a class="brand" href="index.html" aria-label="Rose and Honey Stitch Co. home"><svg class="brand-seal" viewBox="0 0 170 170" aria-hidden="true" focusable="false"><circle class="bs-ring" cx="85" cy="85" r="78" transform="rotate(-8 85 85)"/><path class="bs-thread" d="M 126 22 C 148 32 154 66 140 80 C 130 90 112 86 97 78"/><path class="bs-rose" d="M 97 78 C 87 73 80 74 83 67 a 4.5 3.6 -18 1 0 -8 3.6 a 9 7.2 -14 1 0 15.3 -4.5 a 14.4 11.7 -10 1 0 -25.2 8.1 a 20.7 16.2 -6 1 0 36 -10.8"/><path class="bs-leaf" d="M 62 87 Q 46 87 37 99 Q 53 101 65 92"/><path class="bs-leaf" d="M 104 89 Q 119 95 123 107 Q 108 105 101 94"/></svg>Rose <span class="amp">&amp;</span> Honey</a>
+      <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <nav class="nav-links" id="primary-nav" data-nav aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="shop.html" aria-current="page">Shop</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a class="btn btn--primary" data-cta="customOrder" href="#">Request a custom order</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <div class="center narrow rh-lead-in" data-reveal>
+          <p class="eyebrow">Shop</p>
+          <h1 class="rh-display">Ready-to-ship pieces.</h1>
+          <p class="lead">Stitched, finished, and ready to go. Want it personalized instead? <a data-cta="customOrder" href="#">Request a custom order</a> and we'll make it yours.</p>
+        </div>
+
+        <!-- Rendered by js/shop.js from data/products.json (editable in /admin/). -->
+        <div class="grid grid--3 shop-grid mt-md" id="shop-grid" data-reveal></div>
+        <noscript><p class="center lead">Enable JavaScript to browse the shop — or <a data-cta="etsy" href="#">find us on Etsy</a>.</p></noscript>
+
+        <div class="btn-row center mt-lg" data-reveal>
+          <a class="btn btn--secondary btn--lg" data-cta="etsy" href="#">Find us on Etsy</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><svg class="brand-seal" viewBox="0 0 170 170" aria-hidden="true" focusable="false"><circle class="bs-ring" cx="85" cy="85" r="78" transform="rotate(-8 85 85)"/><path class="bs-thread" d="M 126 22 C 148 32 154 66 140 80 C 130 90 112 86 97 78"/><path class="bs-rose" d="M 97 78 C 87 73 80 74 83 67 a 4.5 3.6 -18 1 0 -8 3.6 a 9 7.2 -14 1 0 15.3 -4.5 a 14.4 11.7 -10 1 0 -25.2 8.1 a 20.7 16.2 -6 1 0 36 -10.8"/><path class="bs-leaf" d="M 62 87 Q 46 87 37 99 Q 53 101 65 92"/><path class="bs-leaf" d="M 104 89 Q 119 95 123 107 Q 108 105 101 94"/></svg>Rose <span class="amp">&amp;</span> Honey</a>
+          <p class="mt-sm">Custom embroidery, stitched with care. Personalized apparel, monogrammed home goods, and keepsake gifts.</p>
+          <div class="social-row">
+            <a class="social-btn" data-cta="instagram" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+            <a class="social-btn" data-cta="facebook" href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.3-1.4 1.5-1.4h1.4V5.5c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5v2.3H8.5V14H11v7h2.5z"/></svg></a>
+            <a class="social-btn" data-cta="etsy" href="#" aria-label="Etsy shop"><span>E</span></a>
+          </div>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="services.html">Services &amp; Pricing</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Order &amp; Connect</h4>
+          <ul>
+            <li><a data-cta="customOrder" href="#">Request a custom order</a></li>
+            <li><a data-cta="etsy" href="#">Etsy shop</a></li>
+            <li><a data-cta="instagram" href="#">Instagram</a></li>
+            <li><a data-cta="facebook" href="#">Facebook</a></li>
+            <li><a data-cta="email" href="#">Email us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span data-year>2026</span> Rose &amp; Honey Stitch Co. All rights reserved.</p>
+        <p><a href="legal/privacy.html">Privacy</a> · <a href="legal/terms.html">Terms</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/shop.js"></script>
+</body>
+</html>
