@@ -145,6 +145,37 @@ collections:
                 widget: boolean
                 default: true
                 hint: "Turn this off to hide a post without deleting it."
+  - name: testimonials
+    label: "Kind Words"
+    description: "Customer quotes shown on your home page. Only add real quotes from real customers (with their okay)."
+    files:
+      - name: testimonials
+        label: "Customer quotes"
+        file: "sites/rose-honey-store/data/testimonials.json"
+        fields:
+          - label: "Quotes"
+            name: items
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - label: "What they said"
+                name: quote
+                widget: text
+                hint: "Their words, exactly — a sentence or three."
+              - label: "Who said it"
+                name: name
+                widget: string
+                hint: "First name and last initial is perfect — e.g. Sarah M."
+              - label: "What they ordered"
+                name: detail
+                widget: string
+                required: false
+                hint: "Optional — e.g. Custom name blanket."
+              - label: "Show on the site"
+                name: show
+                widget: boolean
+                default: true
+                hint: "Turn this off to hide a quote without deleting it."
   - name: gallery
     label: "My Photo Gallery"
     description: "The photos on your Gallery page — past work you're proud of. Newest photos go at the top of the list."

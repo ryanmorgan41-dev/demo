@@ -17,6 +17,8 @@
      (e.g. the Book nav link hides until bookingUrl is real)
    - #order-form               -> submits to Web3Forms with formKey;
      placeholder key -> friendly "not connected yet" note instead
+   - #newsletter-form          -> same Web3Forms rail (subject:
+     newsletter signup); addresses land in the owner's inbox
    - #cal-embed                -> Cal.com inline booking embed
    - analyticsCode             -> GoatCounter script injected
    ============================================================ */
@@ -112,6 +114,39 @@
     });
   }
 
+  function newsletterForm(data) {
+    var form = doc.getElementById('newsletter-form');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (form.querySelector('[name="_gotcha"]') &&
+          form.querySelector('[name="_gotcha"]').value) return; // honeypot
+      if (unset(data.formKey)) {
+        note(form, data.email
+          ? 'Email signups aren’t set up yet — email us at ' + data.email + ' and we’ll add you.'
+          : 'Email signups aren’t set up yet — check back soon.');
+        return;
+      }
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Signing up…'; }
+      var fd = new FormData(form);
+      fd.append('access_key', data.formKey);
+      fd.append('subject', 'Newsletter signup from the website');
+      fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (res.success) {
+            form.querySelectorAll('.form-fields').forEach(function (el) { el.style.display = 'none'; });
+            note(form, 'You’re on the list — thank you!');
+          } else { throw new Error(res.message || 'submit failed'); }
+        })
+        .catch(function () {
+          if (btn) { btn.disabled = false; btn.textContent = 'Sign me up'; }
+          note(form, 'Something went wrong — please try again in a minute.');
+        });
+    });
+  }
+
   function booking(data) {
     var mount = doc.getElementById('cal-embed');
     if (!mount) return;
@@ -168,6 +203,7 @@
       footerInfo(data);
       gateRequires(data);
       orderForm(data);
+      newsletterForm(data);
       booking(data);
       analytics(data);
     })

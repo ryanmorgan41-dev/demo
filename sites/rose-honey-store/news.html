@@ -21,6 +21,15 @@
     .news-card .shot { margin-bottom: 0.55rem; }
     .news-card h2 { font-size: 1.6rem; margin: 0; }
     .news-date { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin: 0; }
+    .news-signup { max-width: 480px; margin-inline: auto; text-align: center; }
+    .news-signup label { display: block; font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+    .news-signup input[type="email"] {
+      display: block; width: 100%; margin: 0.5rem 0 0.8rem; padding: 0.65rem 0.8rem; font: inherit;
+      color: var(--ink); background: var(--surface); border: 1.5px solid var(--line); border-radius: var(--radius-sm);
+    }
+    .news-signup input[type="email"]:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; }
+    .news-signup .hp { position: absolute; left: -9999px; height: 1px; width: 1px; overflow: hidden; }
+    .form-note { font-weight: 600; color: var(--ink); background: var(--bg-tint); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 0.8rem 1rem; margin-top: 0.8rem; }
   </style>
 </head>
 <body class="rh">
@@ -59,6 +68,16 @@
         <!-- Rendered by js/blog.js from data/posts.json (editable in /admin/). -->
         <div class="news-list mt-md" id="news-list" data-reveal></div>
         <noscript><p class="center lead">Enable JavaScript to read our news.</p></noscript>
+
+        <form class="news-signup mt-lg" id="newsletter-form" data-reveal novalidate>
+          <div class="form-fields">
+            <label for="news-email">Get shop news by email</label>
+            <input id="news-email" type="email" name="email" autocomplete="email" required placeholder="you@example.com">
+            <label class="hp" aria-hidden="true">Leave this field empty
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+            <button class="btn btn--primary" type="submit">Sign me up</button>
+          </div>
+        </form>
       </div>
     </section>
   </main>
