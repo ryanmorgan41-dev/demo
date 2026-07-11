@@ -4,10 +4,56 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Site Admin</title>
+  <title>Rose &amp; Honey — Site Admin</title>
 </head>
 <body>
   <!-- Decap CMS reads ./config.yml from this folder -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Preview pane: show real product cards, styled like the site.
+    CMS.registerPreviewStyle('../css/styles.css');
+    CMS.registerPreviewStyle(
+      '.rh-preview{font-family:"Hanken Grotesk",system-ui,sans-serif;padding:1rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;background:oklch(0.984 0.006 80)}' +
+      '.rh-preview .card{background:oklch(0.995 0.003 90);border-radius:14px;padding:1rem;box-shadow:0 1px 2px rgba(60,40,30,.08)}' +
+      '.rh-preview img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;background:oklch(0.967 0.012 60)}' +
+      '.rh-preview .cat{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:oklch(0.700 0.120 70);margin-top:.5rem}' +
+      '.rh-preview h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.35rem;margin:.15rem 0}' +
+      '.rh-preview p{font-size:.85rem;color:oklch(0.445 0.032 28);margin:0 0 .3rem}' +
+      '.rh-preview .price{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.7rem;font-weight:600}' +
+      '.rh-preview .tags{display:flex;flex-wrap:wrap;gap:.3rem;margin:.3rem 0}' +
+      '.rh-preview .tag{font-size:.7rem;padding:.12rem .5rem;border:1px solid oklch(0.880 0.018 50);border-radius:999px;color:oklch(0.445 0.032 28)}' +
+      '.rh-preview .off{opacity:.45}',
+      { raw: true }
+    );
+
+    var CAT = { apparel: 'Apparel', mono: 'Monograms & Home', baby: 'Baby & Gifts' };
+
+    var ProductsPreview = createClass({
+      render: function () {
+        var entry = this.props.entry;
+        var items = entry.getIn(['data', 'products']);
+        var getAsset = this.props.getAsset;
+        var cards = (items ? items.toJS() : []).map(function (p, i) {
+          var img = p.image ? String(getAsset(p.image)) : '';
+          var tags = (p.tags || []).map(function (t, j) {
+            return h('span', { className: 'tag', key: 't' + j }, t);
+          });
+          var price = (p.price || p.price === 0)
+            ? '$' + Number(p.price).toFixed(2).replace(/\.00$/, '') : '';
+          return h('div', { className: 'card' + (p.active === false ? ' off' : ''), key: 'p' + i },
+            img ? h('img', { src: img, alt: '' }) : null,
+            h('div', { className: 'cat' }, CAT[p.category] || p.category || ''),
+            h('h3', {}, p.title || 'New piece'),
+            h('p', {}, p.description || ''),
+            tags.length ? h('div', { className: 'tags' }, tags) : null,
+            h('div', { className: 'price' }, price),
+            p.active === false ? h('p', {}, '(hidden from shop)') : null
+          );
+        });
+        return h('div', { className: 'rh-preview' }, cards);
+      }
+    });
+    CMS.registerPreviewTemplate('products', ProductsPreview);
+  </script>
 </body>
 </html>

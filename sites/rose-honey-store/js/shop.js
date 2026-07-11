@@ -5,17 +5,20 @@
    products.json shape:
      { "currency": "USD",
        "snipcartKey": "..." | "REPLACE_WITH_...",
-       "products": [ { "id": "slug", "title": "...", "description": "...",
+       "products": [ { "id": "slug" (optional — derived from title),
+           "title": "...", "description": "...",
            "price": 42.0, "image": "images/x.webp",
            "category": "apparel"|"mono"|"baby",
+           "tags": ["baby gift", "monogram"],
            "options": [ { "name": "Size", "values": ["S","M","L[+2.00]"] } ],
            "active": true } ] }
 
    Renders into: #shop-grid. Buttons carry Snipcart v3 attributes;
    on-page <select>s sync data-item-customN-value so the buyer's
-   choice travels into the cart. Snipcart's JS/CSS load only when a
-   real key is present — until then buttons render as a disabled
-   "Checkout coming soon" (same is-pending idea as main.js CTAs).
+   choice travels into the cart. Also emits JSON-LD Product
+   structured data for search engines. Snipcart JS/CSS load only
+   when a real key is present — until then buttons render as a
+   disabled "Checkout coming soon".
    On fetch failure the static fallback content is left alone.
    ============================================================ */
 (function () {
@@ -26,6 +29,11 @@
     return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
     });
+  }
+
+  function slug(s) {
+    return String(s == null ? '' : s).toLowerCase().trim()
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   }
 
   function money(n, currency) {
@@ -42,8 +50,9 @@
   }
 
   function card(p, currency, live) {
+    var id = p.id || slug(p.title);
     var attrs = [
-      'data-item-id="' + esc(p.id) + '"',
+      'data-item-id="' + esc(id) + '"',
       'data-item-name="' + esc(p.title) + '"',
       'data-item-price="' + Number(p.price).toFixed(2) + '"',
       'data-item-image="' + esc(p.image) + '"',
@@ -66,14 +75,18 @@
         }).join('') +
         '</select></label>';
     });
+    var chips = (p.tags || []).map(function (t) {
+      return '<span class="shop-tag">' + esc(t) + '</span>';
+    }).join('');
     var btn = live
       ? '<button class="btn btn--primary snipcart-add-item" ' + attrs.join(' ') + '>Add to cart</button>'
-      : '<button class="btn btn--primary is-pending" disabled aria-disabled="true" ' + attrs.join(' ') + '>Checkout coming soon</button>';
-    return '<article class="card shop-card" data-product="' + esc(p.id) + '">' +
+      : '<button class="btn btn--primary" disabled aria-disabled="true" ' + attrs.join(' ') + '>Checkout coming soon</button>';
+    return '<article class="card shop-card" data-product="' + esc(id) + '">' +
       '<img class="shot ph--square" src="' + esc(p.image) + '" alt="' + esc(p.title) + '" loading="lazy">' +
       '<span class="card__tag">' + esc(CAT_LABEL[p.category] || p.category) + '</span>' +
       '<h3>' + esc(p.title) + '</h3>' +
       '<p>' + esc(p.description) + '</p>' +
+      (chips ? '<div class="shop-tags">' + chips + '</div>' : '') +
       '<p class="shop-price">' + money(p.price, currency) + '</p>' +
       selects + btn + '</article>';
   }
@@ -85,6 +98,39 @@
       var btn = sel.closest('.shop-card').querySelector('[data-item-id]');
       if (btn) btn.setAttribute('data-item-custom' + sel.getAttribute('data-custom') + '-value', sel.value);
     });
+  }
+
+  function emitJsonLd(items, currency) {
+    var pageUrl = location.origin + location.pathname;
+    var data = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      'itemListElement': items.map(function (p, i) {
+        return {
+          '@type': 'ListItem',
+          'position': i + 1,
+          'item': {
+            '@type': 'Product',
+            'name': p.title,
+            'description': p.description,
+            'image': new URL(p.image, pageUrl).href,
+            'sku': p.id || slug(p.title),
+            'keywords': (p.tags || []).join(', '),
+            'offers': {
+              '@type': 'Offer',
+              'priceCurrency': currency || 'USD',
+              'price': Number(p.price).toFixed(2),
+              'availability': 'https://schema.org/InStock',
+              'url': pageUrl
+            }
+          }
+        };
+      })
+    };
+    var s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.textContent = JSON.stringify(data);
+    document.head.appendChild(s);
   }
 
   function loadSnipcart(key) {
@@ -116,6 +162,7 @@
         ? items.map(function (p) { return card(p, data.currency, live); }).join('')
         : '<p class="lead center">New pieces are on the way — check back soon.</p>';
       wireSelects(grid);
+      emitJsonLd(items, data.currency);
       if (live) loadSnipcart(data.snipcartKey);
     })
     .catch(function () { /* keep static fallback content */ });

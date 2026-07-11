@@ -1,4 +1,8 @@
 # Decap CMS — Rose & Honey staging (storefront-kit wiring).
+# Written for a non-technical owner: plain-language labels/hints, technical fields hidden.
+# NOTE: Decap only preserves fields declared in this config when publishing — that's why
+# snipcartKey/currency/id/fallback are declared as hidden widgets instead of removed.
+
 # Local dev: `npx decap-server` in the repo root, then open this admin — no login needed.
 local_backend: true
 
@@ -9,47 +13,76 @@ backend:
   repo: ryanmorgan41-dev/demo
   branch: main
 
+logo_url: ../images/brand/rh-lockup.svg
 publish_mode: simple
 media_folder: "sites/rose-honey-store/images"
 public_folder: "images"
 
 collections:
   - name: shop
-    label: "Shop"
+    label: "My Products"
+    description: "The pieces for sale on your Shop page. Add a piece here and it appears on the website about a minute after you hit Publish."
     files:
       - name: products
         label: "Products"
         file: "sites/rose-honey-store/data/products.json"
         fields:
           - { label: "Currency", name: currency, widget: hidden, default: "USD" }
-          - { label: "Snipcart key (Ryan sets this — see SETUP.md)", name: snipcartKey, widget: string }
+          - { label: "Snipcart key", name: snipcartKey, widget: hidden, required: false }
           - label: "Products"
             name: products
             widget: list
             summary: "{{fields.title}} — ${{fields.price}}"
             fields:
-              - { label: "Product ID (lowercase-with-dashes, never reuse)", name: id, widget: string, pattern: ["^[a-z0-9-]+$", "lowercase letters, numbers, dashes"] }
-              - { label: "Title", name: title, widget: string }
-              - { label: "Description", name: description, widget: text }
-              - { label: "Price", name: price, widget: number, value_type: float, min: 0 }
-              - { label: "Photo", name: image, widget: image }
-              - label: "Category"
+              - { label: "Internal ID", name: id, widget: hidden, required: false }
+              - label: "Photo"
+                name: image
+                widget: image
+                hint: "A bright photo works best — square-ish if you can. Click to upload."
+              - label: "Name"
+                name: title
+                widget: string
+                hint: "What you'd call it to a customer — e.g. Script name crewneck."
+              - label: "Price (dollars)"
+                name: price
+                widget: number
+                value_type: float
+                min: 0
+                hint: "Just the number — like 42 or 42.50."
+              - label: "Description"
+                name: description
+                widget: text
+                hint: "Two or three sentences a shopper would search for: what it is, what it's made from, who it's for. Ask yourself: what would someone type into Google to find this?"
+              - label: "Search words"
+                name: tags
+                widget: list
+                required: false
+                hint: "3–8 words shoppers might search, separated by commas — e.g. baby gift, monogrammed napkins, custom embroidery."
+              - label: "Section"
                 name: category
                 widget: select
+                hint: "Where it lives in the shop."
                 options:
                   - { label: "Apparel", value: apparel }
                   - { label: "Monograms & Home", value: mono }
                   - { label: "Baby & Gifts", value: baby }
-              - label: "Options (e.g. Size — add [+2.00] to a choice for an upcharge)"
+              - label: "Choices you offer"
                 name: options
                 widget: list
                 required: false
+                collapsed: true
+                hint: "Like Size or Thread color. If one choice costs extra, add it in brackets — e.g. XL[+2.00] means $2 more."
                 fields:
-                  - { label: "Option name", name: name, widget: string }
-                  - { label: "Choices", name: values, widget: list }
-              - { label: "For sale", name: active, widget: boolean, default: true }
+                  - { label: "What the choice is called", name: name, widget: string, hint: "e.g. Size, or Thread color." }
+                  - { label: "The choices", name: values, widget: list, hint: "Separated by commas — e.g. S, M, L, XL[+2.00]" }
+              - label: "Show in shop"
+                name: active
+                widget: boolean
+                default: true
+                hint: "Turn this off to hide a piece without deleting it."
   - name: gallery
-    label: "Gallery"
+    label: "My Photo Gallery"
+    description: "The photos on your Gallery page — past work you're proud of. Newest photos go at the top of the list."
     files:
       - name: gallery
         label: "Gallery photos"
@@ -60,14 +93,27 @@ collections:
             widget: list
             summary: "{{fields.caption}}"
             fields:
-              - { label: "ID (unique, lowercase-with-dashes)", name: id, widget: string }
-              - { label: "Photo", name: src, widget: image }
-              - { label: "JPG fallback (leave blank)", name: fallback, widget: string, required: false }
-              - { label: "Alt text (describe the photo for screen readers)", name: alt, widget: string }
-              - { label: "Caption", name: caption, widget: string }
-              - label: "Category"
+              - label: "Short nickname"
+                name: id
+                widget: string
+                hint: "One word, lowercase, dashes okay — e.g. rose-blanket. Every photo needs a different one."
+              - label: "Photo"
+                name: src
+                widget: image
+                hint: "Click to upload."
+              - { label: "JPG fallback", name: fallback, widget: hidden, required: false }
+              - label: "Describe the photo"
+                name: alt
+                widget: string
+                hint: "One sentence saying what's in the picture — this helps blind visitors and Google. E.g. Baby blanket with an embroidered name and heart."
+              - label: "Caption"
+                name: caption
+                widget: string
+                hint: "A few words shown under the photo — e.g. Name keepsake blanket."
+              - label: "Section"
                 name: cat
                 widget: select
+                hint: "Where it lives in the gallery."
                 options:
                   - { label: "Apparel", value: apparel }
                   - { label: "Monograms & Home", value: mono }

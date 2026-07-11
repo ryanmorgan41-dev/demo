@@ -88,6 +88,20 @@
       "category": "baby",
       "options": [],
       "active": true
+    },
+    {
+      "active": true,
+      "image": "images/honey-bee-hoop.webp",
+      "title": "Honey bee hoop art",
+      "price": 38,
+      "description": "Hand-embroidered honey bee hoop art in warm gold thread on natural linen. A sweet housewarming gift or nursery accent, finished in a 6-inch wooden hoop and ready to hang.",
+      "tags": [
+        "bee hoop art",
+        "embroidered wall decor",
+        "nursery decor",
+        "honey bee gift"
+      ],
+      "category": "mono"
     }
   ]
 }

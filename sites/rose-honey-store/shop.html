@@ -21,10 +21,13 @@
     .shop-card { display: flex; flex-direction: column; gap: 0.35rem; }
     .shop-card .shot { margin-bottom: 0.55rem; }
     .shop-price { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; color: var(--ink); margin: 0.15rem 0 0.35rem; }
+    .shop-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.1rem 0 0.45rem; }
+    .shop-tag { font-size: 0.72rem; padding: 0.15rem 0.55rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--bg-tint); }
     .shop-opt { display: block; font-size: 0.85rem; font-weight: 600; color: var(--muted); margin-bottom: 0.55rem; }
     .shop-opt select { display: block; width: 100%; margin-top: 0.25rem; padding: 0.55rem 0.7rem; font: inherit; color: var(--ink); background: var(--surface); border: 1.5px solid var(--line); border-radius: var(--radius-sm); }
     .shop-opt select:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; }
     .shop-card .btn { margin-top: auto; }
+    .shop-card .btn[disabled] { opacity: 0.6; cursor: not-allowed; }
     @media (max-width: 900px) { .shop-grid.grid--3 { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 560px) { .shop-grid.grid--3 { grid-template-columns: 1fr; } }
   </style>
